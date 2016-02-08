@@ -8,7 +8,7 @@
         Title="MainWindow" Height="661.111" Width="884.722">
     <Grid>
         <Button x:Name="BtnAddArtwork" Content="Lägg Till Konstverk" HorizontalAlignment="Left" Margin="81,588,0,0" VerticalAlignment="Top" Width="109" Height="32" Click="LäggTillKonstverk_Click"/>
-        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="610" Margin="352,10,0,0" VerticalAlignment="Top" Width="515">
+        <ListBox x:Name="ArtworkListBox" HorizontalAlignment="Left" Height="610" Margin="352,10,0,0" VerticalAlignment="Top" Width="515">
             <Button x:Name="button" Content="Button" Width="75" Height="70"/>
         </ListBox>
         <Button x:Name="BtnSlideShow" Content="Visa Bildspel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="112" Margin="214,588,0,0" Height="32" Click="BtnSlideShow_Click"/>
