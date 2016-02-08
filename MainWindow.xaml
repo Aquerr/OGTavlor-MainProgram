@@ -8,6 +8,8 @@
         Title="MainWindow" Height="661.111" Width="884.722">
     <Grid>
         <Button x:Name="LäggTillKonstverk" Content="Lägg Till Konstverk" HorizontalAlignment="Left" Margin="172,549,0,0" VerticalAlignment="Top" Width="109" Height="32" Click="LäggTillKonstverk_Click"/>
+            <Button x:Name="button" Content="Button" Width="75" Height="70"/>
+        </ListBox>
 
     </Grid>
 </Window>
