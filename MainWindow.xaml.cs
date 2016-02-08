@@ -31,5 +31,12 @@ namespace OGTavlor_MainProgram
             this.Close();
             AddArt.Show();
         }
+
+        private void BtnSlideShow_Click(object sender, RoutedEventArgs e)
+        {
+            PictureSlideShow SlideShow = new PictureSlideShow();
+            this.Close();
+            SlideShow.Show();
+        }
     }
 }
