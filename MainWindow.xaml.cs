@@ -23,6 +23,7 @@ namespace OGTavlor_MainProgram
         public MainWindow()
         {
             InitializeComponent();
+            FillList();
         }
 
         private void LäggTillKonstverk_Click(object sender, RoutedEventArgs e)
@@ -30,6 +31,11 @@ namespace OGTavlor_MainProgram
             AddArtwork AddArt = new AddArtwork();
             this.Close();
             AddArt.Show();
+        }
+
+        private void FillList()
+        {
+
         }
     }
 }
