@@ -17,7 +17,7 @@
                             <ColumnDefinition Width="auto"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Image Source="{Binding ImagePath}" Height="80" Width="80" Grid.Column="0"></Image>
+                        <Image Source="{Binding ImagePath}"  Height="80" Width="80" Grid.Column="0" Cursor="Hand"></Image>
                         <StackPanel Grid.Column="1" Orientation="Vertical" Width="150" Height="100" >
                                 <TextBlock Text="{Binding Title}" Margin="5,1,0,1"></TextBlock>
                             </StackPanel>
