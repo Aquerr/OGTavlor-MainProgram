@@ -48,7 +48,7 @@ namespace OGTavlor_MainProgram
             {
                 ArtImage.Source = new BitmapImage(new Uri(op.FileName));
                 art.ImagePath = (ArtImage.Source as BitmapImage).UriSource.AbsolutePath;
-                //  MessageBox.Show(ImagePath);
+                //MessageBox.Show(art.ImagePath);
             }
         }
     }

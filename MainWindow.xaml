@@ -8,24 +8,21 @@
         Title="MainWindow" Height="661.111" Width="884.722">
     <Grid>
         <Button x:Name="BtnAddArtwork" Content="Lägg Till Konstverk" HorizontalAlignment="Left" Margin="81,588,0,0" VerticalAlignment="Top" Width="109" Height="32" Click="LäggTillKonstverk_Click"/>
-        <ListBox x:Name="ArtworkListBox" Margin="367,10,0,0">
-            <ListBox.ItemTemplate>
-            <DataTemplate>
-                <StackPanel Orientation="Horizontal">
-                    <Grid Margin="0,5,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Image Source="{Binding ImagePath}"  Height="80" Width="80" Grid.Column="0" Cursor="Hand"></Image>
-                        <StackPanel Grid.Column="1" Orientation="Vertical" Width="150" Height="100" >
-                                <TextBlock Text="{Binding Title}" Margin="5,1,0,1"></TextBlock>
-                            </StackPanel>
-                    </Grid>
-                </StackPanel>
-            </DataTemplate>
-        </ListBox.ItemTemplate>
-        </ListBox>
+        <ListView ItemsSource="{Binding Inventory}" x:Name="ArtworkListView" HorizontalAlignment="Right" VerticalAlignment="Top" Width="500" Height="630" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="{Binding ImagePath}"  Height="80" Width="80" Cursor="Hand"></Image>
+                        <TextBlock Text="{Binding Title}" Margin="5,1,0,1"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <Button x:Name="BtnSlideShow" Content="Visa Bildspel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="112" Margin="214,588,0,0" Height="32" Click="BtnSlideShow_Click"/>
     </Grid>
 </Window>
