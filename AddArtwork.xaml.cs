@@ -26,12 +26,9 @@ namespace OGTavlor_MainProgram
             InitializeComponent();
         }
 
-        Artworks a = new Artworks();
-        List<Artwork> Inventory = new List<Artwork>();
-        
         private void SaveArtwork_Click(object sender, RoutedEventArgs e)
         {           
-            Inventory.Add(new Artwork() { Title = ArtName.Text, Artist = ArtistName.Text, ImagePath = AddImage.ToString() });
+            Artworks.Invnetory.Add(new Artwork() { Title = ArtName.Text, Artist = ArtistName.Text, ImagePath = AddImage.ToString() });
             
             MainWindow Main = new MainWindow();
             this.Close();
