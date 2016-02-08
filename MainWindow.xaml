@@ -16,7 +16,7 @@
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical">
                         <Image Source="{Binding ImagePath}"  Height="80" Width="80" Cursor="Hand"></Image>
                         <TextBlock Text="{Binding Title}" Margin="5,1,0,1"></TextBlock>
                     </StackPanel>
