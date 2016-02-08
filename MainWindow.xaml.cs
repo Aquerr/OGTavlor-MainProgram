@@ -24,5 +24,12 @@ namespace OGTavlor_MainProgram
         {
             InitializeComponent();
         }
+
+        private void LäggTillKonstverk_Click(object sender, RoutedEventArgs e)
+        {
+            AddArtwork AddArt = new AddArtwork();
+            this.Close();
+            AddArt.Show();
+        }
     }
 }

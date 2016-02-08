@@ -23,5 +23,12 @@ namespace OGTavlor_MainProgram
         {
             InitializeComponent();
         }
+
+        private void SaveArtwork_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow Main = new MainWindow();
+            this.Close();
+            Main.Show();
+        }
     }
 }
