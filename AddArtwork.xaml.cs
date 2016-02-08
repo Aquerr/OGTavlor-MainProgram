@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
 namespace OGTavlor_MainProgram
 {
     /// <summary>
@@ -24,8 +25,13 @@ namespace OGTavlor_MainProgram
             InitializeComponent();
         }
 
+        List<Artwork> Inventory = new List<Artwork>();
+        
+
         private void SaveArtwork_Click(object sender, RoutedEventArgs e)
-        {
+        {           
+            Inventory.Add(new Artwork() { Title = ArtName.Text, Artist = ArtistName.Text });
+
             MainWindow Main = new MainWindow();
             this.Close();
             Main.Show();
