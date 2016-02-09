@@ -25,10 +25,11 @@ namespace OGTavlor_MainProgram
         {
             InitializeComponent();
         }
+        string ImagePath = "";
 
         private void SaveArtwork_Click(object sender, RoutedEventArgs e)
         {           
-            Artworks.Invnetory.Add(new Artwork() { Title = ArtName.Text, Artist = ArtistName.Text, ImagePath = AddImage.ToString() });
+            Artworks.Invnetory.Add(new Artwork() { Title = ArtName.Text, Artist = ArtistName.Text, ImagePath = ImagePath.ToString() });
             
             MainWindow Main = new MainWindow();
             this.Close();
@@ -36,9 +37,7 @@ namespace OGTavlor_MainProgram
         }
 
         private void AddImage_Click(object sender, RoutedEventArgs e)
-        {
-            Artwork art = new Artwork();
-            
+        {   
             OpenFileDialog op = new OpenFileDialog();
             op.Title = "Select a picture";
             op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
@@ -47,8 +46,7 @@ namespace OGTavlor_MainProgram
             if (op.ShowDialog() == true)
             {
                 ArtImage.Source = new BitmapImage(new Uri(op.FileName));
-                art.ImagePath = (ArtImage.Source as BitmapImage).UriSource.AbsolutePath;
-                //MessageBox.Show(art.ImagePath);
+                ImagePath = (ArtImage.Source as BitmapImage).UriSource.AbsolutePath;
             }
         }
     }
