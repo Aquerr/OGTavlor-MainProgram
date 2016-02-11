@@ -34,5 +34,12 @@ namespace OGTavlor_MainProgram
 
             TextInfo.Text = (Artworks.Invnetory.Where(x => x.ArtworkId == PassId).Select(y => y.Comment).FirstOrDefault());
         }
+
+        private void BtnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            EditArtwork ea = new EditArtwork(PassId);
+            ea.Show();
+            this.Close();
+        }
     }
 }
