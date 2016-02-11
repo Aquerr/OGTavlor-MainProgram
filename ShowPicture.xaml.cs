@@ -25,11 +25,14 @@ namespace OGTavlor_MainProgram
             InitializeComponent();
             PassId = _id;
             LoadArtwork();
+            //Artworks artworks = new Artworks();
+
+            //BtnRemove.Click += new EventHandler((x, y) => Artworks.Invnetory.Remove(x => x = PassId));
         }
 
         private void LoadArtwork()
         {
-            var uripath = new Uri((Artworks.Invnetory.Where(x => x.ArtworkId == PassId).Select(y => y.ImagePath).FirstOrDefault()).ToString(),UriKind.RelativeOrAbsolute);
+            var uripath = new Uri((Artworks.Invnetory.Where(x => x.ArtworkId == PassId).Select(y => y.ImagePath).FirstOrDefault()).ToString(), UriKind.RelativeOrAbsolute);
             image.Source = new BitmapImage(uripath);
 
             TextInfo.Text = (Artworks.Invnetory.Where(x => x.ArtworkId == PassId).Select(y => y.Comment).FirstOrDefault());
@@ -40,6 +43,32 @@ namespace OGTavlor_MainProgram
             EditArtwork ea = new EditArtwork(PassId);
             ea.Show();
             this.Close();
+        }
+
+        private void BtnRemove_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Vill du ta bort detta konstverk?", "Ta bort konstverk",
+                MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+            {
+
+            }
+            else
+            {
+                Artworks.Invnetory.Remove(Artworks.Invnetory.Where(x => x.ArtworkId == PassId).FirstOrDefault());
+                MainWindow mainWindow = new MainWindow();
+                this.Close();
+                mainWindow.Show();
+            }
+
+
+        }
+
+        private void BtnBack_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            this.Close();
+            mainWindow.Show();
+            
         }
     }
 }

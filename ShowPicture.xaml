@@ -31,8 +31,8 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Button x:Name="BtnRemove" Content="Ta Bort" Margin="1131,591,10,5"/>
-        <Button x:Name="BtnBack" Content="Tillbaka till startsidan" Margin="529,591,547,5"/>
+        <Button x:Name="BtnRemove" Content="Ta Bort" Margin="1131,591,10,5" Click="BtnRemove_Click"/>
+        <Button x:Name="BtnBack" Content="Tillbaka till startsidan" Margin="529,591,547,5" Click="BtnBack_Click"/>
         <Button x:Name="BtnEdit" Content="Redigera" Margin="19,591,1122,5" Click="BtnEdit_Click"/>
 
     </Grid>
