@@ -49,9 +49,7 @@ namespace OGTavlor_MainProgram
         {
             var item = (sender as FrameworkElement).DataContext;
             var id = ((Artwork)item).ArtworkId;
-            MessageBox.Show(id.ToString());
             ShowPicture Sp = new ShowPicture(id);
-         //   Sp.Id = id;
             this.Close();
             Sp.Show();
         }
