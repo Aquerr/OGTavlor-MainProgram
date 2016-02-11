@@ -1,0 +1,26 @@
+﻿<Window x:Class="OGTavlor_MainProgram.ShowPicture"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OGTavlor_MainProgram"
+        mc:Ignorable="d"
+        Title="ShowPicture" Height="656.652" Width="1231.711">
+    <Grid>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="40" Stroke="Black" VerticalAlignment="Top" Width="1224"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="509" Margin="492,55,0,0" VerticalAlignment="Top" Width="710">
+            <Image x:Name="image" HorizontalAlignment="Left" Height="509" Margin="-1" VerticalAlignment="Top" Width="710"/>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="306" Margin="122,109,0,0" VerticalAlignment="Top" Width="258" RenderTransformOrigin="0.5,0.5">
+            <Border.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="30.304"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Border.RenderTransform>
+        </Border>
+
+    </Grid>
+</Window>
