@@ -1,4 +1,9 @@
 ﻿using Microsoft.Win32;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Auth;
+using Microsoft.WindowsAzure.Storage.Table;
+using System.Configuration;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,8 +37,27 @@ namespace OGTavlor_MainProgram
         
 
         private void SaveArtwork_Click(object sender, RoutedEventArgs e)
-        {           
-            Artworks.Invnetory.Add(new Artwork() { Title = ArtName.Text, Artist = ArtArtist.Text, ImagePath = ImagePath.ToString() });
+        {
+            // Retrieve the storage account from the connection string.
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
+
+            // Create the table client.
+            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+
+            // Create the CloudTable object that represents the "people" table.
+            CloudTable table = tableClient.GetTableReference("ogtavlor");
+
+            // Create a new customer entity.
+            CustomerEntity customer1 = new CustomerEntity(ArtArtist.Text, ArtName.Text);
+            customer1.ImagePath = ImagePath.ToString();
+
+            // Create the TableOperation object that inserts the customer entity.
+            TableOperation insertOperation = TableOperation.Insert(customer1);
+
+            // Execute the insert operation.
+            table.Execute(insertOperation);
+
+         //   Artworks.Invnetory.Add(new Artwork() { Title = ArtName.Text, Artist = ArtArtist.Text, ImagePath = ImagePath.ToString() });
             
             MainWindow Main = new MainWindow();
             this.Close();

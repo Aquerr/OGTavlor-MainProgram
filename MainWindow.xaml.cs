@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Auth;
+using Microsoft.WindowsAzure.Storage.Table;
+using System.Configuration;
 
 namespace OGTavlor_MainProgram
 {
@@ -35,8 +39,27 @@ namespace OGTavlor_MainProgram
 
         private void FillList()
         {
-            ArtworkListView.ItemsSource = Artworks.Invnetory;
-            
+
+            // Retrieve the storage account from the connection string.
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
+
+            // Create the table client.
+            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+
+            // Create the CloudTable object that represents the "ogtavlor" table.
+            CloudTable table = tableClient.GetTableReference("ogtavlor");
+
+            // Construct the query operation for all customer entities where PartitionKey="Smith".
+            TableQuery<CustomerEntity> query = new TableQuery<CustomerEntity>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "Brutus"));
+
+            // Print the fields for each customer.
+
+            ArtworkListView.ItemsSource = table.ExecuteQuery(query);
+
+            //    TableOperation selectOperation = TableOperation.Retrieve;
+
+            //    ArtworkListView.ItemsSource = Artworks.Invnetory;
+
         }
 
         private void BtnSlideShow_Click(object sender, RoutedEventArgs e)
