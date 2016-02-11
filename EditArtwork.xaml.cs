@@ -47,7 +47,7 @@ namespace OGTavlor_MainProgram
         private void SaveArtwork_Click(object sender, RoutedEventArgs e)
         {
             Artworks.Invnetory[PassId].Title = ArtName.Text;
-            Artworks.Invnetory[PassId].Artist = CmBxArtistName.Text;
+            Artworks.Invnetory[PassId].Artist = ArtArtist.Text;
             Artworks.Invnetory[PassId].ImagePath = ImagePath;
 
             MainWindow Main = new MainWindow();
@@ -57,11 +57,9 @@ namespace OGTavlor_MainProgram
 
         private void FillInfo()
         {
-            CmBxArtistName.ItemsSource = Artworks.Invnetory.Distinct();
-            CmBxArtistName.DisplayMemberPath = "Artist";
 
             ArtName.Text = (Artworks.Invnetory.Where(x => x.ArtworkId == PassId).Select(y => y.Title).FirstOrDefault());
-            CmBxArtistName.DisplayMemberPath = (Artworks.Invnetory.Where(x => x.ArtworkId == PassId).Select(y => y.Artist).FirstOrDefault());
+            ArtArtist.Text = (Artworks.Invnetory.Where(x => x.ArtworkId == PassId).Select(y => y.Artist).FirstOrDefault());
 
             var uripath = new Uri((Artworks.Invnetory.Where(x => x.ArtworkId == PassId).Select(y => y.ImagePath).FirstOrDefault()).ToString(), UriKind.RelativeOrAbsolute);
             ArtImage.Source = new BitmapImage(uripath);
