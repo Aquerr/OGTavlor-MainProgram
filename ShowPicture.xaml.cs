@@ -19,11 +19,19 @@ namespace OGTavlor_MainProgram
     /// </summary>
     public partial class ShowPicture : Window
     {
-        public ShowPicture()
+        int PassId;
+        public ShowPicture(int _id)
         {
             InitializeComponent();
+            PassId = _id;
+            LoadImage();
         }
 
-        public int PassId { get; set; }
+        private void LoadImage()
+        {
+            MessageBox.Show(PassId.ToString());
+            var uripath = new Uri((Artworks.Invnetory.Where(x => x.ArtworkId == PassId).Select(y => y.ImagePath).FirstOrDefault()).ToString(),UriKind.RelativeOrAbsolute);
+            image.Source = new BitmapImage(uripath);
+        }
     }
 }

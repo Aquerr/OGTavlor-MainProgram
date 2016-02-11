@@ -44,5 +44,16 @@ namespace OGTavlor_MainProgram
             this.Close();
             SlideShow.Show();
         }
+
+        private void ButtonArtwork_Click(object sender, RoutedEventArgs e)
+        {
+            var item = (sender as FrameworkElement).DataContext;
+            var id = ((Artwork)item).ArtworkId;
+            MessageBox.Show(id.ToString());
+            ShowPicture Sp = new ShowPicture(id);
+         //   Sp.Id = id;
+            this.Close();
+            Sp.Show();
+        }
     }
 }
