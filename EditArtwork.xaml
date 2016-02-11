@@ -7,6 +7,13 @@
         mc:Ignorable="d"
         Title="EditArtwork" Height="516.15" Width="760.813">
     <Grid>
+        <Button x:Name="SaveArtwork" Content="Spara Konstverk" HorizontalAlignment="Left" Margin="592,132,0,0" VerticalAlignment="Top" Width="100" Height="25" Click="SaveArtwork_Click"/>
+        <TextBox x:Name="ArtName" HorizontalAlignment="Left" Height="23" Margin="582,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Image x:Name="ArtImage" HorizontalAlignment="Left" Height="314" Margin="34,14,0,0" VerticalAlignment="Top" Width="339"/>
+        <Button x:Name="AddImage" Content="Lägg Till Bild" HorizontalAlignment="Left" Margin="146,354,0,0" VerticalAlignment="Top" Width="106" Height="24" Click="AddImage_Click"/>
+        <Label x:Name="LblTitle" Content="Titel" HorizontalAlignment="Left" Margin="506,46,0,0" VerticalAlignment="Top" Height="23"/>
+        <Label x:Name="LblArtist" Content="Konstnär" HorizontalAlignment="Left" Margin="506,89,0,0" VerticalAlignment="Top" Height="31"/>
+        <ComboBox x:Name="CmBxArtistName" HorizontalAlignment="Left" Margin="582,89,0,0" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>
