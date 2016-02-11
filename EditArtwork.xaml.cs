@@ -46,9 +46,9 @@ namespace OGTavlor_MainProgram
 
         private void SaveArtwork_Click(object sender, RoutedEventArgs e)
         {
-            Artworks.Invnetory[PassId].Title = ArtName.Text;
-            Artworks.Invnetory[PassId].Artist = ArtArtist.Text;
-            Artworks.Invnetory[PassId].ImagePath = ImagePath;
+            Artworks.Invnetory[PassId-1].Title = ArtName.Text;
+            Artworks.Invnetory[PassId-1].Artist = ArtArtist.Text;
+            Artworks.Invnetory[PassId-1].ImagePath = ImagePath;
 
             MainWindow Main = new MainWindow();
             this.Close();
@@ -63,6 +63,7 @@ namespace OGTavlor_MainProgram
 
             var uripath = new Uri((Artworks.Invnetory.Where(x => x.ArtworkId == PassId).Select(y => y.ImagePath).FirstOrDefault()).ToString(), UriKind.RelativeOrAbsolute);
             ArtImage.Source = new BitmapImage(uripath);
+            ImagePath = uripath.ToString();
         }
     }
 }
