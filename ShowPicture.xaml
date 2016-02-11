@@ -24,6 +24,7 @@
                 <TextBlock x:Name="TextInfo" TextWrapping="Wrap" Text="TextBlock" Height="142" Width="175" FontFamily="Arial" FontSize="21.333"/>
             </WrapPanel>
         </Border>
+        <Button x:Name="BtnRemove" Content="TaBort" HorizontalAlignment="Left" Margin="28,596,0,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>
 </Window>
