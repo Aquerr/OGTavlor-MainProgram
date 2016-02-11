@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Auth;
+using Microsoft.WindowsAzure.Storage.Table;
+using System.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,8 +23,8 @@ namespace OGTavlor_MainProgram
     /// </summary>
     public partial class ShowPicture : Window
     {
-        int PassId;
-        public ShowPicture(int _id)
+        string PassId;
+        public ShowPicture(string _id)
         {
             InitializeComponent();
             PassId = _id;
@@ -32,10 +36,22 @@ namespace OGTavlor_MainProgram
 
         private void LoadArtwork()
         {
-            var uripath = new Uri((Artworks.Invnetory.Where(x => x.ArtworkId == PassId).Select(y => y.ImagePath).FirstOrDefault()).ToString(), UriKind.RelativeOrAbsolute);
+            // Retrieve the storage account from the connection string.
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
+
+            // Create the table client.
+            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+
+            // Create the CloudTable object that represents the "ogtavlor" table.
+            CloudTable table = tableClient.GetTableReference("ogtavlor");
+
+            // Construct the query operation for all customer entities where PartitionKey="Smith".
+            TableQuery<CustomerEntity> query = new TableQuery<CustomerEntity>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "Brutus"));
+
+            var uripath = new Uri((table.ExecuteQuery(query).Where(x => x.RowKey == PassId).Select(y => y.ImagePath).FirstOrDefault()).ToString(), UriKind.RelativeOrAbsolute);
             image.Source = new BitmapImage(uripath);
 
-            TextInfo.Text = (Artworks.Invnetory.Where(x => x.ArtworkId == PassId).Select(y => y.Comment).FirstOrDefault());
+            TextInfo.Text = (table.ExecuteQuery(query).Where(x => x.RowKey == PassId).Select(y => y.Description).FirstOrDefault());
         }
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e)

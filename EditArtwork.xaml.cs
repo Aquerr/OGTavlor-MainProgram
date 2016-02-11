@@ -12,6 +12,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Auth;
+using Microsoft.WindowsAzure.Storage.Table;
+using System.Configuration;
 
 namespace OGTavlor_MainProgram
 {
@@ -20,10 +24,10 @@ namespace OGTavlor_MainProgram
     /// </summary>
     public partial class EditArtwork : Window
     {
-        int PassId;
+        string PassId;
         string ImagePath = "";
 
-        public EditArtwork(int _id)
+        public EditArtwork(string _id)
         {
             InitializeComponent();
             PassId = _id;
@@ -46,9 +50,46 @@ namespace OGTavlor_MainProgram
 
         private void SaveArtwork_Click(object sender, RoutedEventArgs e)
         {
-            Artworks.Invnetory[PassId-1].Title = ArtName.Text;
-            Artworks.Invnetory[PassId-1].Artist = ArtArtist.Text;
-            Artworks.Invnetory[PassId-1].ImagePath = ImagePath;
+            // Retrieve the storage account from the connection string.
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
+
+            // Create the table client.
+            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+
+            // Create the CloudTable object that represents the "ogtavlor" table.
+            CloudTable table = tableClient.GetTableReference("ogtavlor");
+
+            // Create a retrieve operation that takes a customer entity.
+            TableOperation retrieveOperation = TableOperation.Retrieve<CustomerEntity>("Smith", "Ben");
+
+            // Execute the operation.
+            TableResult retrievedResult = table.Execute(retrieveOperation);
+
+            // Assign the result to a CustomerEntity object.
+            CustomerEntity updateEntity = (CustomerEntity)retrievedResult.Result;
+
+            if (updateEntity != null)
+            {
+                // Change the phone number.
+                updateEntity.RowKey = ArtName.Text;
+                updateEntity.ImagePath = ImagePath;
+                updateEntity.PartitionKey = ArtArtist.Text;
+
+                // Create the InsertOrReplace TableOperation.
+                TableOperation updateOperation = TableOperation.Replace(updateEntity);
+
+                // Execute the operation.
+                table.Execute(updateOperation);
+
+                Console.WriteLine("Entity updated.");
+            }
+
+            else
+                Console.WriteLine("Entity could not be retrieved.");
+
+            //  Artworks.Invnetory[PassId-1].Title = ArtName.Text;
+            //  Artworks.Invnetory[PassId-1].Artist = ArtArtist.Text;
+            //  Artworks.Invnetory[PassId-1].ImagePath = ImagePath;
 
             MainWindow Main = new MainWindow();
             this.Close();
@@ -57,11 +98,19 @@ namespace OGTavlor_MainProgram
 
         private void FillInfo()
         {
+            // Retrieve the storage account from the connection string.
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
 
-            ArtName.Text = (Artworks.Invnetory.Where(x => x.ArtworkId == PassId).Select(y => y.Title).FirstOrDefault());
-            ArtArtist.Text = (Artworks.Invnetory.Where(x => x.ArtworkId == PassId).Select(y => y.Artist).FirstOrDefault());
+            // Create the table client.
+            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
 
-            var uripath = new Uri((Artworks.Invnetory.Where(x => x.ArtworkId == PassId).Select(y => y.ImagePath).FirstOrDefault()).ToString(), UriKind.RelativeOrAbsolute);
+            // Create the CloudTable object that represents the "ogtavlor" table.
+            CloudTable table = tableClient.GetTableReference("ogtavlor");
+
+            ArtName.Text = (table.ExecuteQuery(query).Where(x => x.RowKey == PassId).Select(y => y.RowKey).FirstOrDefault());
+            ArtArtist.Text = (table.ExecuteQuery(query).Where(x => x.RowKey == PassId).Select(y => y.PartitionKey).FirstOrDefault());
+
+            var uripath = new Uri((table.ExecuteQuery(query).Where(x => x.RowKey == PassId).Select(y => y.ImagePath).FirstOrDefault()).ToString(), UriKind.RelativeOrAbsolute);
             ArtImage.Source = new BitmapImage(uripath);
             ImagePath = uripath.ToString();
         }
