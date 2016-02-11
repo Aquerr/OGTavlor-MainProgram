@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="ShowPicture" Height="656.652" Width="1231.711">
     <Grid>
-        <Rectangle HorizontalAlignment="Left" Height="40" Stroke="Black" VerticalAlignment="Top" Width="1224">
+        <Rectangle HorizontalAlignment="Left" Height="40" Stroke="White" VerticalAlignment="Top" Width="1224">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
                     <GradientStop Color="White" Offset="0"/>
@@ -23,7 +23,7 @@
                 <TextBlock x:Name="TextInfo" TextWrapping="Wrap" Text="TextBlock" Height="142" Width="175" FontFamily="Arial" FontSize="32"/>
             </WrapPanel>
         </Border>
-        <Rectangle HorizontalAlignment="Left" Height="40" Stroke="Black" VerticalAlignment="Top" Width="1224" Margin="0,586,0,0">
+        <Rectangle HorizontalAlignment="Left" Height="40" Stroke="White" VerticalAlignment="Top" Width="1224" Margin="0,586,0,0">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="White" Offset="0"/>
@@ -31,7 +31,9 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Button x:Name="BtnRemove" Content="Ta Bort" HorizontalAlignment="Left" Margin="1127,596,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="BtnRemove" Content="Ta Bort" HorizontalAlignment="Left" Margin="1146,596,0,0" VerticalAlignment="Top" Width="68" Height="25"/>
+        <Button x:Name="BtnBack" Content="Tillbaka till startsidan" HorizontalAlignment="Left" Height="25" Margin="558,596,0,0" VerticalAlignment="Top" Width="134"/>
+        <Button x:Name="BtnEdit" Content="Redigera" HorizontalAlignment="Left" Margin="19,596,0,0" VerticalAlignment="Top" Width="68" Height="25"/>
 
     </Grid>
 </Window>
