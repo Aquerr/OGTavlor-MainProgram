@@ -49,5 +49,12 @@ namespace OGTavlor_MainProgram
                 ImagePath = (ArtImage.Source as BitmapImage).UriSource.AbsolutePath;
             }
         }
+
+        private void btnAddArtist_Click(object sender, RoutedEventArgs e)
+        {
+            AddArtist MyArtist = new AddArtist();
+            this.Close();
+            MyArtist.Show();
+        }
     }
 }
