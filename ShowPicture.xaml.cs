@@ -24,13 +24,15 @@ namespace OGTavlor_MainProgram
         {
             InitializeComponent();
             PassId = _id;
-            LoadImage();
+            LoadArtwork();
         }
 
-        private void LoadImage()
+        private void LoadArtwork()
         {
             var uripath = new Uri((Artworks.Invnetory.Where(x => x.ArtworkId == PassId).Select(y => y.ImagePath).FirstOrDefault()).ToString(),UriKind.RelativeOrAbsolute);
             image.Source = new BitmapImage(uripath);
+
+            TextInfo.Text = (Artworks.Invnetory.Where(x => x.ArtworkId == PassId).Select(y => y.Comment).FirstOrDefault());
         }
     }
 }

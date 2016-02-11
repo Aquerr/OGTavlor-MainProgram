@@ -20,6 +20,9 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </Border.RenderTransform>
+            <WrapPanel x:Name="WrapInfo" HorizontalAlignment="Left" Height="306" VerticalAlignment="Top" Width="258" Margin="-1">
+                <TextBlock x:Name="TextInfo" TextWrapping="Wrap" Text="TextBlock" Height="142" Width="175" FontFamily="Arial" FontSize="21.333"/>
+            </WrapPanel>
         </Border>
 
     </Grid>
