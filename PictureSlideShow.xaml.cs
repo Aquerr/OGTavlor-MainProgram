@@ -30,5 +30,11 @@ namespace OGTavlor_MainProgram
             this.Close();
             mainWindow.Show();
         }
+
+        //public void LoadImage()
+        //{
+        //    var uripath = new Uri((Artworks.Invnetory.Where(x => x.ArtworkId == 1).Select(y => y.ImagePath).FirstOrDefault().ToString()), UriKind.RelativeOrAbsolute);
+        //    ImgSlideShow.Source = new BitmapImage(uripath);
+        //}
     }
 }
