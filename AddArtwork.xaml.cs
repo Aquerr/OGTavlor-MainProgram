@@ -24,6 +24,8 @@ namespace OGTavlor_MainProgram
         public AddArtwork()
         {
             InitializeComponent();
+            LoadComboBox();
+
         }
         string ImagePath = "";
 
@@ -55,6 +57,19 @@ namespace OGTavlor_MainProgram
             AddArtist MyArtist = new AddArtist();
             this.Close();
             MyArtist.Show();
+        }
+
+        private void LoadComboBox()
+        {
+            CmBxArtistName.ItemsSource = Artworks.Invnetory;
+            CmBxArtistName.DisplayMemberPath = "Artist";
+        }
+
+        private void CmBxArtistName_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+            //CmBxArtistName.DisplayMemberPath = "Artist";
+            //CmBxArtistName.SelectedValuePath = "ArtistId";
         }
     }
 }
