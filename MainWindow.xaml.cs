@@ -39,7 +39,6 @@ namespace OGTavlor_MainProgram
 
         private void FillList()
         {
-
             // Retrieve the storage account from the connection string.
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
 
@@ -76,6 +75,11 @@ namespace OGTavlor_MainProgram
             ShowPicture Sp = new ShowPicture(id);
             this.Close();
             Sp.Show();
+        }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }
