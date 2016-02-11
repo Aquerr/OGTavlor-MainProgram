@@ -22,10 +22,10 @@ namespace OGTavlor_MainProgram
              new Artwork() { ArtworkId = 6,Title = "Exempel", ImagePath = @"images\bild6mini.JPG", Artist = "Sven Axelsson",Comment="Här finns lite information om bilden."},
        };
 
-        public void RemoveFromInvnetory(int id)
-        {
-            Invnetory.Remove(Invnetory.Where(x => x.ArtworkId == id).FirstOrDefault());
-        }
+        //public void RemoveFromInvnetory(int id)
+        //{
+        //    Invnetory.Remove(Invnetory.Where(x => x.ArtworkId == id).FirstOrDefault());
+        //}
     }
 
     public class Artwork
