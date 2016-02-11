@@ -28,7 +28,7 @@
                                 </ControlTemplate>
                             </Button.Template>
                         </Button>
-                        <TextBlock Text="{Binding Title}" Margin="5,1,0,1"></TextBlock>
+                        <TextBlock Text="{Binding RowKey}" Margin="5,1,0,1"></TextBlock>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
