@@ -55,6 +55,7 @@ namespace OGTavlor_MainProgram
             else
             {
                 Artworks.Invnetory.Remove(Artworks.Invnetory.Where(x => x.ArtworkId == PassId).FirstOrDefault());
+                MessageBox.Show("Du har nu tagit bort detta konstverk", "Statusmeddelande");
                 MainWindow mainWindow = new MainWindow();
                 this.Close();
                 mainWindow.Show();
@@ -68,7 +69,7 @@ namespace OGTavlor_MainProgram
             MainWindow mainWindow = new MainWindow();
             this.Close();
             mainWindow.Show();
-            
+
         }
     }
 }
