@@ -54,6 +54,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="EditArtwork.xaml.cs">
+      <DependentUpon>EditArtwork.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ShowPicture.xaml.cs">
       <DependentUpon>ShowPicture.xaml</DependentUpon>
     </Compile>
@@ -64,6 +67,10 @@
     <Page Include="AddArtwork.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditArtwork.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

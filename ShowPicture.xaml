@@ -33,7 +33,7 @@
         </Rectangle>
         <Button x:Name="BtnRemove" Content="Ta Bort" HorizontalAlignment="Left" Margin="1146,596,0,0" VerticalAlignment="Top" Width="68" Height="25"/>
         <Button x:Name="BtnBack" Content="Tillbaka till startsidan" HorizontalAlignment="Left" Height="25" Margin="558,596,0,0" VerticalAlignment="Top" Width="134"/>
-        <Button x:Name="BtnEdit" Content="Redigera" HorizontalAlignment="Left" Margin="19,596,0,0" VerticalAlignment="Top" Width="68" Height="25"/>
+        <Button x:Name="BtnEdit" Content="Redigera" HorizontalAlignment="Left" Margin="19,596,0,0" VerticalAlignment="Top" Width="68" Height="25" Click="BtnEdit_Click"/>
 
     </Grid>
 </Window>
