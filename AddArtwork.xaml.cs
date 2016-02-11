@@ -61,15 +61,31 @@ namespace OGTavlor_MainProgram
 
         private void LoadComboBox()
         {
-            CmBxArtistName.ItemsSource = Artworks.Invnetory;
+            CmBxArtistName.ItemsSource = Artworks.Invnetory.Distinct();
             CmBxArtistName.DisplayMemberPath = "Artist";
+
+
+            //for (int i = 0; i < CmBxArtistName.Items.Count; i++)
+            //{
+            //    for (int y = 0; y < CmBxArtistName.Items.Count; y++)
+            //    {
+            //        if (y != i && CmBxArtistName.Items[i] == CmBxArtistName.Items[y])
+            //        {
+            //            CmBxArtistName.Items.RemoveAt(i);
+            //            break;
+            //        }
+            //    }
+            //}
+
+            //var listWithoutDuplicates = CmBxArtistName.Distinct().ToList();
         }
 
         private void CmBxArtistName_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
+        {            
             //CmBxArtistName.DisplayMemberPath = "Artist";
             //CmBxArtistName.SelectedValuePath = "ArtistId";
         }
+
+
     }
 }

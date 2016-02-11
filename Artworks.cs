@@ -23,7 +23,6 @@ namespace OGTavlor_MainProgram
        };
     }
 
-
     public class Artwork
     {
         public int ArtworkId { get; set; }

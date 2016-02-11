@@ -36,6 +36,7 @@ namespace OGTavlor_MainProgram
         private void FillList()
         {
             ArtworkListView.ItemsSource = Artworks.Invnetory;
+            
         }
 
         private void BtnSlideShow_Click(object sender, RoutedEventArgs e)
