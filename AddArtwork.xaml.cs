@@ -29,7 +29,7 @@ namespace OGTavlor_MainProgram
 
         private void SaveArtwork_Click(object sender, RoutedEventArgs e)
         {           
-            Artworks.Invnetory.Add(new Artwork() { Title = ArtName.Text, Artist = ArtistName.Text, ImagePath = ImagePath.ToString() });
+            Artworks.Invnetory.Add(new Artwork() { Title = ArtName.Text, Artist = CmBxArtistName.SelectedValue.ToString(), ImagePath = ImagePath.ToString() });
             
             MainWindow Main = new MainWindow();
             this.Close();
