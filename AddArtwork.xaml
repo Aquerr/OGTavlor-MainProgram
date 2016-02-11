@@ -14,7 +14,7 @@
         <Label x:Name="LblArtist" Content="Konstnär" HorizontalAlignment="Left" Margin="348,68,0,0" VerticalAlignment="Top" Height="31"/>
         <TextBox x:Name="ArtArtist" HorizontalAlignment="Left" Height="23" Margin="424,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="200" Margin="20,20,0,0" VerticalAlignment="Top" Width="199">
-            <Image x:Name="ArtImage" HorizontalAlignment="Left" Height="200" Margin="-1" VerticalAlignment="Top" Width="199"/>
+            <Image x:Name="ArtImage" HorizontalAlignment="Left" Height="200" Margin="-1" VerticalAlignment="Top" Stretch="Fill" Width="199"/>
         </Border>
 
     </Grid>
