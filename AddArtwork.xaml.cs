@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 
+
 namespace OGTavlor_MainProgram
 {
     /// <summary>
@@ -28,10 +29,11 @@ namespace OGTavlor_MainProgram
 
         }
         string ImagePath = "";
+        
 
         private void SaveArtwork_Click(object sender, RoutedEventArgs e)
         {           
-            Artworks.Invnetory.Add(new Artwork() { Title = ArtName.Text, Artist = CmBxArtistName.SelectedValue.ToString(), ImagePath = ImagePath.ToString() });
+            Artworks.Invnetory.Add(new Artwork() { Title = ArtName.Text, Artist = ArtArtist.Text, ImagePath = ImagePath.ToString() });
             
             MainWindow Main = new MainWindow();
             this.Close();
@@ -61,9 +63,11 @@ namespace OGTavlor_MainProgram
 
         private void LoadComboBox()
         {
-            CmBxArtistName.ItemsSource = Artworks.Invnetory.Distinct();
-            CmBxArtistName.DisplayMemberPath = "Artist";
-
+            
+            
+            //CmBxArtistName.ItemsSource = Artworks.Invnetory.Distinct();
+            //CmBxArtistName.DisplayMemberPath = "Artist";
+            
 
             //for (int i = 0; i < CmBxArtistName.Items.Count; i++)
             //{
