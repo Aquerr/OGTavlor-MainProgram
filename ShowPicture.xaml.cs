@@ -70,7 +70,19 @@ namespace OGTavlor_MainProgram
             }
             else
             {
-                Artworks.Invnetory.Remove(Artworks.Invnetory.Where(x => x.ArtworkId == PassId).FirstOrDefault());
+                CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
+
+                CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+
+                CloudTable table = tableClient.GetTableReference("ogtavlor");
+
+                TableQuery<CustomerEntity> query = new TableQuery<CustomerEntity>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "Brutus"));
+
+                TableOperation retrieveOperation = TableOperation.Retrieve<CustomerEntity>("Brutus", "Pingviner");
+
+                TableResult retrievedResult = table.Execute(retrieveOperation);
+
+               // Artworks.Invnetory.Remove(Artworks.Invnetory.Where(x => x.ArtworkId == PassId).FirstOrDefault());
                 MessageBox.Show("Du har nu tagit bort detta konstverk", "Statusmeddelande");
                 MainWindow mainWindow = new MainWindow();
                 this.Close();

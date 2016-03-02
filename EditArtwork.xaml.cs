@@ -81,11 +81,11 @@ namespace OGTavlor_MainProgram
                 // Execute the operation.
                 table.Execute(updateOperation);
 
-                Console.WriteLine("Entity updated.");
+                MessageBox.Show("Entity updated.");
             }
 
             else
-                Console.WriteLine("Entity could not be retrieved.");
+                MessageBox.Show("Entity could not be retrieved.");
 
             //  Artworks.Invnetory[PassId-1].Title = ArtName.Text;
             //  Artworks.Invnetory[PassId-1].Artist = ArtArtist.Text;
@@ -106,6 +106,8 @@ namespace OGTavlor_MainProgram
 
             // Create the CloudTable object that represents the "ogtavlor" table.
             CloudTable table = tableClient.GetTableReference("ogtavlor");
+
+            TableQuery<CustomerEntity> query = new TableQuery<CustomerEntity>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "Brutus"));
 
             ArtName.Text = (table.ExecuteQuery(query).Where(x => x.RowKey == PassId).Select(y => y.RowKey).FirstOrDefault());
             ArtArtist.Text = (table.ExecuteQuery(query).Where(x => x.RowKey == PassId).Select(y => y.PartitionKey).FirstOrDefault());
