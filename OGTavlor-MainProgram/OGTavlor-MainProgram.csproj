@@ -83,10 +83,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Artwork.cs" />
+    <Compile Include="ArtworkLogic.cs" />
+    <Compile Include="ArtworkService.cs" />
     <Compile Include="CustomerEntity.cs" />
     <Compile Include="EditArtwork.xaml.cs">
       <DependentUpon>EditArtwork.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IArtwork.cs" />
+    <Compile Include="IArtworkLogic.cs" />
+    <Compile Include="IArtworkService.cs" />
     <Compile Include="ShowPicture.xaml.cs">
       <DependentUpon>ShowPicture.xaml</DependentUpon>
     </Compile>

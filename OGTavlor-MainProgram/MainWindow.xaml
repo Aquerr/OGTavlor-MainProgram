@@ -8,7 +8,7 @@
         Title="MainWindow" Height="661.111" Width="884.722">
     <Grid>
         <Button x:Name="BtnAddArtwork" Content="Lägg Till Konstverk" HorizontalAlignment="Left" Margin="81,588,0,0" VerticalAlignment="Top" Width="109" Height="32" Click="LäggTillKonstverk_Click"/>
-        <ListView x:Name="ArtworkListView" HorizontalAlignment="Right" VerticalAlignment="Top" Width="500" Height="630" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <ListView x:Name="ArtworkListView" ItemsSource="{Binding AllItems}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="500" Height="630" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel/>

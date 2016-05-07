@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,10 @@ namespace OGTavlor_MainProgram
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ObservableCollection<Artwork> _allItems;
+        private IArtworkLogic _artworkLogic;
+        private string _searchText = string.Empty;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -37,28 +42,28 @@ namespace OGTavlor_MainProgram
             AddArt.Show();
         }
 
-        private void FillList()
+        private async Task FillList()
         {
-            // Retrieve the storage account from the connection string.
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
-
-            // Create the table client.
-            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
-
-            // Create the CloudTable object that represents the "ogtavlor" table.
-            CloudTable table = tableClient.GetTableReference("ogtavlor");
-
-            // Construct the query operation for all customer entities where PartitionKey="Smith".
-            TableQuery<CustomerEntity> query = new TableQuery<CustomerEntity>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "Brutus"));
-
-            // Print the fields for each customer.
-
-            ArtworkListView.ItemsSource = table.ExecuteQuery(query);
+            try
+            {
+                var list = await GetItems();
+                AllItems = new ObservableCollection<Artwork>(list);
+            }
+            catch(Exception exception)
+            {
+                
+            }
 
             //    TableOperation selectOperation = TableOperation.Retrieve;
 
             //    ArtworkListView.ItemsSource = Artworks.Invnetory;
 
+        }
+
+        private async Task<List<Artwork>> GetItems()
+        {
+            var list = await _artworkLogic.GetArtworksAsync();
+            return list;
         }
 
         private void BtnSlideShow_Click(object sender, RoutedEventArgs e)
@@ -81,5 +86,17 @@ namespace OGTavlor_MainProgram
         {
             
         }
+
+        public ObservableCollection<Artwork> AllItems
+        {
+            get { return _allItems; }
+            set
+            {
+                if(_allItems != value)
+                {
+                    _allItems = value;
+                }
+            }
+        } 
     }
 }
