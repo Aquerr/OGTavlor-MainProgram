@@ -32,6 +32,9 @@ namespace OGTavlor_MainProgram
         public MainWindow()
         {
             InitializeComponent();
+            IArtworkService service = new ArtworkService();
+            IArtworkLogic logic = new ArtworkLogic(service);
+            _artworkLogic = logic;
             FillList();
         }
 
@@ -46,7 +49,7 @@ namespace OGTavlor_MainProgram
         {
             try
             {
-                var list = await GetItems();
+                var list = await GetItemsAsync();
                 AllItems = new ObservableCollection<Artwork>(list);
             }
             catch(Exception exception)
@@ -60,8 +63,12 @@ namespace OGTavlor_MainProgram
 
         }
 
-        private async Task<List<Artwork>> GetItems()
+
+
+        private async Task<List<Artwork>> GetItemsAsync()
         {
+          // _artworkLogic = new IArtworkLogic();
+
             var list = await _artworkLogic.GetArtworksAsync();
             return list;
         }

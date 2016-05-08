@@ -6,6 +6,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace OGTavlor_MainProgram
 {
@@ -36,6 +37,13 @@ namespace OGTavlor_MainProgram
 
             var data = table.ExecuteQuery(query);
 
+            var datalist = data.ToList();
+
+            foreach (var art in datalist)
+            {
+                MessageBox.Show(art.Artist + " " + art.Title + " " + art.ArtworkId + " " + art.Description + " " + art.ImagePath);
+            }
+
 
 
             return null;
@@ -43,7 +51,7 @@ namespace OGTavlor_MainProgram
 
         public async Task DeleteArtwork(int artworkId)
         {
-            
+
         }
     }
 }
