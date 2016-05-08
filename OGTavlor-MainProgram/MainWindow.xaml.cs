@@ -53,7 +53,7 @@ namespace OGTavlor_MainProgram
 
             // Print the fields for each customer.
 
-            ArtworkListView.ItemsSource = table.ExecuteQuery(query);
+          //  ArtworkListView.ItemsSource = table.ExecuteQuery(query);
 
             //    TableOperation selectOperation = TableOperation.Retrieve;
 
@@ -80,6 +80,11 @@ namespace OGTavlor_MainProgram
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
             
+        }
+
+        private void ArtworkList_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            txtbxSearchBox.Focus();
         }
     }
 }
