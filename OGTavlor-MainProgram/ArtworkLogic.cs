@@ -52,31 +52,27 @@ namespace OGTavlor_MainProgram
             return (await _artworkService.GetArtworks()).SingleOrDefault(x => x.Title == artworkName);
         }
 
-        public async Task<int?> SaveArtworkAsync(Artwork artwork)
+        public async Task SaveArtworkAsync(Artwork artwork)
         {
-            var isNew = artwork.ArtworkId == null;
+         //   var isNew = artwork.Title == null;
 
-            var artworkId = await _artworkService.SaveArtwork(artwork);
+            await _artworkService.SaveArtwork(artwork);
 
             await UpdateArtworkListAsyn();
-
-            if (artwork.ArtworkId != null) artwork.ArtworkId = artworkId;
-
-            if (isNew)
-            {
-                
-            }
-            else
-            {
-                
-            }
-
-            return artworkId;
         }
 
-        public async Task DeleteArtworkAsync(int artworkId)
+        public async Task ReplaceArtwork(string artist, string title,string imagepath, string oldArtworkTitle)
         {
-            await _artworkService.DeleteArtwork(artworkId);
+            await _artworkService.ReplaceArtwork(artist,title,imagepath,oldArtworkTitle);
+
+            await UpdateArtworkListAsyn();
+        }
+
+        public async Task DeleteArtworkAsync(Artwork artwork)
+        {
+            await _artworkService.DeleteArtwork(artwork);
+
+            await UpdateArtworkListAsyn();
         }
     }
 }

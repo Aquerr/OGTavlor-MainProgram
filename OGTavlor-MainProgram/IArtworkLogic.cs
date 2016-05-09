@@ -8,7 +8,9 @@ namespace OGTavlor_MainProgram
     {
         Task<Artwork> GetArtworkAsync(string artworkName);
         Task<List<Artwork>> GetArtworksAsync();
-        Task DeleteArtworkAsync(int artworkid);
-      //  void ClearLists();
+        Task DeleteArtworkAsync(Artwork artwork);
+        Task SaveArtworkAsync(Artwork artwork);
+        Task ReplaceArtwork(string artist, string title,string imagepath, string oldArtworkTitle);
+        //  void ClearLists();
     }
 }

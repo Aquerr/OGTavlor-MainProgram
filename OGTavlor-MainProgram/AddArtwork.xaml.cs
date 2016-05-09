@@ -26,37 +26,27 @@ namespace OGTavlor_MainProgram
     /// </summary>
     public partial class AddArtwork : Window
     {
+        private IArtworkLogic _artworkLogic;
+        private Artwork _artwork;
+
         public AddArtwork()
         {
             InitializeComponent();
+            IArtworkService service = new ArtworkService();
+            IArtworkLogic logic = new ArtworkLogic(service);
+            _artworkLogic = logic;
             LoadComboBox();
 
         }
-        string ImagePath = "";
+        string _imagePath = "";
         
 
         private void SaveArtwork_Click(object sender, RoutedEventArgs e)
         {
-            // Retrieve the storage account from the connection string.
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
+            _artwork = new Artwork(ArtArtist.Text, ArtName.Text);
+            _artwork.ImagePath = _imagePath;
 
-            // Create the table client.
-            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
-
-            // Create the CloudTable object that represents the "people" table.
-            CloudTable table = tableClient.GetTableReference("ogtavlor");
-
-            // Create a new customer entity.
-            CustomerEntity customer1 = new CustomerEntity(ArtArtist.Text, ArtName.Text);
-            customer1.ImagePath = ImagePath.ToString();
-
-            // Create the TableOperation object that inserts the customer entity.
-            TableOperation insertOperation = TableOperation.Insert(customer1);
-
-            // Execute the insert operation.
-            table.Execute(insertOperation);
-
-         //   Artworks.Invnetory.Add(new Artwork() { Title = ArtName.Text, Artist = ArtArtist.Text, ImagePath = ImagePath.ToString() });
+            _artworkLogic.SaveArtworkAsync(_artwork);
             
             MainWindow Main = new MainWindow();
             this.Close();
@@ -73,7 +63,7 @@ namespace OGTavlor_MainProgram
             if (op.ShowDialog() == true)
             {
                 ArtImage.Source = new BitmapImage(new Uri(op.FileName));
-                ImagePath = (ArtImage.Source as BitmapImage).UriSource.AbsolutePath;
+                _imagePath = (ArtImage.Source as BitmapImage).UriSource.AbsolutePath;
             }
         }
 
