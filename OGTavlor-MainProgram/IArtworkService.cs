@@ -8,7 +8,7 @@ namespace OGTavlor_MainProgram
     {
         Task<List<Artwork>> GetArtworks();
         Task SaveArtwork(Artwork artwork);
-        Task DeleteArtwork(Artwork artwork);
+        Task DeleteArtwork(string artworkName);
         Task ReplaceArtwork(string artist, string title,string imagepath, string oldArtworkTitle);
     }
 }

@@ -54,8 +54,6 @@ namespace OGTavlor_MainProgram
 
         public async Task SaveArtworkAsync(Artwork artwork)
         {
-         //   var isNew = artwork.Title == null;
-
             await _artworkService.SaveArtwork(artwork);
 
             await UpdateArtworkListAsyn();
@@ -68,9 +66,9 @@ namespace OGTavlor_MainProgram
             await UpdateArtworkListAsyn();
         }
 
-        public async Task DeleteArtworkAsync(Artwork artwork)
+        public async Task DeleteArtworkAsync(string artworkName)
         {
-            await _artworkService.DeleteArtwork(artwork);
+            await _artworkService.DeleteArtwork(artworkName);
 
             await UpdateArtworkListAsyn();
         }

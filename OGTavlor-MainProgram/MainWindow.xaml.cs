@@ -45,7 +45,7 @@ namespace OGTavlor_MainProgram
             AddArt.Show();
         }
 
-        private async Task FillList()
+        private async void FillList()
         {
             try
             {

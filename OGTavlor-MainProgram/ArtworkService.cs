@@ -56,11 +56,11 @@ namespace OGTavlor_MainProgram
                 // Execute the operation.
                 table.Execute(updateOperation);
 
-                MessageBox.Show("Entity updated.");
+                MessageBox.Show("Tavlan har uppdaterats.");
             }
 
             else
-                MessageBox.Show("Entity could not be retrieved.");
+                MessageBox.Show("Kunde inte återfå tavlan.");
         }
 
         public async Task<List<Artwork>> GetArtworks()
@@ -74,12 +74,11 @@ namespace OGTavlor_MainProgram
            // TableQuery<Artwork> query = new TableQuery<Artwork>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "Brutus"));
 
             var entities = table.ExecuteQuery(new TableQuery<Artwork>()).ToList();
-          //  var data = table.ExecuteQuery(query);
+
             return entities.ToList();
-            //  return data.ToList();
         }
 
-        public async Task DeleteArtwork(Artwork artwork)
+        public async Task DeleteArtwork(string artworkName)
         {
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
 
@@ -87,7 +86,9 @@ namespace OGTavlor_MainProgram
 
             CloudTable table = tableClient.GetTableReference("ogtavlor");
 
-            TableOperation retrieveOperation = TableOperation.Retrieve<Artwork>(artwork.Artist, artwork.Title);
+            var art = (await GetArtworks()).SingleOrDefault(x => x.Title == artworkName);
+
+            TableOperation retrieveOperation = TableOperation.Retrieve<Artwork>(art.Artist, art.Title);
 
             TableResult retrievedResult = table.Execute(retrieveOperation);
 
@@ -101,12 +102,12 @@ namespace OGTavlor_MainProgram
                 // Execute the operation.
                 table.Execute(deleteOperation);
 
-                MessageBox.Show("Entity deleted.");
+                MessageBox.Show("Tavlan har tagits bort.");
             }
 
             else
             {
-                MessageBox.Show("Could not retrieve the entity.");
+                MessageBox.Show("Det gick inte att återfå tavlan.");
             }
         }
     }

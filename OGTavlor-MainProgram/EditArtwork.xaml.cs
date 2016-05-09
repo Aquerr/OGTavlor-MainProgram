@@ -25,17 +25,17 @@ namespace OGTavlor_MainProgram
     public partial class EditArtwork : Window
     {
         private IArtworkLogic _artworkLogic;
-        string _artName;
+        string _artworkName;
         string _imagePath = "";
 
-        public EditArtwork(string artName)
+        public EditArtwork(string artworkName)
         {
             InitializeComponent();
             IArtworkService service = new ArtworkService();
             IArtworkLogic logic = new ArtworkLogic(service);
             _artworkLogic = logic;
 
-            _artName = artName;
+            _artworkName = artworkName;
             FillInfo();
         }
 
@@ -55,31 +55,23 @@ namespace OGTavlor_MainProgram
 
         private void SaveArtwork_Click(object sender, RoutedEventArgs e)
         {
-            _artworkLogic.ReplaceArtwork(ArtArtist.Text, ArtName.Text, _imagePath, _artName);
+            _artworkLogic.ReplaceArtwork(ArtArtist.Text, ArtName.Text, _imagePath, _artworkName);
 
             MainWindow Main = new MainWindow();
             this.Close();
             Main.Show();
         }
 
-        private void FillInfo()
+        private async void FillInfo()
         {
-            // Retrieve the storage account from the connection string.
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
 
-            // Create the table client.
-            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+            var art = await _artworkLogic.GetArtworkAsync(_artworkName);
 
-            // Create the CloudTable object that represents the "ogtavlor" table.
-            CloudTable table = tableClient.GetTableReference("ogtavlor");
-
-            TableQuery<Artwork> query = new TableQuery<Artwork>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "Brutus"));
-
-            ArtName.Text = (table.ExecuteQuery(query).Where(x => x.RowKey == _artName).Select(y => y.RowKey).FirstOrDefault());
-            ArtArtist.Text = (table.ExecuteQuery(query).Where(x => x.RowKey == _artName).Select(y => y.PartitionKey).FirstOrDefault());
+            ArtName.Text = art.Title;
+            ArtArtist.Text = art.Artist;
 
             //TODO: Make here anticrashing system. Program shall not crash when it will not find imagepath for an image.
-            var uripath = new Uri((table.ExecuteQuery(query).Where(x => x.RowKey == _artName).Select(y => y.ImagePath).FirstOrDefault()), UriKind.RelativeOrAbsolute);
+            var uripath = new Uri((art.ImagePath), UriKind.RelativeOrAbsolute);
             ArtImage.Source = new BitmapImage(uripath);
             _imagePath = uripath.ToString();
         }
