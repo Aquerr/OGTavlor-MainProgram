@@ -6,7 +6,7 @@ namespace OGTavlor_MainProgram
 {
     public interface IArtworkLogic
     {
-        Task<Artwork> GetArtworkAsync(int artworkId);
+        Task<Artwork> GetArtworkAsync(string artworkName);
         Task<List<Artwork>> GetArtworksAsync();
         Task DeleteArtworkAsync(int artworkid);
       //  void ClearLists();

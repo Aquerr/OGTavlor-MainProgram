@@ -48,6 +48,8 @@ namespace OGTavlor_MainProgram
             // Construct the query operation for all customer entities where PartitionKey="Smith".
             TableQuery<CustomerEntity> query = new TableQuery<CustomerEntity>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "Brutus"));
 
+
+            //TODO: Make here anticrashing system. Program shall not crash when it will not find imagepath for an image.
             var uripath = new Uri((table.ExecuteQuery(query).Where(x => x.RowKey == PassId).Select(y => y.ImagePath).FirstOrDefault()).ToString(), UriKind.RelativeOrAbsolute);
             image.Source = new BitmapImage(uripath);
 
@@ -82,7 +84,7 @@ namespace OGTavlor_MainProgram
 
                 TableResult retrievedResult = table.Execute(retrieveOperation);
 
-               // Artworks.Invnetory.Remove(Artworks.Invnetory.Where(x => x.ArtworkId == PassId).FirstOrDefault());
+                // Artworks.Invnetory.Remove(Artworks.Invnetory.Where(x => x.ArtworkId == PassId).FirstOrDefault());
                 MessageBox.Show("Du har nu tagit bort detta konstverk", "Statusmeddelande");
                 MainWindow mainWindow = new MainWindow();
                 this.Close();

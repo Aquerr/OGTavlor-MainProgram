@@ -24,13 +24,18 @@ namespace OGTavlor_MainProgram
     /// </summary>
     public partial class EditArtwork : Window
     {
-        string PassId;
+        private IArtworkLogic _artworkLogic;
+        string _artName;
         string ImagePath = "";
 
-        public EditArtwork(string _id)
+        public EditArtwork(string artName)
         {
             InitializeComponent();
-            PassId = _id;
+            IArtworkService service = new ArtworkService();
+            IArtworkLogic logic = new ArtworkLogic(service);
+            _artworkLogic = logic;
+
+            _artName = artName;
             FillInfo();
         }
 
@@ -59,24 +64,29 @@ namespace OGTavlor_MainProgram
             // Create the CloudTable object that represents the "ogtavlor" table.
             CloudTable table = tableClient.GetTableReference("ogtavlor");
 
+            var art = _artworkLogic.GetArtworkAsync(_artName).Result;
+
             // Create a retrieve operation that takes a customer entity.
-            TableOperation retrieveOperation = TableOperation.Retrieve<CustomerEntity>("Smith", "Ben");
+            TableOperation retrieveOperation = TableOperation.Retrieve<Artwork>(art.Artist, art.Title);
 
             // Execute the operation.
             TableResult retrievedResult = table.Execute(retrieveOperation);
 
             // Assign the result to a CustomerEntity object.
-            CustomerEntity updateEntity = (CustomerEntity)retrievedResult.Result;
+            Artwork artwork = (Artwork)retrievedResult.Result;
 
-            if (updateEntity != null)
+            if (artwork != null)
             {
-                // Change the phone number.
-                updateEntity.RowKey = ArtName.Text;
-                updateEntity.ImagePath = ImagePath;
-                updateEntity.PartitionKey = ArtArtist.Text;
+                //TODO: If RowKey or PartitionKey is changed, delete an entity and insert a new one with new properties.
 
-                // Create the InsertOrReplace TableOperation.
-                TableOperation updateOperation = TableOperation.Replace(updateEntity);
+                // Update Entity
+                artwork.RowKey = ArtName.Text;
+                artwork.ImagePath = "";
+                //updateEntity.ImagePath = ImagePath;
+                artwork.PartitionKey = ArtArtist.Text;
+
+                // Create the Replace TableOperation.
+                TableOperation updateOperation = TableOperation.Replace(artwork);
 
                 // Execute the operation.
                 table.Execute(updateOperation);
@@ -107,12 +117,13 @@ namespace OGTavlor_MainProgram
             // Create the CloudTable object that represents the "ogtavlor" table.
             CloudTable table = tableClient.GetTableReference("ogtavlor");
 
-            TableQuery<CustomerEntity> query = new TableQuery<CustomerEntity>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "Brutus"));
+            TableQuery<Artwork> query = new TableQuery<Artwork>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "Brutus"));
 
-            ArtName.Text = (table.ExecuteQuery(query).Where(x => x.RowKey == PassId).Select(y => y.RowKey).FirstOrDefault());
-            ArtArtist.Text = (table.ExecuteQuery(query).Where(x => x.RowKey == PassId).Select(y => y.PartitionKey).FirstOrDefault());
+            ArtName.Text = (table.ExecuteQuery(query).Where(x => x.RowKey == _artName).Select(y => y.RowKey).FirstOrDefault());
+            ArtArtist.Text = (table.ExecuteQuery(query).Where(x => x.RowKey == _artName).Select(y => y.PartitionKey).FirstOrDefault());
 
-            var uripath = new Uri((table.ExecuteQuery(query).Where(x => x.RowKey == PassId).Select(y => y.ImagePath).FirstOrDefault()).ToString(), UriKind.RelativeOrAbsolute);
+            //TODO: Make here anticrashing system. Program shall not crash when it will not find imagepath for an image.
+            var uripath = new Uri((table.ExecuteQuery(query).Where(x => x.RowKey == _artName).Select(y => y.ImagePath).FirstOrDefault()), UriKind.RelativeOrAbsolute);
             ArtImage.Source = new BitmapImage(uripath);
             ImagePath = uripath.ToString();
         }

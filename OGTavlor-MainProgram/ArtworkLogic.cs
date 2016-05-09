@@ -47,9 +47,9 @@ namespace OGTavlor_MainProgram
             return _artworkList;
         }
 
-        public async Task<Artwork> GetArtworkAsync(int artworkId)
+        public async Task<Artwork> GetArtworkAsync(string artworkName)
         {
-            return (await _artworkService.GetArtworks()).SingleOrDefault(x => x.ArtworkId == artworkId);
+            return (await _artworkService.GetArtworks()).SingleOrDefault(x => x.Title == artworkName);
         }
 
         public async Task<int?> SaveArtworkAsync(Artwork artwork)

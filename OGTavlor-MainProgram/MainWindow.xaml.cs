@@ -54,21 +54,18 @@ namespace OGTavlor_MainProgram
             }
             catch(Exception exception)
             {
-                
+
             }
-
-            //    TableOperation selectOperation = TableOperation.Retrieve;
-
-            //    ArtworkListView.ItemsSource = Artworks.Invnetory;
-
+            finally
+            {
+                ArtworkListView.ItemsSource = AllItems;
+            }
         }
 
 
 
         private async Task<List<Artwork>> GetItemsAsync()
         {
-          // _artworkLogic = new IArtworkLogic();
-
             var list = await _artworkLogic.GetArtworksAsync();
             return list;
         }
@@ -83,7 +80,7 @@ namespace OGTavlor_MainProgram
         private void ButtonArtwork_Click(object sender, RoutedEventArgs e)
         {
             var item = (sender as FrameworkElement).DataContext;
-            var id = ((CustomerEntity)item).RowKey;
+            var id = ((Artwork)item).RowKey;
             ShowPicture Sp = new ShowPicture(id);
             this.Close();
             Sp.Show();
