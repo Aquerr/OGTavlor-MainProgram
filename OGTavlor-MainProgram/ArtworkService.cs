@@ -23,6 +23,8 @@ namespace OGTavlor_MainProgram
             var insertTableOperation = TableOperation.Insert(artwork);
 
             cloudTable.Execute(insertTableOperation);
+
+            MessageBox.Show("Ny tavlan har skapats");
         }
 
         public async Task ReplaceArtwork(string artist, string title,string imagepath, string oldArtworkTitle)
