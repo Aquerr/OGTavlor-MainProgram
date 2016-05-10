@@ -10,21 +10,30 @@ using System.Windows;
 
 namespace OGTavlor_MainProgram
 {
-    public class ArtworkService : IArtworkService
+    internal class ArtworkService : IArtworkService
     {
         public async Task SaveArtwork(Artwork artwork)
         {
-            var cloudStorageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
+            try
+            {
+                var cloudStorageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
 
-            var cloudTableClient = cloudStorageAccount.CreateCloudTableClient();
+                var cloudTableClient = cloudStorageAccount.CreateCloudTableClient();
 
-            var cloudTable = cloudTableClient.GetTableReference("ogtavlor");
+                var cloudTable = cloudTableClient.GetTableReference("ogtavlor");
 
-            var insertTableOperation = TableOperation.Insert(artwork);
+                var insertTableOperation = TableOperation.Insert(artwork);
 
-            cloudTable.Execute(insertTableOperation);
-
-            MessageBox.Show("Ny tavlan har skapats");
+                cloudTable.Execute(insertTableOperation);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Någotning gick fel när tavlan ville sparas");
+            }
+            finally
+            {
+                MessageBox.Show("Ny tavlan har skapats");
+            }
         }
 
         public async Task ReplaceArtwork(string artist, string title,string imagepath, string oldArtworkTitle)

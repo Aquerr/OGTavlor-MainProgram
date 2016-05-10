@@ -39,22 +39,31 @@ namespace OGTavlor_MainProgram
 
         }
         string _imagePath = "";
-        
+
 
         private void SaveArtwork_Click(object sender, RoutedEventArgs e)
         {
-            _artwork = new Artwork(ArtArtist.Text, ArtName.Text);
-            _artwork.ImagePath = _imagePath;
+            if ((ArtArtist.Text != "") && (ArtName.Text != ""))
+            {
 
-            _artworkLogic.SaveArtworkAsync(_artwork);
-            
-            var main = new MainWindow();
-            this.Close();
-            main.Show();
+
+                _artwork = new Artwork(ArtArtist.Text, ArtName.Text);
+                _artwork.ImagePath = _imagePath;
+
+                _artworkLogic.SaveArtworkAsync(_artwork);
+
+                var main = new MainWindow();
+                this.Close();
+                main.Show();
+            }
+            else
+            {
+                MessageBox.Show("Du måste skriva in tavlans namn och konstnär.");
+            }
         }
 
         private void AddImage_Click(object sender, RoutedEventArgs e)
-        {   
+        {
             var openFileDialog = new OpenFileDialog();
             openFileDialog.Title = "Select a picture";
             openFileDialog.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
@@ -76,11 +85,11 @@ namespace OGTavlor_MainProgram
 
         private void LoadComboBox()
         {
-            
-            
+
+
             //CmBxArtistName.ItemsSource = Artworks.Invnetory.Distinct();
             //CmBxArtistName.DisplayMemberPath = "Artist";
-            
+
 
             //for (int i = 0; i < CmBxArtistName.Items.Count; i++)
             //{
@@ -98,7 +107,7 @@ namespace OGTavlor_MainProgram
         }
 
         private void CmBxArtistName_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {            
+        {
             //CmBxArtistName.DisplayMemberPath = "Artist";
             //CmBxArtistName.SelectedValuePath = "ArtistId";
         }
