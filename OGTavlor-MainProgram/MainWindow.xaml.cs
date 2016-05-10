@@ -26,7 +26,7 @@ namespace OGTavlor_MainProgram
     public partial class MainWindow : Window
     {
         private ObservableCollection<Artwork> _allItems;
-        private IArtworkLogic _artworkLogic;
+        private readonly IArtworkLogic _artworkLogic;
         private string _searchText = string.Empty;
 
         public MainWindow()
@@ -40,9 +40,9 @@ namespace OGTavlor_MainProgram
 
         private void LäggTillKonstverk_Click(object sender, RoutedEventArgs e)
         {
-            AddArtwork AddArt = new AddArtwork();
+            var addArt = new AddArtwork();
             this.Close();
-            AddArt.Show();
+            addArt.Show();
         }
 
         private async void FillList()
@@ -72,18 +72,18 @@ namespace OGTavlor_MainProgram
 
         private void BtnSlideShow_Click(object sender, RoutedEventArgs e)
         {
-            PictureSlideShow SlideShow = new PictureSlideShow();
+            PictureSlideShow slideShow = new PictureSlideShow();
             this.Close();
-            SlideShow.Show();
+            slideShow.Show();
         }
 
         private void ButtonArtwork_Click(object sender, RoutedEventArgs e)
         {
             var item = (sender as FrameworkElement).DataContext;
             var id = ((Artwork)item).RowKey;
-            ShowPicture Sp = new ShowPicture(id);
+            var showPicture = new ShowPicture(id);
             this.Close();
-            Sp.Show();
+            showPicture.Show();
         }
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)

@@ -26,7 +26,7 @@ namespace OGTavlor_MainProgram
     /// </summary>
     public partial class AddArtwork : Window
     {
-        private IArtworkLogic _artworkLogic;
+        private readonly IArtworkLogic _artworkLogic;
         private Artwork _artwork;
 
         public AddArtwork()
@@ -48,30 +48,30 @@ namespace OGTavlor_MainProgram
 
             _artworkLogic.SaveArtworkAsync(_artwork);
             
-            MainWindow Main = new MainWindow();
+            var main = new MainWindow();
             this.Close();
-            Main.Show();
+            main.Show();
         }
 
         private void AddImage_Click(object sender, RoutedEventArgs e)
         {   
-            OpenFileDialog op = new OpenFileDialog();
-            op.Title = "Select a picture";
-            op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
+            var openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = "Select a picture";
+            openFileDialog.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
               "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
               "Portable Network Graphic (*.png)|*.png";
-            if (op.ShowDialog() == true)
+            if (openFileDialog.ShowDialog() == true)
             {
-                ArtImage.Source = new BitmapImage(new Uri(op.FileName));
+                ArtImage.Source = new BitmapImage(new Uri(openFileDialog.FileName));
                 _imagePath = (ArtImage.Source as BitmapImage).UriSource.AbsolutePath;
             }
         }
 
         private void btnAddArtist_Click(object sender, RoutedEventArgs e)
         {
-            AddArtist MyArtist = new AddArtist();
+            var myArtist = new AddArtist();
             this.Close();
-            MyArtist.Show();
+            myArtist.Show();
         }
 
         private void LoadComboBox()

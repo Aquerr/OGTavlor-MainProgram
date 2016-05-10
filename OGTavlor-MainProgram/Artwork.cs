@@ -14,8 +14,6 @@ namespace OGTavlor_MainProgram
 
         public Artwork() { }
 
-        public int ArtworkId { get; set; }
-
         public string Title
         {
             get { return this.RowKey; }
