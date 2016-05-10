@@ -19,7 +19,7 @@ namespace OGTavlor_MainProgram
     /// </summary>
     public partial class PictureSlideShow : Window
     {
-        IArtworkLogic _artworkLogic;
+        private readonly IArtworkLogic _artworkLogic;
         string _artworkName;
 
         public PictureSlideShow()
@@ -32,7 +32,7 @@ namespace OGTavlor_MainProgram
 
         private void btnMainWindow_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
+            var mainWindow = new MainWindow();
             this.Close();
             mainWindow.Show();
         }

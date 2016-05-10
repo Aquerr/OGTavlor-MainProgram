@@ -24,7 +24,7 @@ namespace OGTavlor_MainProgram
     public partial class ShowPicture : Window
     {
         string _artworkName;
-        private IArtworkLogic _artworkLogic;
+        private readonly IArtworkLogic _artworkLogic;
 
         public ShowPicture(string artworkName)
         {
@@ -51,8 +51,8 @@ namespace OGTavlor_MainProgram
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
-            EditArtwork ea = new EditArtwork(_artworkName);
-            ea.Show();
+            var editArtwork = new EditArtwork(_artworkName);
+            editArtwork.Show();
             this.Close();
         }
 
@@ -69,7 +69,7 @@ namespace OGTavlor_MainProgram
 
              //   MessageBox.Show("Du har nu tagit bort detta konstverk", "Statusmeddelande");
 
-                MainWindow mainWindow = new MainWindow();
+                var mainWindow = new MainWindow();
                 this.Close();
                 mainWindow.Show();
             }
@@ -79,7 +79,7 @@ namespace OGTavlor_MainProgram
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
+            var mainWindow = new MainWindow();
             this.Close();
             mainWindow.Show();
 

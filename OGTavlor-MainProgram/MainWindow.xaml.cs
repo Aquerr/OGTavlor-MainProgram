@@ -72,9 +72,9 @@ namespace OGTavlor_MainProgram
 
         private void BtnSlideShow_Click(object sender, RoutedEventArgs e)
         {
-            PictureSlideShow slideShow = new PictureSlideShow();
+            var pictureSlideShow = new PictureSlideShow();
             this.Close();
-            slideShow.Show();
+            pictureSlideShow.Show();
         }
 
         private void ButtonArtwork_Click(object sender, RoutedEventArgs e)
