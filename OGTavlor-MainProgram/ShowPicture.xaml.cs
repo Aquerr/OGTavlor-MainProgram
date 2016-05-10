@@ -23,7 +23,7 @@ namespace OGTavlor_MainProgram
     /// </summary>
     public partial class ShowPicture : Window
     {
-        string _artworkName;
+        private readonly string _artworkName;
         private readonly IArtworkLogic _artworkLogic;
 
         public ShowPicture(string artworkName)
@@ -43,9 +43,9 @@ namespace OGTavlor_MainProgram
 
 
             //TODO: Make here anticrashing system. Program shall not crash when it will not find imagepath for an image.
-            var uripath = new Uri((art.ImagePath), UriKind.RelativeOrAbsolute);
-            image.Source = new BitmapImage(uripath);
+            var uripath = new Uri(art.ImagePath, UriKind.RelativeOrAbsolute);
 
+            Image.Source = new BitmapImage(uripath);
             TextInfo.Text = art.Description;
         }
 

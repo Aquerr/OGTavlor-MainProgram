@@ -16,7 +16,7 @@
             </Rectangle.Fill>
         </Rectangle>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="509" Margin="492,55,0,0" VerticalAlignment="Top" Width="710">
-            <Image x:Name="image" HorizontalAlignment="Left" Height="509" Margin="-1" VerticalAlignment="Top" Width="710" Stretch="Fill"/>
+            <Image x:Name="Image" HorizontalAlignment="Left" Height="509" Margin="-1" VerticalAlignment="Top" Width="710" Stretch="Fill"/>
         </Border>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="509" Margin="19,55,0,0" VerticalAlignment="Top" Width="448" RenderTransformOrigin="0.5,0.5">
             <WrapPanel x:Name="WrapInfo" HorizontalAlignment="Left" Height="509" VerticalAlignment="Top" Width="448" Margin="-1">
