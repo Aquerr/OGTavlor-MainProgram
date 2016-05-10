@@ -30,15 +30,16 @@
                         <Button x:Name="ButtonArtwork" Click="ButtonArtwork_Click">
                             <Button.Template>
                                 <ControlTemplate>
-                                    <Image Height="80" Width="80" Cursor="Hand">
+                                    <Label Content="{Binding Title}"></Label>
+                                        <!--<Image Height="80" Width="80" Cursor="Hand">
                                         <Image.Source>
                                             <BitmapImage UriSource="{Binding ImagePath}"></BitmapImage>
                                         </Image.Source>
-                                    </Image>
+                                    </Image>-->
                                 </ControlTemplate>
                             </Button.Template>
                         </Button>
-                        <TextBlock Text="{Binding RowKey}" Margin="5,1,0,1"></TextBlock>
+                        <TextBlock Text="{Binding Artist}" Margin="5,1,0,1"></TextBlock>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

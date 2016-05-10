@@ -23,40 +23,35 @@ namespace OGTavlor_MainProgram
     /// </summary>
     public partial class ShowPicture : Window
     {
-        string PassId;
-        public ShowPicture(string _id)
+        string _artworkName;
+        private IArtworkLogic _artworkLogic;
+
+        public ShowPicture(string artworkName)
         {
             InitializeComponent();
-            PassId = _id;
-            LoadArtwork();
-            //Artworks artworks = new Artworks();
+            _artworkName = artworkName;
+            IArtworkService service = new ArtworkService();
+            IArtworkLogic logic = new ArtworkLogic(service);
+            _artworkLogic = logic;
 
-            //BtnRemove.Click += new EventHandler((x, y) => Artworks.Invnetory.Remove(x => x = PassId));
+            LoadArtwork();
         }
 
-        private void LoadArtwork()
+        private async void LoadArtwork()
         {
-            // Retrieve the storage account from the connection string.
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
+            var art = await _artworkLogic.GetArtworkAsync(_artworkName);
 
-            // Create the table client.
-            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
 
-            // Create the CloudTable object that represents the "ogtavlor" table.
-            CloudTable table = tableClient.GetTableReference("ogtavlor");
-
-            // Construct the query operation for all customer entities where PartitionKey="Smith".
-            TableQuery<CustomerEntity> query = new TableQuery<CustomerEntity>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "Brutus"));
-
-            var uripath = new Uri((table.ExecuteQuery(query).Where(x => x.RowKey == PassId).Select(y => y.ImagePath).FirstOrDefault()).ToString(), UriKind.RelativeOrAbsolute);
+            //TODO: Make here anticrashing system. Program shall not crash when it will not find imagepath for an image.
+            var uripath = new Uri((art.ImagePath), UriKind.RelativeOrAbsolute);
             image.Source = new BitmapImage(uripath);
 
-            TextInfo.Text = (table.ExecuteQuery(query).Where(x => x.RowKey == PassId).Select(y => y.Description).FirstOrDefault());
+            TextInfo.Text = art.Description;
         }
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
-            EditArtwork ea = new EditArtwork(PassId);
+            EditArtwork ea = new EditArtwork(_artworkName);
             ea.Show();
             this.Close();
         }
@@ -70,20 +65,10 @@ namespace OGTavlor_MainProgram
             }
             else
             {
-                CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
+                _artworkLogic.DeleteArtworkAsync(_artworkName);
 
-                CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+             //   MessageBox.Show("Du har nu tagit bort detta konstverk", "Statusmeddelande");
 
-                CloudTable table = tableClient.GetTableReference("ogtavlor");
-
-                TableQuery<CustomerEntity> query = new TableQuery<CustomerEntity>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "Brutus"));
-
-                TableOperation retrieveOperation = TableOperation.Retrieve<CustomerEntity>("Brutus", "Pingviner");
-
-                TableResult retrievedResult = table.Execute(retrieveOperation);
-
-               // Artworks.Invnetory.Remove(Artworks.Invnetory.Where(x => x.ArtworkId == PassId).FirstOrDefault());
-                MessageBox.Show("Du har nu tagit bort detta konstverk", "Statusmeddelande");
                 MainWindow mainWindow = new MainWindow();
                 this.Close();
                 mainWindow.Show();

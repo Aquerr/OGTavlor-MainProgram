@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,57 +25,65 @@ namespace OGTavlor_MainProgram
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ObservableCollection<Artwork> _allItems;
+        private readonly IArtworkLogic _artworkLogic;
+        private string _searchText = string.Empty;
+
         public MainWindow()
         {
             InitializeComponent();
+            IArtworkService service = new ArtworkService();
+            IArtworkLogic logic = new ArtworkLogic(service);
+            _artworkLogic = logic;
             FillList();
         }
 
         private void LäggTillKonstverk_Click(object sender, RoutedEventArgs e)
         {
-            AddArtwork AddArt = new AddArtwork();
+            var addArt = new AddArtwork();
             this.Close();
-            AddArt.Show();
+            addArt.Show();
         }
 
-        private void FillList()
+        private async void FillList()
         {
-            // Retrieve the storage account from the connection string.
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
+            try
+            {
+                var list = await GetItemsAsync();
+                AllItems = new ObservableCollection<Artwork>(list);
+            }
+            catch(Exception exception)
+            {
 
-            // Create the table client.
-            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+            }
+            finally
+            {
+                ArtworkListView.ItemsSource = AllItems;
+            }
+        }
 
-            // Create the CloudTable object that represents the "ogtavlor" table.
-            CloudTable table = tableClient.GetTableReference("ogtavlor");
 
-            // Construct the query operation for all customer entities where PartitionKey="Smith".
-            TableQuery<CustomerEntity> query = new TableQuery<CustomerEntity>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "Brutus"));
 
-            // Print the fields for each customer.
-
-          //  ArtworkListView.ItemsSource = table.ExecuteQuery(query);
-
-            //    TableOperation selectOperation = TableOperation.Retrieve;
-
-            //    ArtworkListView.ItemsSource = Artworks.Invnetory;
-
+        private async Task<List<Artwork>> GetItemsAsync()
+        {
+            var list = await _artworkLogic.GetArtworksAsync();
+            return list;
         }
 
         private void BtnSlideShow_Click(object sender, RoutedEventArgs e)
         {
-            PictureSlideShow SlideShow = new PictureSlideShow();
+            PictureSlideShow slideShow = new PictureSlideShow();
             this.Close();
-            SlideShow.Show();
+            slideShow.Show();
         }
 
         private void ButtonArtwork_Click(object sender, RoutedEventArgs e)
         {
             var item = (sender as FrameworkElement).DataContext;
-            var id = ((CustomerEntity)item).RowKey;
-            ShowPicture Sp = new ShowPicture(id);
+            var id = ((Artwork)item).RowKey;
+            var showPicture = new ShowPicture(id);
             this.Close();
-            Sp.Show();
+            showPicture.Show();
         }
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
@@ -86,5 +95,17 @@ namespace OGTavlor_MainProgram
         {
             txtbxSearchBox.Focus();
         }
+
+        public ObservableCollection<Artwork> AllItems
+        {
+            get { return _allItems; }
+            set
+            {
+                if(_allItems != value)
+                {
+                    _allItems = value;
+                }
+            }
+        } 
     }
 }

@@ -3,7 +3,6 @@ using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.Table;
 using System.Configuration;
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,62 +26,52 @@ namespace OGTavlor_MainProgram
     /// </summary>
     public partial class AddArtwork : Window
     {
+        private readonly IArtworkLogic _artworkLogic;
+        private Artwork _artwork;
+
         public AddArtwork()
         {
             InitializeComponent();
+            IArtworkService service = new ArtworkService();
+            IArtworkLogic logic = new ArtworkLogic(service);
+            _artworkLogic = logic;
             LoadComboBox();
 
         }
-        string ImagePath = "";
+        string _imagePath = "";
         
 
         private void SaveArtwork_Click(object sender, RoutedEventArgs e)
         {
-            // Retrieve the storage account from the connection string.
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
+            _artwork = new Artwork(ArtArtist.Text, ArtName.Text);
+            _artwork.ImagePath = _imagePath;
 
-            // Create the table client.
-            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
-
-            // Create the CloudTable object that represents the "people" table.
-            CloudTable table = tableClient.GetTableReference("ogtavlor");
-
-            // Create a new customer entity.
-            CustomerEntity customer1 = new CustomerEntity(ArtArtist.Text, ArtName.Text);
-            customer1.ImagePath = ImagePath.ToString();
-
-            // Create the TableOperation object that inserts the customer entity.
-            TableOperation insertOperation = TableOperation.Insert(customer1);
-
-            // Execute the insert operation.
-            table.Execute(insertOperation);
-
-         //   Artworks.Invnetory.Add(new Artwork() { Title = ArtName.Text, Artist = ArtArtist.Text, ImagePath = ImagePath.ToString() });
+            _artworkLogic.SaveArtworkAsync(_artwork);
             
-            MainWindow Main = new MainWindow();
+            var main = new MainWindow();
             this.Close();
-            Main.Show();
+            main.Show();
         }
 
         private void AddImage_Click(object sender, RoutedEventArgs e)
         {   
-            OpenFileDialog op = new OpenFileDialog();
-            op.Title = "Select a picture";
-            op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
+            var openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = "Select a picture";
+            openFileDialog.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
               "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
               "Portable Network Graphic (*.png)|*.png";
-            if (op.ShowDialog() == true)
+            if (openFileDialog.ShowDialog() == true)
             {
-                ArtImage.Source = new BitmapImage(new Uri(op.FileName));
-                ImagePath = (ArtImage.Source as BitmapImage).UriSource.AbsolutePath;
+                ArtImage.Source = new BitmapImage(new Uri(openFileDialog.FileName));
+                _imagePath = (ArtImage.Source as BitmapImage).UriSource.AbsolutePath;
             }
         }
 
         private void btnAddArtist_Click(object sender, RoutedEventArgs e)
         {
-            AddArtist MyArtist = new AddArtist();
+            var myArtist = new AddArtist();
             this.Close();
-            MyArtist.Show();
+            myArtist.Show();
         }
 
         private void LoadComboBox()
