@@ -19,9 +19,15 @@ namespace OGTavlor_MainProgram
     /// </summary>
     public partial class PictureSlideShow : Window
     {
+        IArtworkLogic _artworkLogic;
+        string _artworkName;
+
         public PictureSlideShow()
         {
             InitializeComponent();
+            IArtworkService service = new ArtworkService();
+            IArtworkLogic logic = new ArtworkLogic(service);
+            _artworkLogic = logic;
         }
 
         private void btnMainWindow_Click(object sender, RoutedEventArgs e)
@@ -31,10 +37,28 @@ namespace OGTavlor_MainProgram
             mainWindow.Show();
         }
 
-        //public void LoadImage()
-        //{
-        //    var uripath = new Uri((Artworks.Invnetory.Where(x => x.ArtworkId == 1).Select(y => y.ImagePath).FirstOrDefault().ToString()), UriKind.RelativeOrAbsolute);
-        //    ImgSlideShow.Source = new BitmapImage(uripath);
-        //}
+        private void PictureSlideShow_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadImage();
+        }
+
+        public void LoadImage()
+        {
+            var uripath = new Uri((_artworkLogic.GetArtworksAsync().Result[0].ImagePath), UriKind.RelativeOrAbsolute);
+            _artworkName = _artworkLogic.GetArtworksAsync().Result[0].Title;
+            ImgSlideShow.Source = new BitmapImage(uripath);
+        }
+
+        private void NextPicure()
+        {
+            var uripath = new Uri((_artworkLogic.GetArtworksAsync().Result.FirstOrDefault().ImagePath), UriKind.RelativeOrAbsolute);
+            ImgSlideShow.Source = new BitmapImage(uripath);
+        }
+
+        private void PreviousPicture()
+        {
+            var uripath = new Uri((_artworkLogic.GetArtworksAsync().Result.FirstOrDefault().ImagePath), UriKind.RelativeOrAbsolute);
+            ImgSlideShow.Source = new BitmapImage(uripath);
+        }
     }
 }

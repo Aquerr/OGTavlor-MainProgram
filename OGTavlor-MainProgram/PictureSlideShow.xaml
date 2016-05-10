@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OGTavlor_MainProgram"
         mc:Ignorable="d"
+        Loaded="PictureSlideShow_Loaded"
         Title="PictureSlideShow" Height="500" Width="700">
     <Grid>
         <Image x:Name="ImgSlideShow" HorizontalAlignment="Left" Height="389" Margin="10,10,0,0" VerticalAlignment="Top" Width="672"/>
