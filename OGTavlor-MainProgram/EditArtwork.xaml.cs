@@ -55,11 +55,14 @@ namespace OGTavlor_MainProgram
 
         private void SaveArtwork_Click(object sender, RoutedEventArgs e)
         {
-            _artworkLogic.ReplaceArtwork(ArtArtist.Text, ArtName.Text, _imagePath, _artworkName);
+            if ((ArtArtist.Text != "") && (ArtName.Text != ""))
+            {
+                _artworkLogic.ReplaceArtwork(ArtArtist.Text, ArtName.Text, _imagePath, _artworkName);
 
-            MainWindow Main = new MainWindow();
-            this.Close();
-            Main.Show();
+                MainWindow Main = new MainWindow();
+                this.Close();
+                Main.Show();
+            }
         }
 
         private async void FillInfo()
