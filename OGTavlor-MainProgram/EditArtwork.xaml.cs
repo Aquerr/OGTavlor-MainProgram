@@ -57,7 +57,7 @@ namespace OGTavlor_MainProgram
         {
             if ((ArtArtist.Text != "") && (ArtName.Text != ""))
             {
-                _artworkLogic.ReplaceArtwork(ArtArtist.Text, ArtName.Text, _imagePath, _artworkName);
+                _artworkLogic.ReplaceArtwork(ArtArtist.Text, ArtName.Text, _imagePath, ArtDescription.Text, _artworkName);
 
                 MainWindow Main = new MainWindow();
                 this.Close();
@@ -72,6 +72,7 @@ namespace OGTavlor_MainProgram
 
             ArtName.Text = art.Title;
             ArtArtist.Text = art.Artist;
+            ArtDescription.Text = art.Description;
 
             //TODO: Make here anticrashing system. Program shall not crash when it will not find imagepath for an image.
             var uripath = new Uri((art.ImagePath), UriKind.RelativeOrAbsolute);
