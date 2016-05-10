@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OGTavlor_MainProgram"
         mc:Ignorable="d"
-        d:DesignHeight="300" d:DesignWidth="300"
         Loaded="ArtworkList_OnLoaded"
-        Title="MainWindow" Height="661.111" Width="884.722">
+        Title="MainWindow" Height="700" Width="900">
     <Grid>
 
         <Grid.RowDefinitions>
 
-            <RowDefinition Height="Auto" MinHeight="620"/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
 
         </Grid.RowDefinitions>
 
