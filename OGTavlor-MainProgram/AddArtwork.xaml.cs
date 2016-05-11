@@ -45,12 +45,9 @@ namespace OGTavlor_MainProgram
         {
             if ((ArtArtist.Text != "") && (ArtName.Text != ""))
             {
-
-
                 _artwork = new Artwork(ArtArtist.Text, ArtName.Text);
                 _artwork.ImagePath = _imagePath;
                 _artwork.Description = ArtDescription.Text;
-
                 _artworkLogic.SaveArtworkAsync(_artwork);
 
                 var main = new MainWindow();
@@ -113,6 +110,11 @@ namespace OGTavlor_MainProgram
             //CmBxArtistName.SelectedValuePath = "ArtistId";
         }
 
-
+        private void BackMainWindow_Click(object sender, RoutedEventArgs e)
+        {
+            var main = new MainWindow();
+            this.Close();
+            main.Show();
+        }
     }
 }
