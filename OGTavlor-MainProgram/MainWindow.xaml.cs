@@ -103,6 +103,10 @@ namespace OGTavlor_MainProgram
             AllItems = new ObservableCollection<Artwork>(filteredArtowrks);
 
             ArtworkListView.ItemsSource = AllItems;
+            if (lookFor == "")
+            {
+                FillList();
+            }
         }
 
         private void ArtworkList_OnLoaded(object sender, RoutedEventArgs e)
