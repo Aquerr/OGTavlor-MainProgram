@@ -79,9 +79,9 @@ namespace OGTavlor_MainProgram
 
         private void btnAddArtist_Click(object sender, RoutedEventArgs e)
         {
-            var myArtist = new AddArtist();
-            this.Close();
-            myArtist.Show();
+            //var myArtist = new AddArtist();
+            //this.Close();
+            //myArtist.Show();
         }
 
         private void LoadComboBox()
