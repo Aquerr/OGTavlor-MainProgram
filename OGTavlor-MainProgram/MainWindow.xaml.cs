@@ -88,7 +88,21 @@ namespace OGTavlor_MainProgram
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            
+            //  List<Artwork> ArtworkList = new List<Artwork>();
+            //
+            //  var lookFor = txtbxSearchBox.Text;
+            //  Artwork result = ArtworkList.Find(x => x.RowKey == lookFor);
+            //
+            //  ArtworkListView.View = result.Title;
+            var lookFor = txtbxSearchBox.Text;
+
+            var arts = _artworkLogic.GetArtworksAsync().Result;
+
+            var filteredArtowrks = arts.Where(x => x.RowKey == lookFor).ToList();
+
+            AllItems = new ObservableCollection<Artwork>(filteredArtowrks);
+
+            ArtworkListView.ItemsSource = AllItems;
         }
 
         private void ArtworkList_OnLoaded(object sender, RoutedEventArgs e)

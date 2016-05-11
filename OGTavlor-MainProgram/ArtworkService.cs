@@ -88,7 +88,7 @@ namespace OGTavlor_MainProgram
 
             var entities = table.ExecuteQuery(new TableQuery<Artwork>()).ToList();
 
-            return entities.ToList();
+            return entities;
         }
 
         public async Task DeleteArtwork(string artworkName)
