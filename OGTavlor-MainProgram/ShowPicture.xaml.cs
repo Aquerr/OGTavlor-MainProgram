@@ -46,6 +46,7 @@ namespace OGTavlor_MainProgram
             var uripath = new Uri(art.ImagePath, UriKind.RelativeOrAbsolute);
 
             Image.Source = new BitmapImage(uripath);
+            TextTitle.Text = art.Title;
             TextInfo.Text = art.Description;
         }
 
