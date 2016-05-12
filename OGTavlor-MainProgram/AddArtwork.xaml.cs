@@ -45,7 +45,7 @@ namespace OGTavlor_MainProgram
 
         private void SaveArtwork_Click(object sender, RoutedEventArgs e)
         {
-            if ((ArtArtist.Text != "") && (ArtName.Text != ""))
+            if ((ArtArtist.Text != "") && (ArtName.Text != "") && (_imagePath != null))
             {
                 _artwork = new Artwork(ArtArtist.Text, ArtName.Text);
                 _artwork.ImagePath = _imagePath;
@@ -57,7 +57,6 @@ namespace OGTavlor_MainProgram
                 string name = System.IO.Path.GetFileName(_imagePath);
                 string destinationPath = GetDestinationPath(name, "Images");
                 File.Copy(_imagePath, destinationPath, true);
-                //
 
                 var main = new MainWindow();
                 this.Close();
@@ -80,6 +79,7 @@ namespace OGTavlor_MainProgram
             bool? result = openFileDialog.ShowDialog();
             if (result == true)
             {
+                //TODO: Change the map to the real "Images" map.
                 _imagePath = openFileDialog.FileName;
                 ImageSource imgSource = new BitmapImage(new Uri(_imagePath));
                 ArtImage.Source = imgSource;              
