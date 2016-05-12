@@ -46,8 +46,10 @@ namespace OGTavlor_MainProgram
             var uripath = new Uri(art.ImagePath, UriKind.RelativeOrAbsolute);
 
             Image.Source = new BitmapImage(uripath);
-            TextTitle.Text = art.Title;
-            TextInfo.Text = art.Description;
+
+            TextTitle.Text = "Titel: " + art.Title;
+            TextArtist.Text = "Konstnär: " + art.Artist;
+            TextInfo.Text = "Beskrivning: "+ art.Description;         
         }
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
