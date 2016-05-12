@@ -50,6 +50,7 @@ namespace OGTavlor_MainProgram
                 _artwork = new Artwork(ArtArtist.Text, ArtName.Text);
                 _artwork.ImagePath = _imagePath;
                 _artwork.Description = ArtDescription.Text;
+                _artwork.Place = ArtPlace.Text;
                 _artworkLogic.SaveArtworkAsync(_artwork);
 
                 //To add the image to \OGTavlor-MainProgram\OGTavlor-MainProgram\bin\Debug\Images map

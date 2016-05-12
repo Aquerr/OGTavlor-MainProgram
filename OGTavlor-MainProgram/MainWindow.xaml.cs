@@ -28,6 +28,7 @@ namespace OGTavlor_MainProgram
         private ObservableCollection<Artwork> _allItems;
         private readonly IArtworkLogic _artworkLogic;
         private string _searchText = string.Empty;
+        public int ful = 0;
 
         public MainWindow()
         {
@@ -76,14 +77,21 @@ namespace OGTavlor_MainProgram
             this.Close();
             pictureSlideShow.Show();
         }
-
+        
         private void ButtonArtwork_Click(object sender, RoutedEventArgs e)
         {
-            var item = (sender as FrameworkElement).DataContext;
-            var id = ((Artwork)item).RowKey;
-            var showPicture = new ShowPicture(id);
-            this.Close();
-            showPicture.Show();
+            
+            ful++;
+            if (ful == 2)
+            {
+                var item = (sender as FrameworkElement).DataContext;
+                var id = ((Artwork)item).RowKey;
+                var showPicture = new ShowPicture(id);
+                this.Close();
+                showPicture.Show();
+                ful = 0;
+            }
+            
         }
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
@@ -124,6 +132,11 @@ namespace OGTavlor_MainProgram
                     _allItems = value;
                 }
             }
-        } 
+        }
+
+        private void ArtworkListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var items = ArtworkListView.Items;
+        }
     }
 }

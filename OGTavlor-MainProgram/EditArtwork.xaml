@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OGTavlor_MainProgram"
         mc:Ignorable="d"
-        Title="EditArtwork" Height="516.15" Width="760.813">
+        Title="EditArtwork" Height="516.15" Width="760.813"
+        WindowStartupLocation="CenterScreen">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
             <GradientStop Color="White" Offset="1"/>
@@ -46,6 +47,10 @@
             <Label x:Name="LblArtist" Content="Konstnär" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25"/>
 
             <TextBox x:Name="ArtArtist" HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            
+            <Label x:Name="LblRoom" Content="Place" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25"/>
+            
+            <TextBox x:Name="ArtPlace" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="120"/>
 
             <Label x:Name="LblDescription" Content="Kommentar" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25"/>
 
