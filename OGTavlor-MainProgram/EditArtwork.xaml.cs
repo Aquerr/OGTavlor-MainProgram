@@ -79,5 +79,12 @@ namespace OGTavlor_MainProgram
             ArtImage.Source = new BitmapImage(uripath);
             _imagePath = uripath.ToString();
         }
+
+        private void BackMainWindow_Click(object sender, RoutedEventArgs e)
+        {
+            var main = new MainWindow();
+            this.Close();
+            main.Show();
+        }
     }
 }

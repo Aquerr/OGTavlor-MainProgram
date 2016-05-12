@@ -6,30 +6,72 @@
         xmlns:local="clr-namespace:OGTavlor_MainProgram"
         mc:Ignorable="d"
         Title="EditArtwork" Height="516.15" Width="760.813">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+            <GradientStop Color="White" Offset="1"/>
+            <GradientStop Color="#FFEE9C0C"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
     <Grid>
-        
-        <Button x:Name="SaveArtwork" Content="Spara Konstverk" HorizontalAlignment="Left" Margin="627,431,0,0" VerticalAlignment="Top" Width="100" Height="25" Click="SaveArtwork_Click"/>
-        
-        <TextBox x:Name="ArtName" HorizontalAlignment="Left" Height="23" Margin="582,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        
-        <Button x:Name="AddImage" Content="Lägg Till Bild" HorizontalAlignment="Left" Margin="146,354,0,0" VerticalAlignment="Top" Width="106" Height="24" Click="AddImage_Click"/>
-        
-        <Label x:Name="LblTitle" Content="Titel" HorizontalAlignment="Left" Margin="506,46,0,0" VerticalAlignment="Top" Height="23"/>
-        
-        <Label x:Name="LblArtist" Content="Konstnär" HorizontalAlignment="Left" Margin="506,89,0,0" VerticalAlignment="Top" Height="31"/>
-        
-        <TextBox x:Name="ArtArtist" HorizontalAlignment="Left" Height="23" Margin="582,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="314" Margin="34,14,0,0" VerticalAlignment="Top" Width="339">
-            
-            
-            <Image x:Name="ArtImage" HorizontalAlignment="Left" Height="314" Margin="-1" Stretch="Fill" VerticalAlignment="Top" Width="339"/>
-            
-        </Border>
-        
-        <TextBox x:Name="ArtDescription" HorizontalAlignment="Left" Height="88" Margin="571,318,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="156"/>
-        
-        <Label x:Name="LblDescription" Content="Kommentär" HorizontalAlignment="Left" Margin="491,318,0,0" VerticalAlignment="Top" Height="31"/>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Left" >
+
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="350" Margin="20,20,0,0" VerticalAlignment="Top" Width="350">
+
+                <Image x:Name="ArtImage" HorizontalAlignment="Left" Height="350" Margin="-1" VerticalAlignment="Top" Stretch="Fill" Width="350" />
+
+            </Border>
+
+            <Button x:Name="AddImage"  Content="Lägg Till Bild" FontWeight="SemiBold"  HorizontalAlignment="Right" VerticalAlignment="Top" Width="106" Height="26" Click="AddImage_Click" Margin="0,10,0,0">
+                <Button.Background>
+                    <SolidColorBrush Color="#FFFBFBFB"/>
+                </Button.Background>
+            </Button>
+
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" VerticalAlignment="Top" Margin="0,10,10,0" HorizontalAlignment="Right" Height="219" Width="156">
+
+            <Label x:Name="LblTitle" Content="Titel" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26"/>
+
+            <TextBox x:Name="ArtName" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+
+            <Label x:Name="LblArtist" Content="Konstnär" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25"/>
+
+            <TextBox x:Name="ArtArtist" HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+
+            <Label x:Name="LblDescription" Content="Kommentär" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25"/>
+
+            <TextBox x:Name="ArtDescription" HorizontalAlignment="Left" Height="100" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
+
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Margin="10,0,0,10" HorizontalAlignment="Left">
+
+            <Button x:Name="BackMainWindow" Content="Avbryt" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="BackMainWindow_Click">
+                <Button.Background>
+                    <SolidColorBrush Color="#FFFBFBFB"/>
+                </Button.Background>
+            </Button>
+
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,10,10" HorizontalAlignment="Right">
+
+            <Button x:Name="SaveArtwork" Content="Spara Konstverk" FontWeight="SemiBold" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="100" Height="28" Click="SaveArtwork_Click">
+                <Button.Background>
+                    <SolidColorBrush Color="#FFFBFBFB"/>
+                </Button.Background>
+            </Button>
+
+        </StackPanel>
 
     </Grid>
 </Window>
