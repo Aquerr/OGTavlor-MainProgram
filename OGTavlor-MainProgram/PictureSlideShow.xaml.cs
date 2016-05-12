@@ -20,7 +20,8 @@ namespace OGTavlor_MainProgram
     public partial class PictureSlideShow : Window
     {
         private readonly IArtworkLogic _artworkLogic;
-        string _artworkName;
+        private int _id;
+        private int _listCount;
 
         public PictureSlideShow()
         {
@@ -44,20 +45,42 @@ namespace OGTavlor_MainProgram
 
         public void LoadImage()
         {
-            var uripath = new Uri((_artworkLogic.GetArtworksAsync().Result[0].ImagePath), UriKind.RelativeOrAbsolute);
-            _artworkName = _artworkLogic.GetArtworksAsync().Result[0].Title;
-            ImgSlideShow.Source = new BitmapImage(uripath);
+            _id = 0;
+            _listCount = _artworkLogic.GetArtworksAsync().Result.Count;
+            GetPicutre();
         }
 
-        private void NextPicure()
+        private void NextPicture(object sender, RoutedEventArgs e)
         {
-            var uripath = new Uri((_artworkLogic.GetArtworksAsync().Result.FirstOrDefault().ImagePath), UriKind.RelativeOrAbsolute);
-            ImgSlideShow.Source = new BitmapImage(uripath);
+            if (_id != _listCount - 1)
+            {
+                _id += 1;
+                GetPicutre();
+            }
+            else
+            {
+                _id = 0;
+                GetPicutre();
+            }
         }
 
-        private void PreviousPicture()
+        private void PreviousPicture(object sender, RoutedEventArgs e)
         {
-            var uripath = new Uri((_artworkLogic.GetArtworksAsync().Result.FirstOrDefault().ImagePath), UriKind.RelativeOrAbsolute);
+            if (_id != 0)
+            {
+                _id -= 1;
+                GetPicutre();
+            }
+            else
+            {
+                _id = _listCount - 1;
+                GetPicutre();
+            }
+        }
+
+        private void GetPicutre()
+        {
+            var uripath = new Uri((_artworkLogic.GetArtworksAsync().Result[_id].ImagePath), UriKind.RelativeOrAbsolute);
             ImgSlideShow.Source = new BitmapImage(uripath);
         }
     }
