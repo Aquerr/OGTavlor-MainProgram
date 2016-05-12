@@ -59,9 +59,9 @@ namespace OGTavlor_MainProgram
             await UpdateArtworkListAsyn();
         }
 
-        public async Task ReplaceArtwork(string artist, string title,string imagepath,string description, string oldArtworkTitle)
+        public async Task ReplaceArtwork(string artist, string title, string imagepath, string place, string description, string oldArtworkTitle)
         {
-            await _artworkService.ReplaceArtwork(artist,title,imagepath,description,oldArtworkTitle);
+            await _artworkService.ReplaceArtwork(artist, title, imagepath, place, description, oldArtworkTitle);
 
             await UpdateArtworkListAsyn();
         }
