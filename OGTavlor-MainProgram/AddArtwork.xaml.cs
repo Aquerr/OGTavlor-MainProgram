@@ -5,6 +5,8 @@ using Microsoft.WindowsAzure.Storage.Table;
 using System.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,7 +40,7 @@ namespace OGTavlor_MainProgram
             LoadComboBox();
 
         }
-        string _imagePath = "";
+        string _imagePath;
 
 
         private void SaveArtwork_Click(object sender, RoutedEventArgs e)
@@ -50,6 +52,12 @@ namespace OGTavlor_MainProgram
                 _artwork.Description = ArtDescription.Text;
                 _artworkLogic.SaveArtworkAsync(_artwork);
 
+                //To add the image to \OGTavlor-MainProgram\OGTavlor-MainProgram\bin\Debug\Images map
+                string name = System.IO.Path.GetFileName(_imagePath);
+                string destinationPath = GetDestinationPath(name, "Images");
+                File.Copy(_imagePath, destinationPath, true);
+                //
+
                 var main = new MainWindow();
                 this.Close();
                 main.Show();
@@ -59,20 +67,33 @@ namespace OGTavlor_MainProgram
                 MessageBox.Show("Du måste skriva in tavlans namn och konstnär.");
             }
         }
-
+        //Open the file browser
         private void AddImage_Click(object sender, RoutedEventArgs e)
         {
             var openFileDialog = new OpenFileDialog();
-            openFileDialog.Title = "Select a picture";
+            openFileDialog.Multiselect = false;
+            openFileDialog.Title = "Välj en bild";
             openFileDialog.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
               "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
               "Portable Network Graphic (*.png)|*.png";
-            if (openFileDialog.ShowDialog() == true)
+            bool? result = openFileDialog.ShowDialog();
+            if (result == true)
             {
-                ArtImage.Source = new BitmapImage(new Uri(openFileDialog.FileName));
-                _imagePath = (ArtImage.Source as BitmapImage).UriSource.AbsolutePath;
+                _imagePath = openFileDialog.FileName;
+                ImageSource imgSource = new BitmapImage(new Uri(_imagePath));
+                ArtImage.Source = imgSource;              
             }
         }
+
+        //To save the file
+        private static String GetDestinationPath(string filename, string foldername)
+        {
+            string appStartPath = System.IO.Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
+
+            appStartPath = String.Format(appStartPath + "\\{0}\\" + filename, foldername);
+            return appStartPath;
+        }
+
 
         private void btnAddArtist_Click(object sender, RoutedEventArgs e)
         {
