@@ -55,7 +55,7 @@
 
         <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Margin="10,0,0,10" HorizontalAlignment="Left">
 
-            <Button x:Name="BackMainWindow" Content="Avbryt" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="BackMainWindow_Click">
+            <Button x:Name="BackMainWindow" FontWeight="SemiBold" Content="Avbryt" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="BackMainWindow_Click">
                 <Button.Background>
                     <SolidColorBrush Color="#FFFBFBFB"/>
                 </Button.Background>
