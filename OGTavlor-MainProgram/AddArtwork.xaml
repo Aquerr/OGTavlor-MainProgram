@@ -47,6 +47,10 @@
 
             <TextBox x:Name="ArtArtist" HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
+            <Label x:Name="LblRoom" Content="Place" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25"/>
+
+            <TextBox x:Name="ArtPlace" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="120"/>
+
             <Label x:Name="LblDescription" Content="Kommentar" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25"/>
 
             <TextBox x:Name="ArtDescription" HorizontalAlignment="Left" Height="100" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
