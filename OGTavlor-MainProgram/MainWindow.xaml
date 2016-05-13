@@ -23,12 +23,12 @@
 
         </Grid.RowDefinitions>
         
-        <StackPanel Grid.Row="0" Margin="120,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <StackPanel Grid.Row="0" Margin="125,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+
+            <Label Content="Sökruta"/>
             
             <TextBox x:Name="TxtbxSearchBox" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="120" TextChanged="btnSearch_Click" VerticalContentAlignment="top"/>
-            
-            <Button x:Name="BtnSearch" Content="Sök" HorizontalAlignment="Center" VerticalAlignment="Top" Width="75" Click="btnSearch_Click" Height="20" Margin="0,10,0,0"/>
-            
+
         </StackPanel>
         
         <ListView Grid.Row="0" x:Name="ArtworkListView" HorizontalAlignment="Right" VerticalAlignment="Top" AlternationCount="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Width="500" Height="550" Margin="0,10,10,0" SelectionChanged="ArtworkListView_SelectionChanged">
