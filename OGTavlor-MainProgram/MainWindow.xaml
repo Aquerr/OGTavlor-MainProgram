@@ -26,7 +26,8 @@
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Vertical">
+                    <Border BorderBrush="Black" BorderThickness="1" >
+                        <StackPanel Orientation="Vertical">
                         <Button x:Name="ButtonArtwork" Click="ButtonArtwork_Click">
                             <Button.Template>
                                 <ControlTemplate>
@@ -41,6 +42,7 @@
                         </Button>
                         <TextBlock Text="{Binding Artist}" Margin="5,1,0,1"></TextBlock>
                     </StackPanel>
+                    </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
