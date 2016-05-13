@@ -26,23 +26,23 @@
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="Black" BorderThickness="1" >
-                        <StackPanel Orientation="Vertical">
-                        <Button x:Name="ButtonArtwork" Click="ButtonArtwork_Click">
-                            <Button.Template>
-                                <ControlTemplate>
-                                    <Label Content="{Binding Title}"></Label>
-                                    <!--<Image Height="80" Width="80" Cursor="Hand">
+                    <Button Click="ButtonArtwork_Click" Cursor="Hand">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border BorderBrush="Black" BorderThickness="1" >
+                                    <StackPanel Orientation="Vertical" Width="80" Height="80" Background="White">
+                                        <Label Content="{Binding Title}"></Label>
+                                        <!--<Image Height="80" Width="80" Cursor="Hand">
                                         <Image.Source>
                                             <BitmapImage UriSource="{Binding ImagePath}"></BitmapImage>
                                         </Image.Source>
                                     </Image>-->
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>
-                        <TextBlock Text="{Binding Artist}" Margin="5,1,0,1"></TextBlock>
-                    </StackPanel>
-                    </Border>
+                                        <TextBlock Text="{Binding Artist}" Margin="5,1,0,1"></TextBlock>
+                                    </StackPanel>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>                
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
