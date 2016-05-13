@@ -76,9 +76,13 @@ namespace OGTavlor_MainProgram
             ArtPlace.Text = art.Place;
 
             //TODO: Make here anticrashing system. Program shall not crash when it will not find imagepath for an image.
-            var uripath = new Uri((art.ImagePath), UriKind.RelativeOrAbsolute);
-            ArtImage.Source = new BitmapImage(uripath);
-            _imagePath = uripath.ToString();
+            if (art.ImagePath != null)
+            {
+                var uripath = new Uri(art.ImagePath, UriKind.RelativeOrAbsolute);
+
+                ArtImage.Source = new BitmapImage(uripath);
+                _imagePath = uripath.ToString();
+            }
         }
 
         private void BackMainWindow_Click(object sender, RoutedEventArgs e)

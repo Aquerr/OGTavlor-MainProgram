@@ -37,7 +37,6 @@ namespace OGTavlor_MainProgram
             IArtworkService service = new ArtworkService();
             IArtworkLogic logic = new ArtworkLogic(service);
             _artworkLogic = logic;
-            LoadComboBox();
 
         }
         string _imagePath;
@@ -93,43 +92,6 @@ namespace OGTavlor_MainProgram
 
             appStartPath = String.Format(appStartPath + "\\{0}\\" + filename, foldername);
             return appStartPath;
-        }
-
-
-        private void btnAddArtist_Click(object sender, RoutedEventArgs e)
-        {
-            //var myArtist = new AddArtist();
-            //this.Close();
-            //myArtist.Show();
-        }
-
-        private void LoadComboBox()
-        {
-
-
-            //CmBxArtistName.ItemsSource = Artworks.Invnetory.Distinct();
-            //CmBxArtistName.DisplayMemberPath = "Artist";
-
-
-            //for (int i = 0; i < CmBxArtistName.Items.Count; i++)
-            //{
-            //    for (int y = 0; y < CmBxArtistName.Items.Count; y++)
-            //    {
-            //        if (y != i && CmBxArtistName.Items[i] == CmBxArtistName.Items[y])
-            //        {
-            //            CmBxArtistName.Items.RemoveAt(i);
-            //            break;
-            //        }
-            //    }
-            //}
-
-            //var listWithoutDuplicates = CmBxArtistName.Distinct().ToList();
-        }
-
-        private void CmBxArtistName_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //CmBxArtistName.DisplayMemberPath = "Artist";
-            //CmBxArtistName.SelectedValuePath = "ArtistId";
         }
 
         private void BackMainWindow_Click(object sender, RoutedEventArgs e)

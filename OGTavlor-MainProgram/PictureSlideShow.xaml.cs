@@ -80,8 +80,11 @@ namespace OGTavlor_MainProgram
 
         private void GetPicutre()
         {
-            var uripath = new Uri((_artworkLogic.GetArtworksAsync().Result[_id].ImagePath), UriKind.RelativeOrAbsolute);
-            ImgSlideShow.Source = new BitmapImage(uripath);
+            if (_artworkLogic.GetArtworksAsync().Result[_id].ImagePath != null)
+            {
+                var uripath = new Uri((_artworkLogic.GetArtworksAsync().Result[_id].ImagePath), UriKind.RelativeOrAbsolute);
+                ImgSlideShow.Source = new BitmapImage(uripath);
+            }
         }
     }
 }
