@@ -94,23 +94,18 @@ namespace OGTavlor_MainProgram
             
         }
 
-        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        private void SearchArts(object sender, RoutedEventArgs e)
         {
-            //  List<Artwork> ArtworkList = new List<Artwork>();
-            //
-            //  var lookFor = txtbxSearchBox.Text;
-            //  Artwork result = ArtworkList.Find(x => x.RowKey == lookFor);
-            //
-            //  ArtworkListView.View = result.Title;
-            var lookFor = TxtbxSearchBox.Text;
+            var lookFor = TxtbxSearchBox.Text.ToLower();
 
             var arts = _artworkLogic.GetArtworksAsync().Result;
 
-            var filteredArtowrks = arts.Where(x => x.RowKey == lookFor).ToList();
+            var filteredArtworks = arts.Where(str => str.RowKey.ToLower().Contains(lookFor) || str.PartitionKey.ToLower().Contains(lookFor));
 
-            AllItems = new ObservableCollection<Artwork>(filteredArtowrks);
+            AllItems = new ObservableCollection<Artwork>(filteredArtworks);
 
             ArtworkListView.ItemsSource = AllItems;
+
             if (lookFor == "")
             {
                 FillList();

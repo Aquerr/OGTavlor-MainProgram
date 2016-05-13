@@ -27,7 +27,7 @@
 
             <Label Content="Sökruta"/>
             
-            <TextBox x:Name="TxtbxSearchBox" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="120" TextChanged="btnSearch_Click" VerticalContentAlignment="top"/>
+            <TextBox x:Name="TxtbxSearchBox" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="120" TextChanged="SearchArts" VerticalContentAlignment="top"/>
 
         </StackPanel>
         
