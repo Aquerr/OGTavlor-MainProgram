@@ -59,9 +59,9 @@ namespace OGTavlor_MainProgram
             {
                 _artworkLogic.ReplaceArtwork(ArtArtist.Text, ArtName.Text, _imagePath,ArtPlace.Text, ArtDescription.Text, _artworkName);
 
-                MainWindow Main = new MainWindow();
+                MainWindow main = new MainWindow();
                 this.Close();
-                Main.Show();
+                main.Show();
             }
         }
 
