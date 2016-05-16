@@ -52,7 +52,8 @@ namespace OGTavlor_MainProgram
 
             TextTitle.Text = "Titel: " + art.Title;
             TextArtist.Text = "Konstnär: " + art.Artist;
-            TextInfo.Text = "Beskrivning: "+ art.Description;         
+            TextInfo.Text = "Beskrivning: "+ art.Description;
+            TextRoom.Text = "Rum: " + art.Place;
         }
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
