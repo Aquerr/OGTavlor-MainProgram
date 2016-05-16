@@ -44,8 +44,8 @@
                             <ControlTemplate>
                                 <Border BorderBrush="Black" BorderThickness="1" >
                                     <StackPanel Orientation="Vertical" Width="85" Height="85" Background="White">
-                                        <Label Content="{Binding Title}"></Label>
-                                        <Label Content="{Binding Artist}"></Label>
+                                        <!--<Label Content="{Binding Title}"></Label>-->
+                                        <!--<Label Content="{Binding Artist}"></Label>-->
                                         <Image Height="80" Width="80" Cursor="Hand">
                                             <Image.Source>
                                                 <BitmapImage UriSource="{Binding ImagePath}"></BitmapImage>
