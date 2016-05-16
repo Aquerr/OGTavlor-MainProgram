@@ -7,18 +7,65 @@
         mc:Ignorable="d"
         Loaded="PictureSlideShow_Loaded"
         Title="PictureSlideShow" Height="500" Width="700">
+    
     <Grid>
-        <Image x:Name="ImgSlideShow" HorizontalAlignment="Left" Height="389" Margin="10,10,0,0" VerticalAlignment="Top" Width="672">
+        
+        <DockPanel VerticalAlignment="Top">
+            
+            <Menu DockPanel.Dock="Top">
+                
+                <MenuItem Header="_File">
+                    
+                    <MenuItem Header="_Ny tavla" Click="LäggTillKonstverk_Click"></MenuItem>
+                    
+                    <Separator/>
+                    
+                    <MenuItem Header="_Exit" Command="Close"></MenuItem>
+                    
+                </MenuItem>
+                
+                <MenuItem Header="Bildspel">
+                    
+                    <MenuItem Header="Intervall">
+
+                        <MenuItem x:Name="Interval1" Header="1" IsCheckable="True" Click="Interval1_OnClick"></MenuItem>
+
+                        <MenuItem x:Name="Interval2" Header="2" IsCheckable="True" Click="Interval2_OnClick"></MenuItem>
+
+                        <MenuItem x:Name="Interval3" Header="3" IsCheckable="True" Click="Interval3_OnClick"></MenuItem>
+
+                    </MenuItem>
+                    
+                </MenuItem>
+                
+            </Menu>
+            
+        </DockPanel>
+        
+        <Image x:Name="ImgSlideShow" HorizontalAlignment="Left" Height="389" Margin="10,20,0,0" VerticalAlignment="Top" Width="672">
+            
             <Image.ContextMenu>
+                
                 <ContextMenu>
+                    
                     <MenuItem Header="Redigera Tavlan" Click="EditArtwork"></MenuItem>
+                    
                 </ContextMenu>
+                
             </Image.ContextMenu>
+            
         </Image>
+        
         <Button x:Name="BtnPrevious" Content="Föregående" HorizontalAlignment="Left" Margin="60,417,0,0" VerticalAlignment="Top" Width="75" Click="PreviousPicture"/>
+        
         <Button x:Name="BtnMainWindow" Content="Startsida" HorizontalAlignment="Left" Margin="315,417,0,0" VerticalAlignment="Top" Width="75" Click="btnMainWindow_Click"/>
+        
         <Button x:Name="BtnNext" Content="Nästa" HorizontalAlignment="Left" Margin="576,417,0,0" VerticalAlignment="Top" Width="75" Click="NextPicture"/>
+        
         <Button x:Name="StopSlide" Content="Stoppa bildspelet" HorizontalAlignment="Left" Margin="352,442,0,0" VerticalAlignment="Top" Width="110" Click="StopSlideShow"/>
+        
         <Button x:Name="StartSlide" Content="Starta bildspelet" HorizontalAlignment="Left" Margin="245,442,0,0" VerticalAlignment="Top" Width="102" Click="StartSlideShow"/>
+        
     </Grid>
+    
 </Window>
