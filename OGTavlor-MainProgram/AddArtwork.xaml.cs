@@ -52,9 +52,8 @@ namespace OGTavlor_MainProgram
                 _artwork.Place = ArtPlace.Text;
                 _artworkLogic.SaveArtworkAsync(_artwork);
 
-                //To add the image to \OGTavlor-MainProgram\OGTavlor-MainProgram\bin\Debug\Images map
                 string name = System.IO.Path.GetFileName(_imagePath);
-                string destinationPath = GetDestinationPath(name, "Images");
+                string destinationPath = GetDestinationPath(name, "");
                 File.Copy(_imagePath, destinationPath, true);
 
                 var main = new MainWindow();
@@ -63,7 +62,7 @@ namespace OGTavlor_MainProgram
             }
             else
             {
-                MessageBox.Show("Du måste skriva in tavlans namn och konstnär.");
+                MessageBox.Show("Du måste ange tavlans titel, konstnär och bifoga bild.");
             }
         }
         //Open the file browser
@@ -78,7 +77,6 @@ namespace OGTavlor_MainProgram
             bool? result = openFileDialog.ShowDialog();
             if (result == true)
             {
-                //TODO: Change the map to the real "Images" map.
                 _imagePath = openFileDialog.FileName;
                 ImageSource imgSource = new BitmapImage(new Uri(_imagePath));
                 ArtImage.Source = imgSource;              
@@ -86,9 +84,9 @@ namespace OGTavlor_MainProgram
         }
 
         //To save the file
-        private static String GetDestinationPath(string filename, string foldername)
+        private static string GetDestinationPath(string filename, string foldername)
         {
-            string appStartPath = System.IO.Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
+            string appStartPath = System.IO.Path.GetDirectoryName(@"C:\Users\Admin\Desktop\OGTavlor\OGTavlor-MainProgram\OGTavlor-MainProgram\Images\");
 
             appStartPath = String.Format(appStartPath + "\\{0}\\" + filename, foldername);
             return appStartPath;
