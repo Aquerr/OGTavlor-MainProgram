@@ -100,7 +100,7 @@ namespace OGTavlor_MainProgram
 
             var cloudTable = cloudTableClient.GetTableReference("ogtavlor");
 
-            var art = (await GetArtworks()).SingleOrDefault(x => x.Title == artworkName);
+            var art = (await GetArtworks()).SingleOrDefault(x => x.RowKey == artworkName);
 
             var retrieveTableOperation = TableOperation.Retrieve<Artwork>(art.Artist, art.Title);
 

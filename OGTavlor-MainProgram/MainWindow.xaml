@@ -47,9 +47,9 @@
                                         <Label Content="{Binding Title}"></Label>
                                         <Label Content="{Binding Artist}"></Label>
                                         <Image Height="80" Width="80" Cursor="Hand">
-                                            <!--<Image.Source>
+                                            <Image.Source>
                                                 <BitmapImage UriSource="{Binding ImagePath}"></BitmapImage>
-                                            </Image.Source>-->
+                                            </Image.Source>
                                         </Image>
                                     </StackPanel>
                                 </Border>
