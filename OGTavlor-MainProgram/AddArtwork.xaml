@@ -48,13 +48,13 @@
 
             <TextBox x:Name="ArtArtist" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
 
-            <Label x:Name="LblRoom" Content="Place" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Label x:Name="LblRoom" Content="Rum" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
             <TextBox x:Name="ArtPlace" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150"/>
 
             <Label x:Name="LblDescription" Content="Kommentar" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
-            <TextBox x:Name="ArtDescription" HorizontalAlignment="Left" Height="100" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
+            <TextBox x:Name="ArtDescription" HorizontalAlignment="Left" Height="60" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
 
         </StackPanel>
 
