@@ -31,7 +31,6 @@ namespace OGTavlor_MainProgram
             IArtworkService service = new ArtworkService();
             IArtworkLogic logic = new ArtworkLogic(service);
             _artworkLogic = logic;
-            TimerStart();
         }
 
         private void btnMainWindow_Click(object sender, RoutedEventArgs e)
@@ -95,16 +94,6 @@ namespace OGTavlor_MainProgram
             Timer.Tick += NextPictureByTimer;
             Timer.Interval = new TimeSpan(0, 0, 2);
             Timer.Start();
-            if (_id != _listCount - 1)
-            {
-                _id += 1;
-                GetPicutre();
-            }
-            else
-            {
-                _id = 0;
-                GetPicutre();
-            }
         }
 
         private void NextPictureByTimer(object sender, EventArgs e)
@@ -119,6 +108,16 @@ namespace OGTavlor_MainProgram
                 _id = 0;
                 GetPicutre();
             }
+        }
+
+        private void StopSlideShow(object sender, RoutedEventArgs e)
+        {
+            Timer.Stop();
+        }
+
+        private void StartSlideShow(object sender, RoutedEventArgs e)
+        {
+            TimerStart();
         }
     }
 }
