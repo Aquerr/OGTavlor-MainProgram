@@ -31,6 +31,7 @@ namespace OGTavlor_MainProgram
             IArtworkService service = new ArtworkService();
             IArtworkLogic logic = new ArtworkLogic(service);
             _artworkLogic = logic;
+            StopSlide.IsEnabled = false;
         }
 
         private void btnMainWindow_Click(object sender, RoutedEventArgs e)
@@ -113,11 +114,15 @@ namespace OGTavlor_MainProgram
         private void StopSlideShow(object sender, RoutedEventArgs e)
         {
             Timer.Stop();
+            StartSlide.IsEnabled = true;
+            StopSlide.IsEnabled = false;
         }
 
         private void StartSlideShow(object sender, RoutedEventArgs e)
         {
             TimerStart();
+            StartSlide.IsEnabled = false;
+            StopSlide.IsEnabled = true;
         }
     }
 }
