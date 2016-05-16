@@ -124,5 +124,12 @@ namespace OGTavlor_MainProgram
             StartSlide.IsEnabled = false;
             StopSlide.IsEnabled = true;
         }
+
+        private void EditArtwork(object sender, RoutedEventArgs e)
+        {
+            var editArtwork = new EditArtwork(_artworkLogic.GetArtworksAsync().Result[_id].Title);
+            editArtwork.Show();
+            this.Close();
+        }
     }
 }
