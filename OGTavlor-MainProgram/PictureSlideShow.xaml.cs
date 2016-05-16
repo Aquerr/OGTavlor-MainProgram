@@ -19,6 +19,8 @@ namespace OGTavlor_MainProgram
     /// </summary>
     public partial class PictureSlideShow : Window
     {
+
+        private System.Windows.Threading.DispatcherTimer Timer = new System.Windows.Threading.DispatcherTimer();
         private readonly IArtworkLogic _artworkLogic;
         private int _id;
         private int _listCount;
@@ -29,6 +31,7 @@ namespace OGTavlor_MainProgram
             IArtworkService service = new ArtworkService();
             IArtworkLogic logic = new ArtworkLogic(service);
             _artworkLogic = logic;
+            TimerStart();
         }
 
         private void btnMainWindow_Click(object sender, RoutedEventArgs e)
@@ -84,6 +87,37 @@ namespace OGTavlor_MainProgram
             {
                 var uripath = new Uri((_artworkLogic.GetArtworksAsync().Result[_id].ImagePath), UriKind.RelativeOrAbsolute);
                 ImgSlideShow.Source = new BitmapImage(uripath);
+            }
+        }
+
+        private void TimerStart()
+        {
+            Timer.Tick += NextPictureByTimer;
+            Timer.Interval = new TimeSpan(0, 0, 2);
+            Timer.Start();
+            if (_id != _listCount - 1)
+            {
+                _id += 1;
+                GetPicutre();
+            }
+            else
+            {
+                _id = 0;
+                GetPicutre();
+            }
+        }
+
+        private void NextPictureByTimer(object sender, EventArgs e)
+        {
+            if (_id != _listCount - 1)
+            {
+                _id += 1;
+                GetPicutre();
+            }
+            else
+            {
+                _id = 0;
+                GetPicutre();
             }
         }
     }
