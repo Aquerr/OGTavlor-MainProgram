@@ -49,7 +49,7 @@ namespace OGTavlor_MainProgram
 
         public async Task<Artwork> GetArtworkAsync(string artworkName)
         {
-            return (await _artworkService.GetArtworks()).SingleOrDefault(x => x.Title == artworkName);
+            return (await _artworkService.GetArtworks()).SingleOrDefault(x => x.RowKey == artworkName);
         }
 
         public async Task SaveArtworkAsync(Artwork artwork)
