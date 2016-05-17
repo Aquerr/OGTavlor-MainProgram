@@ -30,5 +30,6 @@ namespace OGTavlor_MainProgram
         public string Description { get; set; }
         public string Place { get; set; }
         public bool? Signed { get; set; }
+        public string Size { get; set; }
     }
 }

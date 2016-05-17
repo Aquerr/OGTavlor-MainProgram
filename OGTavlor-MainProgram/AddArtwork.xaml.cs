@@ -49,8 +49,10 @@ namespace OGTavlor_MainProgram
                 _artwork = new Artwork(ArtArtist.Text, ArtName.Text);
                 _artwork.ImagePath = _imagePath;
                 _artwork.Description = ArtDescription.Text;
-                _artwork.Room = ArtPlace.Text;
+                _artwork.Room = ArtRoom.Text;
                 _artwork.Signed = CheckBoxSigned.IsChecked;
+                _artwork.Place = ArtPlace.Text;
+                _artwork.Size = ArtSize.Text;
                 _artworkLogic.SaveArtworkAsync(_artwork);
 
                 //string name = System.IO.Path.GetFileName(_imagePath);

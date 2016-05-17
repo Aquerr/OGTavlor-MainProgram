@@ -38,7 +38,7 @@
 
         </StackPanel>
 
-        <StackPanel Grid.Row="0" VerticalAlignment="Top" Margin="0,10,10,0" HorizontalAlignment="Right" Height="234" Width="156">
+        <StackPanel Grid.Row="0" VerticalAlignment="Top" Margin="0,10,10,0" HorizontalAlignment="Right" Height="330" Width="156">
 
             <Label x:Name="LblTitle" Content="Titel" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
@@ -48,7 +48,7 @@
 
             <TextBox x:Name="ArtArtist" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
             <Label x:Name="LabelComboBoxAreas" Content="Plats" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold"/>
-            <ComboBox x:Name="ComboboxAreas" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Background="White">
+            <ComboBox x:Name="ArtPlace" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Background="White">
                 <ComboBoxItem Content="Teknik" HorizontalAlignment="Left" Width="148"/>
                 <ComboBoxItem Content="Estet" HorizontalAlignment="Left" Width="148"/>
                 <ComboBoxItem Content="Tekniska fyran" HorizontalAlignment="Left" Width="148"/>
@@ -62,9 +62,12 @@
                 <ComboBoxItem Content="Förråd utanför skolan" HorizontalAlignment="Left" Width="148"/>
             </ComboBox>
             <Label x:Name="LblRoom" Content="Rum" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <TextBox x:Name="ArtPlace" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150"/>
+            <TextBox x:Name="ArtRoom" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150"/>
             <Label x:Name="LblDescription" Content="Kommentar" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <TextBox x:Name="ArtDescription" HorizontalAlignment="Left" Height="60" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
+            
+            <Label x:Name="LblSize" Content="Storlek"   FontWeight="Bold"   HorizontalAlignment="Left"  VerticalAlignment="Top"/>
+            <TextBox x:Name="ArtSize" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150"/>
             <CheckBox x:Name="CheckBoxSigned" Content="Signerad" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,89,0"/>
         </StackPanel>
 
