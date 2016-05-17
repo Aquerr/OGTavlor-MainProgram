@@ -73,7 +73,7 @@ namespace OGTavlor_MainProgram
             ArtName.Text = art.Title;
             ArtArtist.Text = art.Artist;
             ArtDescription.Text = art.Description;
-            ArtPlace.Text = art.Place;
+            ArtPlace.Text = art.Room;
 
             //TODO: Make here anticrashing system. Program shall not crash when it will not find imagepath for an image.
             if (art.ImagePath != null)

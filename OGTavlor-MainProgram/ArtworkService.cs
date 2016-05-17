@@ -63,7 +63,7 @@ namespace OGTavlor_MainProgram
                     artwork.ImagePath = "";
                     artwork.PartitionKey = artist;
                     artwork.Description = description;
-                    artwork.Place = place;
+                    artwork.Room = place;
 
                     // Create the Replace TableOperation.
                     var updateOperation = TableOperation.InsertOrReplace(artwork);
