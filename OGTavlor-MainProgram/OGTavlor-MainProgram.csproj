@@ -83,9 +83,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddRoom.xaml.cs">
-      <DependentUpon>AddRoom.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Artwork.cs" />
     <Compile Include="ArtworkLogic.cs" />
     <Compile Include="ArtworkService.cs" />
@@ -101,10 +98,6 @@
     <Page Include="AddArtwork.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="AddRoom.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditArtwork.xaml">
       <SubType>Designer</SubType>

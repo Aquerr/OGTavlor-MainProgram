@@ -36,7 +36,7 @@
 
         <StackPanel Grid.Row="0" Margin="125,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
 
-            <Label Content="Sökruta"/>
+            <Label Content="Sökruta" FontWeight="Bold"/>
 
             <TextBox x:Name="TxtbxSearchBox" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="120" TextChanged="SearchArts" VerticalContentAlignment="top"/>
 
@@ -71,8 +71,17 @@
             </ListView.ItemTemplate>
         </ListView>
         <WrapPanel Grid.Row="1" Width="300" Height="100" HorizontalAlignment="Left" Margin="65,0,0,0">
-            <Button x:Name="BtnAddArtwork" Content="Lägg Till Konstverk" HorizontalAlignment="Left" VerticalAlignment="Top" Width="109" Height="32" Click="LäggTillKonstverk_Click" Margin="0,0,40,0"/>
-            <Button x:Name="BtnSlideShow" Content="Visa Bildspel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="112" Height="32" Click="BtnSlideShow_Click"/>
+            <Button x:Name="BtnAddArtwork" Content="Lägg Till Konstverk" HorizontalAlignment="Left" FontWeight="SemiBold" VerticalAlignment="Top" Width="109" Height="32" Click="LäggTillKonstverk_Click" Margin="0,0,40,0">
+                <Button.Background>
+                    <SolidColorBrush Color="#FFFBFBFB"/>
+                </Button.Background>
+            </Button>
+
+            <Button x:Name="BtnSlideShow" Content="Visa Bildspel" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Top" Width="112" Height="32" Click="BtnSlideShow_Click">
+                <Button.Background>
+                    <SolidColorBrush Color="#FFFBFBFB"/>
+                </Button.Background>
+            </Button>
         </WrapPanel>
     </Grid>
 </Window>

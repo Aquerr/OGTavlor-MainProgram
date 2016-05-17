@@ -38,7 +38,7 @@
 
         </StackPanel>
 
-        <StackPanel Grid.Row="0" VerticalAlignment="Top" Margin="0,10,10,0" HorizontalAlignment="Right" Height="220" Width="156">
+        <StackPanel Grid.Row="0" VerticalAlignment="Top" Margin="0,10,10,0" HorizontalAlignment="Right" Height="268" Width="156">
 
             <Label x:Name="LblTitle" Content="Titel" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
@@ -47,13 +47,23 @@
             <Label x:Name="LblArtist" Content="Konstnär" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
             <TextBox x:Name="ArtArtist" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
-
-            <Label x:Name="LblRoom" Content="Rum" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-
+            <Label x:Name="LabelComboBoxAreas" Content="Plats" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold"/>
+            <ComboBox x:Name="ComboboxAreas" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Background="White">
+                <ComboBoxItem Content="Teknik" HorizontalAlignment="Left" Width="148"/>
+                <ComboBoxItem Content="Estet" HorizontalAlignment="Left" Width="148"/>
+                <ComboBoxItem Content="Tekniska fyran" HorizontalAlignment="Left" Width="148"/>
+                <ComboBoxItem Content="Cafeteria" HorizontalAlignment="Left" Width="148"/>
+                <ComboBoxItem Content="Matsal" HorizontalAlignment="Left" Width="148"/>
+                <ComboBoxItem Content="Sjuksköterska" HorizontalAlignment="Left" Width="148"/>
+                <ComboBoxItem Content="Reception" HorizontalAlignment="Left" Width="148"/>
+                <ComboBoxItem Content="Biblotek" HorizontalAlignment="Left" Width="148"/>
+                <ComboBoxItem Content="Éntre" HorizontalAlignment="Left" Width="148"/>
+                <ComboBoxItem Content="Förråd i skolan" HorizontalAlignment="Left" Width="148"/>
+                <ComboBoxItem Content="Förråd utanför skolan" HorizontalAlignment="Left" Width="148"/>
+            </ComboBox>
+            <Label x:Name="LblRoom" Content="Specifkt rum" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <TextBox x:Name="ArtPlace" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150"/>
-
             <Label x:Name="LblDescription" Content="Kommentar" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-
             <TextBox x:Name="ArtDescription" HorizontalAlignment="Left" Height="60" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
         </StackPanel>
 
@@ -76,11 +86,7 @@
             </Button>
 
         </StackPanel>
-        <Button x:Name="AddRoom" Content="Välj Rum" FontWeight="SemiBold" Width="100" Height="28" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="752,0,40,224" RenderTransformOrigin="0.507,2.3" Click="AddRoom_Click" >
-            <Button.Background>
-                <SolidColorBrush Color="#FFFBFBFB"/>
-            </Button.Background>
-        </Button>
+
 
     </Grid>
 

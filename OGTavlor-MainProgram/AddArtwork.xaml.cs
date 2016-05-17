@@ -98,11 +98,5 @@ namespace OGTavlor_MainProgram
             this.Close();
             main.Show();
         }
-
-        private void AddRoom_Click(object sender, RoutedEventArgs e)
-        {
-            var addRoom = new AddRoom();
-            addRoom.Show();
-        }
     }
 }
