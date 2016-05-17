@@ -48,7 +48,7 @@
 
             <TextBox x:Name="ArtArtist" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
             <Label x:Name="LabelComboBoxAreas" Content="Plats" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold"/>
-            <ComboBox x:Name="ComboboxAreas" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Background="White">
+            <ComboBox x:Name="ArtPlace" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Background="White">
                 <ComboBoxItem Content="Teknik" HorizontalAlignment="Left" Width="148"/>
                 <ComboBoxItem Content="Estet" HorizontalAlignment="Left" Width="148"/>
                 <ComboBoxItem Content="Tekniska fyran" HorizontalAlignment="Left" Width="148"/>
@@ -62,7 +62,7 @@
                 <ComboBoxItem Content="Förråd utanför skolan" HorizontalAlignment="Left" Width="148"/>
             </ComboBox>
             <Label x:Name="LblRoom" Content="Rum" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <TextBox x:Name="ArtPlace" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150"/>
+            <TextBox x:Name="ArtRoom" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150"/>
             <Label x:Name="LblDescription" Content="Kommentar" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <TextBox x:Name="ArtDescription" HorizontalAlignment="Left" Height="60" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
         </StackPanel>

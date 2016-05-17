@@ -54,6 +54,7 @@ namespace OGTavlor_MainProgram
             TextArtist.Text = "Konstnär: " + art.Artist;
             TextInfo.Text = "Beskrivning: "+ art.Description;
             TextRoom.Text = "Rum: " + art.Room;
+            TextPlace.Text = "Plats: " + art.Place;
         }
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
