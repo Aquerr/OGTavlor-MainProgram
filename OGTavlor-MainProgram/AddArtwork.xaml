@@ -61,7 +61,7 @@
                 <ComboBoxItem Content="Förråd i skolan" HorizontalAlignment="Left" Width="148"/>
                 <ComboBoxItem Content="Förråd utanför skolan" HorizontalAlignment="Left" Width="148"/>
             </ComboBox>
-            <Label x:Name="LblRoom" Content="Specifkt rum" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Label x:Name="LblRoom" Content="Rum" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <TextBox x:Name="ArtPlace" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150"/>
             <Label x:Name="LblDescription" Content="Kommentar" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <TextBox x:Name="ArtDescription" HorizontalAlignment="Left" Height="60" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>

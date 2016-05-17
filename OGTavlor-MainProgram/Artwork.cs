@@ -25,8 +25,9 @@ namespace OGTavlor_MainProgram
             get { return this.PartitionKey; }
             set { this.PartitionKey = value; }
         }
-        public string Place { get; set; }
+        public string Room { get; set; }
         public string ImagePath { get; set; }
         public string Description { get; set; }
+        public string Place { get; set; }
     }
 }
