@@ -57,7 +57,7 @@ namespace OGTavlor_MainProgram
         {
             if ((ArtArtist.Text != "") && (ArtName.Text != ""))
             {
-                _artworkLogic.ReplaceArtwork(ArtArtist.Text, ArtName.Text, _imagePath,ArtPlace.Text, ArtDescription.Text, _artworkName);
+                _artworkLogic.ReplaceArtwork(ArtArtist.Text, ArtName.Text, _imagePath, ArtPlace.Text, ArtDescription.Text, _artworkName, ArtRoom.Text);
 
                 var main = new MainWindow();
                 this.Close();
@@ -73,7 +73,8 @@ namespace OGTavlor_MainProgram
             ArtName.Text = art.Title;
             ArtArtist.Text = art.Artist;
             ArtDescription.Text = art.Description;
-            ArtPlace.Text = art.Room;
+            ArtRoom.Text = art.Room;
+            ArtPlace.Text = art.Place;
 
             //TODO: Make here anticrashing system. Program shall not crash when it will not find imagepath for an image.
             if (art.ImagePath != null)

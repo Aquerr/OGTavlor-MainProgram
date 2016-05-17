@@ -10,7 +10,7 @@ namespace OGTavlor_MainProgram
         Task<List<Artwork>> GetArtworksAsync();
         Task DeleteArtworkAsync(string artworkName);
         Task SaveArtworkAsync(Artwork artwork);
-        Task ReplaceArtwork(string artist, string title,string imagepath,string place,string description, string oldArtworkTitle);
+        Task ReplaceArtwork(string artist, string title,string imagepath,string room,string description, string oldArtworkTitle, string place);
         //  void ClearLists();
     }
 }
