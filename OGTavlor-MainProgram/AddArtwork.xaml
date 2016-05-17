@@ -38,7 +38,7 @@
 
         </StackPanel>
 
-        <StackPanel Grid.Row="0" VerticalAlignment="Top" Margin="0,10,10,0" HorizontalAlignment="Right" Height="268" Width="156">
+        <StackPanel Grid.Row="0" VerticalAlignment="Top" Margin="0,10,10,0" HorizontalAlignment="Right" Height="234" Width="156">
 
             <Label x:Name="LblTitle" Content="Titel" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
@@ -65,6 +65,7 @@
             <TextBox x:Name="ArtPlace" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150"/>
             <Label x:Name="LblDescription" Content="Kommentar" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <TextBox x:Name="ArtDescription" HorizontalAlignment="Left" Height="60" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
+            <CheckBox x:Name="CheckBoxSigned" Content="Signerad" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,89,0"/>
         </StackPanel>
 
         <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Margin="10,0,0,10" HorizontalAlignment="Left">
@@ -79,7 +80,7 @@
 
         <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,10,10" HorizontalAlignment="Right">
 
-            <Button x:Name="SaveArtwork" Content="Spara Konstverk" FontWeight="SemiBold" Width="100" Height="28" Click="SaveArtwork_Click">
+            <Button x:Name="SaveArtwork" Content="Spara Konstverk" FontWeight="SemiBold" Width="100" Height="28" Click="SaveArtwork_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom">
                 <Button.Background>
                     <SolidColorBrush Color="#FFFBFBFB"/>
                 </Button.Background>

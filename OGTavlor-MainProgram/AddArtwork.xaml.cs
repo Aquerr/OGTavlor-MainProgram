@@ -50,6 +50,7 @@ namespace OGTavlor_MainProgram
                 _artwork.ImagePath = _imagePath;
                 _artwork.Description = ArtDescription.Text;
                 _artwork.Room = ArtPlace.Text;
+                _artwork.Signed = CheckBoxSigned.IsChecked;
                 _artworkLogic.SaveArtworkAsync(_artwork);
 
                 //string name = System.IO.Path.GetFileName(_imagePath);
@@ -98,5 +99,7 @@ namespace OGTavlor_MainProgram
             this.Close();
             main.Show();
         }
+
+        
     }
 }
