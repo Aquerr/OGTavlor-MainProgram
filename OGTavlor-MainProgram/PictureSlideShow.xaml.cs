@@ -19,9 +19,12 @@ namespace OGTavlor_MainProgram
     /// </summary>
     public partial class PictureSlideShow : Window
     {
+
+        private System.Windows.Threading.DispatcherTimer Timer = new System.Windows.Threading.DispatcherTimer();
         private readonly IArtworkLogic _artworkLogic;
         private int _id;
         private int _listCount;
+        private int _interval = 2;
 
         public PictureSlideShow()
         {
@@ -29,6 +32,8 @@ namespace OGTavlor_MainProgram
             IArtworkService service = new ArtworkService();
             IArtworkLogic logic = new ArtworkLogic(service);
             _artworkLogic = logic;
+            StopSlide.IsEnabled = false;
+            Interval2.IsChecked = true;
         }
 
         private void btnMainWindow_Click(object sender, RoutedEventArgs e)
@@ -84,6 +89,87 @@ namespace OGTavlor_MainProgram
             {
                 var uripath = new Uri((_artworkLogic.GetArtworksAsync().Result[_id].ImagePath), UriKind.RelativeOrAbsolute);
                 ImgSlideShow.Source = new BitmapImage(uripath);
+            }
+        }
+
+        private void TimerStart()
+        {
+            if (Interval1.IsChecked) _interval = 1;
+            else if (Interval2.IsChecked) _interval = 2;
+            else if (Interval3.IsChecked) _interval = 3;
+            Timer.Tick += NextPictureByTimer;
+            Timer.Interval = new TimeSpan(0, 0, _interval);
+            Timer.Start();
+        }
+
+        private void NextPictureByTimer(object sender, EventArgs e)
+        {
+            if (_id != _listCount - 1)
+            {
+                _id += 1;
+                GetPicutre();
+            }
+            else
+            {
+                _id = 0;
+                GetPicutre();
+            }
+        }
+
+        private void StopSlideShow(object sender, RoutedEventArgs e)
+        {
+            Timer.Stop();
+            StartSlide.IsEnabled = true;
+            StopSlide.IsEnabled = false;
+        }
+
+        private void StartSlideShow(object sender, RoutedEventArgs e)
+        {
+            TimerStart();
+            StartSlide.IsEnabled = false;
+            StopSlide.IsEnabled = true;
+        }
+
+        private void EditArtwork(object sender, RoutedEventArgs e)
+        {
+            var editArtwork = new EditArtwork(_artworkLogic.GetArtworksAsync().Result[_id].Title);
+            editArtwork.Show();
+            this.Close();
+        }
+
+        private void LäggTillKonstverk_Click(object sender, RoutedEventArgs e)
+        {
+            var addArt = new AddArtwork();
+            this.Close();
+            addArt.Show();
+        }
+
+        //TODO: Refactor this code. It is not good to have three methods like this.
+
+        private void Interval3_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (Interval3.IsChecked)
+            {
+                Interval1.IsChecked = false;
+                Interval2.IsChecked = false;
+            }
+        }
+
+        private void Interval2_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (Interval2.IsChecked)
+            {
+                Interval1.IsChecked = false;
+                Interval3.IsChecked = false;
+            }
+        }
+
+        private void Interval1_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (Interval1.IsChecked)
+            {
+                Interval2.IsChecked = false;
+                Interval3.IsChecked = false;
             }
         }
     }

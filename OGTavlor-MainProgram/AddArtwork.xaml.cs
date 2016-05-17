@@ -52,9 +52,9 @@ namespace OGTavlor_MainProgram
                 _artwork.Place = ArtPlace.Text;
                 _artworkLogic.SaveArtworkAsync(_artwork);
 
-                string name = System.IO.Path.GetFileName(_imagePath);
-                string destinationPath = GetDestinationPath(name, "");
-                File.Copy(_imagePath, destinationPath, true);
+                //string name = System.IO.Path.GetFileName(_imagePath);
+                //string destinationPath = GetDestinationPath(name, "");
+                //File.Copy(_imagePath, destinationPath, true);
 
                 var main = new MainWindow();
                 this.Close();

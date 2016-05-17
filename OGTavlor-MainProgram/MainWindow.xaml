@@ -22,6 +22,17 @@
             <RowDefinition Height="Auto"/>
 
         </Grid.RowDefinitions>
+        
+        <DockPanel VerticalAlignment="Top">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_Ny tavla" Click="LäggTillKonstverk_Click"></MenuItem>
+                    <MenuItem Header="Bildspel" Click="BtnSlideShow_Click"></MenuItem>
+                    <Separator/>
+                    <MenuItem Header="_Exit" Command="Close"></MenuItem>
+                </MenuItem>
+            </Menu>
+        </DockPanel>
 
         <StackPanel Grid.Row="0" Margin="125,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
 
@@ -31,7 +42,7 @@
 
         </StackPanel>
 
-        <ListView Grid.Row="0" x:Name="ArtworkListView" HorizontalAlignment="Right" VerticalAlignment="Top" AlternationCount="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Width="500" Height="550" Margin="0,10,10,0" SelectionChanged="ArtworkListView_SelectionChanged">
+        <ListView Grid.Row="0" x:Name="ArtworkListView" HorizontalAlignment="Right" VerticalAlignment="Top" AlternationCount="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Width="500" Height="550" Margin="0,20,10,0" SelectionChanged="ArtworkListView_SelectionChanged">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel/>

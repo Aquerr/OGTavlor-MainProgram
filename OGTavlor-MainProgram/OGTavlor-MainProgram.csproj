@@ -89,7 +89,6 @@
     <Compile Include="Artwork.cs" />
     <Compile Include="ArtworkLogic.cs" />
     <Compile Include="ArtworkService.cs" />
-    <Compile Include="CustomerEntity.cs" />
     <Compile Include="EditArtwork.xaml.cs">
       <DependentUpon>EditArtwork.xaml</DependentUpon>
     </Compile>
@@ -179,6 +178,12 @@
     <Resource Include="Images\bild5mini.JPG" />
     <Resource Include="Images\bild6.JPG" />
     <Resource Include="Images\bild6mini.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\g3YbbQr.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\404.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
