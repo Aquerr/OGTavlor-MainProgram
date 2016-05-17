@@ -25,6 +25,7 @@
                 <TextBlock x:Name="TextInfo" TextWrapping="Wrap" Text="TextBlock" Height="70" Width="448" FontFamily="Times New Roman" FontSize="18"/>
                 <TextBlock x:Name="TextRoom" TextWrapping="Wrap" Text="TextBlock" Height="70" Width="448" FontFamily="Times New Roman" FontSize="18"/>
                 <TextBlock x:Name="TextPlace" TextWrapping="Wrap" Text="TextBlock" Height="70" Width="448" FontFamily="Times New Roman" FontSize="18"/>
+                <TextBlock x:Name="TextSize" TextWrapping="Wrap" Text="TextBlock" Height="70" Width="448" FontFamily="Times New Roman" FontSize="18"/>
             </WrapPanel>
         </Border>
         <Rectangle HorizontalAlignment="Left" Height="40" Stroke="White" VerticalAlignment="Top" Width="1224" Margin="0,586,0,0">

@@ -55,6 +55,7 @@ namespace OGTavlor_MainProgram
             TextInfo.Text = "Beskrivning: "+ art.Description;
             TextRoom.Text = "Rum: " + art.Room;
             TextPlace.Text = "Plats: " + art.Place;
+            TextSize.Text = "Storlek: " + art.Size;
         }
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
