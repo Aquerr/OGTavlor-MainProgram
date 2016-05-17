@@ -60,7 +60,7 @@ namespace OGTavlor_MainProgram
 
                     // Update Entity
                     artwork.RowKey = title;
-                    artwork.ImagePath = "";
+                    artwork.ImagePath = imagepath;
                     artwork.PartitionKey = artist;
                     artwork.Description = description;
                     artwork.Place = place;
