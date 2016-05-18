@@ -36,6 +36,8 @@ namespace OGTavlor_MainProgram
         public async Task ReplaceArtwork(string artist, string title, string imagepath, string place, string description, string oldArtworkTitle, string room, int width, int height, bool? signed)
         {
 
+            var blob = await ReplaceBlob(title,imagepath);
+
             var cloudTable = GetCloudTable();
 
             var art = (await GetArtworks()).SingleOrDefault(x => x.Title == oldArtworkTitle);
@@ -62,6 +64,7 @@ namespace OGTavlor_MainProgram
                     artwork.Height = height;
                     artwork.Width = width;
                     artwork.Signed = signed;
+                    artwork.Blob = blob;
 
                     // Create the Replace TableOperation.
                     var updateOperation = TableOperation.InsertOrReplace(artwork);
@@ -138,8 +141,6 @@ namespace OGTavlor_MainProgram
             }
         }
 
-        //TODO: Create a function for UpdateBlob.
-
         private async Task SaveBlob(Artwork artwork)
         {
             var cloudStorageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
@@ -160,6 +161,30 @@ namespace OGTavlor_MainProgram
                 artwork.Blob = container.GetBlockBlobReference(artwork.Title).Uri.AbsoluteUri;
             }
         }
+
+       private async Task<string> ReplaceBlob(string title, string imagepath)
+       {
+            var cloudStorageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
+
+            var blobClient = cloudStorageAccount.CreateCloudBlobClient();
+
+            var container = blobClient.GetContainerReference("ogblob");
+
+            container.CreateIfNotExists();
+
+            container.SetPermissions(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
+
+            CloudBlockBlob blockBlob = container.GetBlockBlobReference(title);
+
+            using (var fileStream = System.IO.File.OpenRead(imagepath))
+            {
+                await blockBlob.UploadFromStreamAsync(fileStream);
+                string blob = container.GetBlockBlobReference(title).Uri.AbsoluteUri;
+                return blob;
+            }
+
+
+       }
 
         private CloudTable GetCloudTable()
         {
