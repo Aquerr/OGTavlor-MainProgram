@@ -87,8 +87,19 @@ namespace OGTavlor_MainProgram
         {
             if (_artworkLogic.GetArtworksAsync().Result[_id].ImagePath != null)
             {
-                var uripath = new Uri((_artworkLogic.GetArtworksAsync().Result[_id].ImagePath), UriKind.RelativeOrAbsolute);
-                ImgSlideShow.Source = new BitmapImage(uripath);
+                var uripath = new Uri(_artworkLogic.GetArtworksAsync().Result[_id].ImagePath, UriKind.RelativeOrAbsolute);
+                try
+                {
+                    ImgSlideShow.Source = new BitmapImage(uripath);
+
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Bilderna kan inte laddas.", "Felmeddelande");
+                    var main = new MainWindow();
+                    this.Close();
+                    main.Show();
+                }
             }
         }
 
@@ -144,33 +155,48 @@ namespace OGTavlor_MainProgram
             addArt.Show();
         }
 
-        //TODO: Refactor this code. It is not good to have three methods like this.
+        private void IntervalsCombined()
+        {
+            if (Interval3.IsPressed)
+            {
+                if (Interval3.IsChecked)
+                {
+                    Interval1.IsChecked = false;
+                    Interval2.IsChecked = false;
+                }
+            }
+            if (Interval2.IsPressed)
+            {
+                if (Interval2.IsChecked)
+                {
+                    Interval1.IsChecked = false;
+                    Interval3.IsChecked = false;
+                }
+            }
+            if (Interval1.IsPressed)
+            {
+                if (Interval1.IsChecked)
+                {
+                    Interval2.IsChecked = false;
+                    Interval3.IsChecked = false;
+                }
+            }
+
+        }
 
         private void Interval3_OnClick(object sender, RoutedEventArgs e)
         {
-            if (Interval3.IsChecked)
-            {
-                Interval1.IsChecked = false;
-                Interval2.IsChecked = false;
-            }
+            IntervalsCombined();
         }
 
         private void Interval2_OnClick(object sender, RoutedEventArgs e)
         {
-            if (Interval2.IsChecked)
-            {
-                Interval1.IsChecked = false;
-                Interval3.IsChecked = false;
-            }
+            IntervalsCombined();
         }
 
         private void Interval1_OnClick(object sender, RoutedEventArgs e)
         {
-            if (Interval1.IsChecked)
-            {
-                Interval2.IsChecked = false;
-                Interval3.IsChecked = false;
-            }
+            IntervalsCombined();
         }
     }
 }
