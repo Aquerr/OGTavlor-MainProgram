@@ -18,7 +18,7 @@
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="509" Margin="492,55,0,0" VerticalAlignment="Top" Width="710">
             <Image x:Name="Image" HorizontalAlignment="Left" Height="509" Margin="-1" VerticalAlignment="Top" Width="710" Stretch="Fill"/>
         </Border>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="509" Margin="19,55,0,0" VerticalAlignment="Top" Width="448" RenderTransformOrigin="0.5,0.5">
+        <Border BorderBrush="Black" BorderThickness="0" HorizontalAlignment="Left" Height="509" Margin="19,55,0,0" VerticalAlignment="Top" Width="448" RenderTransformOrigin="0.5,0.5">
             <WrapPanel x:Name="WrapInfo" HorizontalAlignment="Left" Height="509" VerticalAlignment="Top" Width="448" Margin="-1">
                 <TextBlock x:Name="TextTitle" TextWrapping="Wrap" Text="TextBlock" Height="50" Width="448" FontFamily="Arial" FontSize="32"/>
                 <TextBlock x:Name="TextArtist" TextWrapping="Wrap" Text="TextBlock" Height="50" Width="448" FontFamily="Times New Roman" FontSize="24"/>
