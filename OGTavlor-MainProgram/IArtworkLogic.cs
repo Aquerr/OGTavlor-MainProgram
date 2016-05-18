@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Documents;
 
@@ -8,6 +9,7 @@ namespace OGTavlor_MainProgram
     {
         Task<Artwork> GetArtworkAsync(string artworkName);
         Task<List<Artwork>> GetArtworksAsync();
+        Task<List<string>> GetBlobsAsync();
         Task DeleteArtworkAsync(string artworkName);
         Task SaveArtworkAsync(Artwork artwork);
         Task ReplaceArtwork(string artist, string title,string imagepath,string room,string description, string oldArtworkTitle, string place, string size);
