@@ -93,10 +93,10 @@ namespace OGTavlor_MainProgram
         {
             if (_artworkLogic.GetArtworksAsync().Result[_id].ImagePath != null)
             {
-                var uripath = new Uri(_artworkLogic.GetArtworksAsync().Result[_id].ImagePath, UriKind.RelativeOrAbsolute);
+                var uri = new Uri(_artworkLogic.GetArtworksAsync().Result[_id].Blob, UriKind.RelativeOrAbsolute);
                 try
                 {
-                    ImgSlideShow.Source = new BitmapImage(uripath);
+                    ImgSlideShow.Source = new BitmapImage(uri);
 
                 }
                 catch (Exception)
