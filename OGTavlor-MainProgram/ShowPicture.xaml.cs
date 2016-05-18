@@ -46,8 +46,16 @@ namespace OGTavlor_MainProgram
             if (art.ImagePath != null)
             {
                 var uripath = new Uri(art.ImagePath, UriKind.RelativeOrAbsolute);
+                try
+                {
+                    Image.Source = new BitmapImage(uripath);
+                }
+                catch (Exception)
+                {
 
-                Image.Source = new BitmapImage(uripath);
+                    MessageBox.Show("Bilden kunde inte hittas.");
+                }
+                
             }
 
             TextTitle.Text = "Titel: " + art.Title;
