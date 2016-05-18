@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OGTavlor_MainProgram"
         mc:Ignorable="d"
-        Title="ShowPicture" Height="656.652" Width="1231.711" ResizeMode="NoResize">
+        Title="Konstverk" Height="656.652" Width="1231.711" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Rectangle HorizontalAlignment="Left" Height="40" Stroke="White" VerticalAlignment="Top" Width="1224">
             <Rectangle.Fill>

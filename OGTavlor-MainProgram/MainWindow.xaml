@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:OGTavlor_MainProgram"
         mc:Ignorable="d"
         Loaded="ArtworkList_OnLoaded"
-        Title="MainWindow" Height="700" Width="900" ResizeMode="NoResize">
+        Title="Startsida" Height="700" Width="900" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
             <GradientStop Color="White" Offset="1"/>
@@ -38,9 +38,9 @@
 
             <Label Content="Sökruta" FontWeight="Bold"/>
 
-            <TextBox x:Name="TxtbxSearchBox" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="120" TextChanged="SearchArts" VerticalContentAlignment="top"/>
-
-            <CheckBox x:Name="SignedCheck" Content="Signerade tavlor"></CheckBox>
+            <TextBox x:Name="TxtbxSearchBox" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="120" TextChanged="SearchArts" VerticalContentAlignment="top"/>
+            <Label></Label>
+            <CheckBox x:Name="SignedCheck" Content="Signerad"/>
 
         </StackPanel>
 
