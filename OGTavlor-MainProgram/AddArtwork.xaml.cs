@@ -41,7 +41,7 @@ namespace OGTavlor_MainProgram
         }
 
         //To save the artwork if there is an artist, title and an imagepath included
-        private void SaveArtwork_Click(object sender, RoutedEventArgs e)
+        private async void SaveArtwork_Click(object sender, RoutedEventArgs e)
         {
             if ((ArtArtist.Text != "") && (ArtName.Text != "") && (_imagePath != null))
             {
@@ -57,7 +57,8 @@ namespace OGTavlor_MainProgram
                 int.TryParse(ArtWidth.Text, out width);
                 _artwork.Height = height;
                 _artwork.Width = width;
-                _artworkLogic.SaveArtworkAsync(_artwork);
+
+                await _artworkLogic.SaveArtworkAsync(_artwork);
 
                 //To save the image to "Images" folder inside the solution.
                 //string name = System.IO.Path.GetFileName(_imagePath);

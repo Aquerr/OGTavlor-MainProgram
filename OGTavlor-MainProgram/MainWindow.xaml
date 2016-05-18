@@ -40,7 +40,7 @@
 
             <TextBox x:Name="TxtbxSearchBox" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="120" TextChanged="SearchArts" VerticalContentAlignment="top"/>
 
-            <CheckBox x:Name="SignedCheck" Content="Signerade tavlor"></CheckBox>
+            <CheckBox x:Name="SignedCheck" Content="Signerade tavlor" Checked="SignedCheck_OnChecked" Unchecked="SignedCheck_OnChecked"></CheckBox>
 
         </StackPanel>
 

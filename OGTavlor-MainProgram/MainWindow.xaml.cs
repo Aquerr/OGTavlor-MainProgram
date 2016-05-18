@@ -151,5 +151,25 @@ namespace OGTavlor_MainProgram
         {
             var items = ArtworkListView.Items;
         }
+
+        private void SignedCheck_OnChecked(object sender, RoutedEventArgs e)
+        {
+            var arts = _artworkLogic.GetArtworksAsync().Result;
+
+            IEnumerable<Artwork> filteredArtworks;
+
+            if (SignedCheck.IsChecked.Value)
+            {
+                filteredArtworks = arts.Where(x => x.Signed.Equals(true));
+            }
+            else
+            {
+                filteredArtworks = arts;
+            }
+
+            AllItems = new ObservableCollection<Artwork>(filteredArtworks);
+
+            ArtworkListView.ItemsSource = AllItems;
+        }
     }
 }
