@@ -57,7 +57,11 @@ namespace OGTavlor_MainProgram
         {
             if ((ArtArtist.Text != "") && (ArtName.Text != ""))
             {
-                _artworkLogic.ReplaceArtwork(ArtArtist.Text, ArtName.Text, _imagePath, ArtPlace.Text, ArtDescription.Text, _artworkName, ArtRoom.Text, int.Parse(ArtHeight.Text), int.Parse(ArtWidth.Text), CheckBoxSigned.IsChecked);
+                int height;
+                int width;
+                int.TryParse(ArtHeight.Text, out height);
+                int.TryParse(ArtWidth.Text, out width);
+                _artworkLogic.ReplaceArtwork(ArtArtist.Text, ArtName.Text, _imagePath, ArtPlace.Text, ArtDescription.Text, _artworkName, ArtRoom.Text, height, width, CheckBoxSigned.IsChecked);
 
                 var main = new MainWindow();
                 this.Close();
