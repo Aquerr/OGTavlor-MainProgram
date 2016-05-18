@@ -53,7 +53,7 @@ namespace OGTavlor_MainProgram
                 var list = await GetItemsAsync();
                 AllItems = new ObservableCollection<Artwork>(list);
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
 
             }
@@ -77,10 +77,10 @@ namespace OGTavlor_MainProgram
             this.Close();
             pictureSlideShow.Show();
         }
-        
+
         private void ButtonArtwork_Click(object sender, RoutedEventArgs e)
         {
-            
+
             Ful++;
             if (Ful == 2)
             {
@@ -91,7 +91,7 @@ namespace OGTavlor_MainProgram
                 showPicture.Show();
                 Ful = 0;
             }
-            
+
         }
 
         private void SearchArts(object sender, RoutedEventArgs e)
@@ -100,7 +100,17 @@ namespace OGTavlor_MainProgram
 
             var arts = _artworkLogic.GetArtworksAsync().Result;
 
-            var filteredArtworks = arts.Where(str => str.RowKey.ToLower().Contains(lookFor) || str.PartitionKey.ToLower().Contains(lookFor));
+            IEnumerable<Artwork> filteredArtworks;
+
+            if (SignedCheck.IsChecked.Value)
+            {
+                filteredArtworks = arts.Where(x => x.Signed.Equals(true));
+                filteredArtworks = filteredArtworks.Where(str => str.RowKey.ToLower().Contains(lookFor) || str.PartitionKey.ToLower().Contains(lookFor));
+            }
+            else
+            {
+                filteredArtworks = arts.Where(str => str.RowKey.ToLower().Contains(lookFor) || str.PartitionKey.ToLower().Contains(lookFor));
+            }
 
             AllItems = new ObservableCollection<Artwork>(filteredArtworks);
 
@@ -122,7 +132,7 @@ namespace OGTavlor_MainProgram
             get { return _allItems; }
             set
             {
-                if(_allItems != value)
+                if (_allItems != value)
                 {
                     _allItems = value;
                 }

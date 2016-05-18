@@ -40,6 +40,8 @@
 
             <TextBox x:Name="TxtbxSearchBox" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="120" TextChanged="SearchArts" VerticalContentAlignment="top"/>
 
+            <CheckBox x:Name="SignedCheck" Content="Signerade tavlor"></CheckBox>
+
         </StackPanel>
 
         <ListView Grid.Row="0" x:Name="ArtworkListView" HorizontalAlignment="Right" VerticalAlignment="Top" AlternationCount="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Width="500" Height="550" Margin="0,20,10,0" SelectionChanged="ArtworkListView_SelectionChanged">
