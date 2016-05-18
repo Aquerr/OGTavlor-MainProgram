@@ -52,8 +52,11 @@ namespace OGTavlor_MainProgram
                 _artwork.Room = ArtRoom.Text;
                 _artwork.Signed = CheckBoxSigned.IsChecked;
                 _artwork.Place = ArtPlace.Text;
-                _artwork.Size = ArtSize.Text;
+                _artwork.Height = int.Parse(ArtHeight.Text);
+                _artwork.Width = int.Parse(ArtWidth.Text);
                 _artworkLogic.SaveArtworkAsync(_artwork);
+
+                //To save the image to "Images" folder inside the solution.
 
                 //string name = System.IO.Path.GetFileName(_imagePath);
                 //string destinationPath = GetDestinationPath(name, "");
