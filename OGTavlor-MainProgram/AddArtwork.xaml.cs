@@ -53,6 +53,7 @@ namespace OGTavlor_MainProgram
                 _artwork.Signed = CheckBoxSigned.IsChecked;
                 _artwork.Place = ArtPlace.Text;
                 _artwork.Size = ArtSize.Text;
+
                 _artworkLogic.SaveArtworkAsync(_artwork);
 
                 //string name = System.IO.Path.GetFileName(_imagePath);

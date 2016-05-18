@@ -97,6 +97,7 @@ namespace OGTavlor_MainProgram
             foreach (var blobItem in container.ListBlobs())
             {
                 blobls.Add(blobItem.Uri.ToString());
+
             }
 
             return blobls;
@@ -149,6 +150,7 @@ namespace OGTavlor_MainProgram
             using (var fileStream = System.IO.File.OpenRead(artwork.ImagePath))
             {
                 await blockBlob.UploadFromStreamAsync(fileStream);
+                artwork.Blob = container.GetBlockBlobReference(artwork.Title).Uri.AbsoluteUri;
             }
         }
 
