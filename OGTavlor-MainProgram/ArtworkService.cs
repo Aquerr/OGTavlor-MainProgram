@@ -36,7 +36,7 @@ namespace OGTavlor_MainProgram
             }
         }
 
-        public async Task ReplaceArtwork(string artist, string title, string imagepath, string place, string description, string oldArtworkTitle, string room, int width, int height)
+        public async Task ReplaceArtwork(string artist, string title, string imagepath, string place, string description, string oldArtworkTitle, string room, int width, int height, bool? signed)
         {
             var cloudStorageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
 
@@ -67,6 +67,7 @@ namespace OGTavlor_MainProgram
                     artwork.Room = room;
                     artwork.Height = height;
                     artwork.Width = width;
+                    artwork.Signed = signed;
 
                     // Create the Replace TableOperation.
                     var updateOperation = TableOperation.InsertOrReplace(artwork);

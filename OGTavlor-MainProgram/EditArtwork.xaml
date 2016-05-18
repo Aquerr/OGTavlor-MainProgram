@@ -80,6 +80,8 @@
 
             <TextBox x:Name="ArtHeight" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="26"/>
 
+            <CheckBox x:Name="CheckBoxSigned" Content="Signerad" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,89,0"/>
+
         </StackPanel>
 
         <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Margin="10,0,0,10" HorizontalAlignment="Left">
