@@ -105,12 +105,12 @@ namespace OGTavlor_MainProgram
             if (SignedCheck.IsChecked.Value)
             {
                 filteredArtworks = arts.Where(x => x.Signed.Equals(true));
-                filteredArtworks = filteredArtworks.Where(str => str.RowKey.ToLower().Contains(lookFor) || str.PartitionKey.ToLower().Contains(lookFor));
+                filteredArtworks = filteredArtworks.Where(str => str.RowKey.ToLower().Contains(lookFor) || str.PartitionKey.ToLower().Contains(lookFor) || str.Room.ToLower().Contains(lookFor));
             }
             else
             {
                 filteredArtworks = arts.Where(x => x.Signed.Equals(false));
-                filteredArtworks = filteredArtworks.Where(str => str.RowKey.ToLower().Contains(lookFor) || str.PartitionKey.ToLower().Contains(lookFor));
+                filteredArtworks = filteredArtworks.Where(str => str.RowKey.ToLower().Contains(lookFor) || str.PartitionKey.ToLower().Contains(lookFor) || str.Room.ToLower().Contains(lookFor));
             }
 
             AllItems = new ObservableCollection<Artwork>(filteredArtworks);

@@ -86,7 +86,7 @@ namespace OGTavlor_MainProgram
             //TODO: Make here anticrashing system. Program shall not crash when it will not find imagepath for an image.
             if (art.ImagePath != null)
             {
-                var uripath = new Uri(art.ImagePath, UriKind.RelativeOrAbsolute);
+                var uripath = new Uri(art.Blob, UriKind.RelativeOrAbsolute);
 
                 ArtImage.Source = new BitmapImage(uripath);
                 _imagePath = uripath.ToString();
