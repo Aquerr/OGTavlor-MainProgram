@@ -52,8 +52,33 @@ namespace OGTavlor_MainProgram
         {
             try
             {
-                var list = await GetItemsAsync();
-                AllItems = new ObservableCollection<Artwork>(list);
+                var lookFor = TxtbxSearchBox.Text.ToLower();
+
+                if (lookFor == "")
+                {
+                    var list = await GetItemsAsync();
+                    AllItems = new ObservableCollection<Artwork>(list);
+                }
+                else
+                {
+
+                    var arts = _artworkLogic.GetArtworksAsync().Result;
+
+                    IEnumerable<Artwork> filteredArtworks;
+
+                    if (SignedCheck.IsChecked.Value)
+                    {
+                        filteredArtworks = arts.Where(x => x.Signed.Equals(true));
+                        filteredArtworks = filteredArtworks.Where(str => str.RowKey.ToLower().Contains(lookFor) || str.PartitionKey.ToLower().Contains(lookFor) || str.Room.ToLower().Contains(lookFor));
+                    }
+                    else
+                    {
+                        filteredArtworks = arts.Where(str => str.RowKey.ToLower().Contains(lookFor) || str.PartitionKey.ToLower().Contains(lookFor) || str.Room.ToLower().Contains(lookFor));
+                    }
+
+                    AllItems = new ObservableCollection<Artwork>(filteredArtworks);
+
+                }
             }
             catch (Exception)
             {
@@ -101,30 +126,7 @@ namespace OGTavlor_MainProgram
         //Function for searching artworks inside the listview in Main Window.
         private void SearchArts(object sender, RoutedEventArgs e)
         {
-            var lookFor = TxtbxSearchBox.Text.ToLower();
-
-            var arts = _artworkLogic.GetArtworksAsync().Result;
-
-            IEnumerable<Artwork> filteredArtworks;
-
-            if (SignedCheck.IsChecked.Value)
-            {
-                filteredArtworks = arts.Where(x => x.Signed.Equals(true));
-                filteredArtworks = filteredArtworks.Where(str => str.RowKey.ToLower().Contains(lookFor) || str.PartitionKey.ToLower().Contains(lookFor) || str.Room.ToLower().Contains(lookFor));
-            }
-            else
-            {
-                filteredArtworks = arts.Where(str => str.RowKey.ToLower().Contains(lookFor) || str.PartitionKey.ToLower().Contains(lookFor) || str.Room.ToLower().Contains(lookFor));
-            }
-
-            AllItems = new ObservableCollection<Artwork>(filteredArtworks);
-
-            ArtworkListView.ItemsSource = AllItems;
-
-            if (lookFor == "")
-            {
-                FillList();
-            }
+            FillList();
         }
 
         //Sets focus on the Searchbox/Textbox inside Main Window.
@@ -153,25 +155,7 @@ namespace OGTavlor_MainProgram
 
         private void SignedCheck_OnChecked(object sender, RoutedEventArgs e)
         {
-            var lookFor = TxtbxSearchBox.Text.ToLower();
-
-            var arts = _artworkLogic.GetArtworksAsync().Result;
-
-            IEnumerable<Artwork> filteredArtworks;
-
-            if (SignedCheck.IsChecked.Value)
-            {
-                filteredArtworks = arts.Where(x => x.Signed.Equals(true));
-                filteredArtworks = filteredArtworks.Where(str => str.RowKey.ToLower().Contains(lookFor) || str.PartitionKey.ToLower().Contains(lookFor) || str.Room.ToLower().Contains(lookFor));
-            }
-            else
-            {
-                filteredArtworks = arts.Where(str => str.RowKey.ToLower().Contains(lookFor) || str.PartitionKey.ToLower().Contains(lookFor) || str.Room.ToLower().Contains(lookFor));
-            }
-
-            AllItems = new ObservableCollection<Artwork>(filteredArtworks);
-
-            ArtworkListView.ItemsSource = AllItems;
+            FillList();
         }
     }
 }
