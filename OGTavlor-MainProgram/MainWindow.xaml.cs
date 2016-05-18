@@ -151,22 +151,5 @@ namespace OGTavlor_MainProgram
         {
             var items = ArtworkListView.Items;
         }
-
-        private void TestBlob()
-        {
-            List<string> testblob = new List<string>();
-
-            testblob = _artworkLogic.GetBlobsAsync().Result;
-
-            foreach (var item in testblob)
-            {
-                MessageBox.Show(item);
-            }
-        }
-
-        private void Button_OnClick(object sender, RoutedEventArgs e)
-        {
-            TestBlob();
-        }
     }
 }

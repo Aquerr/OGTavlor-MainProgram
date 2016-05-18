@@ -33,5 +33,6 @@ namespace OGTavlor_MainProgram
         public bool? Signed { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
+        public string Blob { get; set; }
     }
 }

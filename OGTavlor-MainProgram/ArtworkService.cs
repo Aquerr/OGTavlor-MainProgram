@@ -17,7 +17,7 @@ namespace OGTavlor_MainProgram
         {
             try
              {
-                await SaveBlob(artwork.ImagePath);
+                await SaveBlob(artwork);
 
                 var cloudTable = GetCloudTable();
 
@@ -101,6 +101,7 @@ namespace OGTavlor_MainProgram
             foreach (var blobItem in container.ListBlobs())
             {
                 blobls.Add(blobItem.Uri.ToString());
+
             }
 
             return blobls;
@@ -137,7 +138,7 @@ namespace OGTavlor_MainProgram
             }
         }
 
-        private async Task SaveBlob(string imagepath)
+        private async Task SaveBlob(Artwork artwork)
         {
             var cloudStorageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
 
@@ -149,11 +150,12 @@ namespace OGTavlor_MainProgram
 
             container.SetPermissions(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
 
-            CloudBlockBlob blockBlob = container.GetBlockBlobReference("myblob");
+            CloudBlockBlob blockBlob = container.GetBlockBlobReference(artwork.Title);
 
-            using (var fileStream = System.IO.File.OpenRead(imagepath))
+            using (var fileStream = System.IO.File.OpenRead(artwork.ImagePath))
             {
                 await blockBlob.UploadFromStreamAsync(fileStream);
+                artwork.Blob = container.GetBlockBlobReference(artwork.Title).Uri.AbsoluteUri;
             }
         }
 
