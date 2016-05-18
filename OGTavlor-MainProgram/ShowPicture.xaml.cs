@@ -36,7 +36,8 @@ namespace OGTavlor_MainProgram
 
             LoadArtwork();
         }
-
+        
+        //Loads the information into the Show Picture window.
         private async void LoadArtwork()
         {
             var art = await _artworkLogic.GetArtworkAsync(_artworkName);
@@ -52,8 +53,7 @@ namespace OGTavlor_MainProgram
                 {
 
                     MessageBox.Show("Bilden kunde inte hittas.");
-                }
-                
+                }                
             }
 
             TextTitle.Text = "Titel: " + art.Title;
@@ -64,34 +64,33 @@ namespace OGTavlor_MainProgram
             TextSize.Text = "Bredd x Höjd: " + art.Width + " x " + art.Height + " cm";
         }
 
+        //Button to redirect user to Edit Window.
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
             var editArtwork = new EditArtwork(_artworkName);
             editArtwork.Show();
             this.Close();
         }
-
+        
+        //Button to remove an artwork.
         private void BtnRemove_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Vill du ta bort detta konstverk?", "Ta bort konstverk",
-                MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+            if (MessageBox.Show("Vill du ta bort detta konstverk?", "Ta bort konstverk", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
             {
 
             }
             else
             {
                 _artworkLogic.DeleteArtworkAsync(_artworkName);
-
-             //   MessageBox.Show("Du har nu tagit bort detta konstverk", "Statusmeddelande");
+                //   MessageBox.Show("Du har nu tagit bort detta konstverk", "Statusmeddelande");
 
                 var mainWindow = new MainWindow();
                 this.Close();
                 mainWindow.Show();
             }
-
-
         }
 
+        //Button to redirect user to Main Window.
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
             var mainWindow = new MainWindow();

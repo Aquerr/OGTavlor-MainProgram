@@ -27,11 +27,12 @@ namespace OGTavlor_MainProgram
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Någotning gick fel när tavlan ville sparas");
+                MessageBox.Show("Någonting gick fel när tavlan skulle sparas");
                 MessageBox.Show(ex.ToString());
             }
         }
 
+        //Replaces the existing information with new information about the artwork.
         public async Task ReplaceArtwork(string artist, string title, string imagepath, string place, string description, string oldArtworkTitle, string room, int width, int height, bool? signed)
         {
 
@@ -72,10 +73,11 @@ namespace OGTavlor_MainProgram
                 }
                 else
 
-                    MessageBox.Show("Kunde inte återfå tavlan.");
+                    MessageBox.Show("Kunde inte hitta tavlan.");
             }
         }
 
+        //Gets a list with existing artworks.
         public async Task<List<Artwork>> GetArtworks()
         {
 
@@ -104,6 +106,7 @@ namespace OGTavlor_MainProgram
             return blobls;
         }
 
+        //Deletes artwork from Database.
         public async Task DeleteArtwork(string artworkName)
         {
 

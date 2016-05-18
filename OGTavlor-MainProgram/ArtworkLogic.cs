@@ -22,6 +22,7 @@ namespace OGTavlor_MainProgram
             _blobList = new List<string>();
         }
 
+        //Loads artworks.
         public async Task<List<Artwork>> GetArtworksAsync()
         {
             lock (_artworkList)
@@ -36,6 +37,7 @@ namespace OGTavlor_MainProgram
             return response;
         }
 
+        //Updates artwork list.
         private async Task<List<Artwork>> UpdateArtworkListAsync()
         {
             var artworkList = await _artworkService.GetArtworks();
@@ -49,6 +51,7 @@ namespace OGTavlor_MainProgram
             return _artworkList;
         }
 
+        //Gets a list with artworks.
         public async Task<Artwork> GetArtworkAsync(string artworkName)
         {
             return (await _artworkService.GetArtworks()).SingleOrDefault(x => x.RowKey == artworkName);
@@ -81,6 +84,7 @@ namespace OGTavlor_MainProgram
             return _blobList;
         }
 
+        //Saves artwork.
         public async Task SaveArtworkAsync(Artwork artwork)
         {
             await _artworkService.SaveArtwork(artwork);
@@ -88,6 +92,7 @@ namespace OGTavlor_MainProgram
             await UpdateArtworkListAsync();
         }
 
+        //Replaces the existing information within the artwork with new information.
         public async Task ReplaceArtwork(string artist, string title, string imagepath, string place, string description, string oldArtworkTitle, string room, int width, int height, bool? signed)
         {
             await _artworkService.ReplaceArtwork(artist, title, imagepath, place, description, oldArtworkTitle, room, width, height, signed);
@@ -95,6 +100,7 @@ namespace OGTavlor_MainProgram
             await UpdateArtworkListAsync();
         }
 
+        //Deletes artwork.
         public async Task DeleteArtworkAsync(string artworkName)
         {
             await _artworkService.DeleteArtwork(artworkName);

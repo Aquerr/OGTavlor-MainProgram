@@ -24,9 +24,9 @@ namespace OGTavlor_MainProgram
     /// </summary>
     public partial class EditArtwork : Window
     {
-        private IArtworkLogic _artworkLogic;
-        string _artworkName;
-        string _imagePath = "";
+        private readonly IArtworkLogic _artworkLogic;
+        private readonly string _artworkName;
+        private string _imagePath = "";
 
         public EditArtwork(string artworkName)
         {
@@ -38,7 +38,7 @@ namespace OGTavlor_MainProgram
             _artworkName = artworkName;
             FillInfo();
         }
-
+        //Open the file browser
         private void AddImage_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog op = new OpenFileDialog();
@@ -52,7 +52,7 @@ namespace OGTavlor_MainProgram
                 _imagePath = (ArtImage.Source as BitmapImage).UriSource.AbsolutePath;
             }
         }
-
+        //Save the artwork & opens Main Window.
         private void SaveArtwork_Click(object sender, RoutedEventArgs e)
         {
             if ((ArtArtist.Text != "") && (ArtName.Text != ""))
@@ -64,7 +64,7 @@ namespace OGTavlor_MainProgram
                 main.Show();
             }
         }
-
+        // Fills in the existing information inside of the textboxes.
         private async void FillInfo()
         {
 
@@ -88,7 +88,7 @@ namespace OGTavlor_MainProgram
                 _imagePath = uripath.ToString();
             }
         }
-
+        //Back to Main Window
         private void BackMainWindow_Click(object sender, RoutedEventArgs e)
         {
             var main = new MainWindow();
