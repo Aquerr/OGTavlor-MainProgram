@@ -59,11 +59,6 @@ namespace OGTavlor_MainProgram
                 _artwork.Width = width;
                 _artworkLogic.SaveArtworkAsync(_artwork);
 
-                //To save the image to "Images" folder inside the solution.
-                //string name = System.IO.Path.GetFileName(_imagePath);
-                //string destinationPath = GetDestinationPath(name, "");
-                //File.Copy(_imagePath, destinationPath, true);
-
                 var main = new MainWindow();
                 this.Close();
                 main.Show();
@@ -89,15 +84,6 @@ namespace OGTavlor_MainProgram
                 ImageSource imgSource = new BitmapImage(new Uri(_imagePath));
                 ArtImage.Source = imgSource;              
             }
-        }
-
-        //To save the file
-        private static string GetDestinationPath(string filename, string foldername)
-        {
-            string appStartPath = System.IO.Path.GetDirectoryName(@"C:\Users\Admin\Desktop\OGTavlor\OGTavlor-MainProgram\OGTavlor-MainProgram\Images\");
-
-            appStartPath = String.Format(appStartPath + "\\{0}\\" + filename, foldername);
-            return appStartPath;
         }
 
         //Back to Main Window.
