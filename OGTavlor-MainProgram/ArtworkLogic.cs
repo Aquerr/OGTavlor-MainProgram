@@ -13,11 +13,13 @@ namespace OGTavlor_MainProgram
     {
         private readonly IArtworkService _artworkService;
         private static List<Artwork> _artworkList;
+        private static List<string> _blobList;
 
         public ArtworkLogic(IArtworkService artworkService)
         {
             _artworkService = artworkService;
             _artworkList = new List<Artwork>();
+            _blobList = new List<string>();
         }
 
         public async Task<List<Artwork>> GetArtworksAsync()
@@ -30,11 +32,11 @@ namespace OGTavlor_MainProgram
                 }
             }
 
-            var response = await UpdateArtworkListAsyn();
+            var response = await UpdateArtworkListAsync();
             return response;
         }
 
-        private async Task<List<Artwork>> UpdateArtworkListAsyn()
+        private async Task<List<Artwork>> UpdateArtworkListAsync()
         {
             var artworkList = await _artworkService.GetArtworks();
 
@@ -52,25 +54,52 @@ namespace OGTavlor_MainProgram
             return (await _artworkService.GetArtworks()).SingleOrDefault(x => x.RowKey == artworkName);
         }
 
+        public async Task<List<string>> GetBlobsAsync()
+        {
+            lock (_blobList)
+            {
+                if (_blobList.Any())
+                {
+                    return _blobList;
+                }
+            }
+
+            var response = await UpdateBlobListAsync();
+            return response;
+        }
+
+        private async Task<List<string>> UpdateBlobListAsync()
+        {
+            var bloblist = await _artworkService.GetBlobs();
+
+            lock (_blobList)
+            {
+                _blobList.Clear();
+                _blobList.AddRange(bloblist);
+            }
+
+            return _blobList;
+        }
+
         public async Task SaveArtworkAsync(Artwork artwork)
         {
             await _artworkService.SaveArtwork(artwork);
 
-            await UpdateArtworkListAsyn();
+            await UpdateArtworkListAsync();
         }
 
-        public async Task ReplaceArtwork(string artist, string title, string imagepath, string place, string description, string oldArtworkTitle, string room, int width, int height)
+        public async Task ReplaceArtwork(string artist, string title, string imagepath, string place, string description, string oldArtworkTitle, string room, int width, int height, bool? signed)
         {
-            await _artworkService.ReplaceArtwork(artist, title, imagepath, place, description, oldArtworkTitle, room, width, height);
+            await _artworkService.ReplaceArtwork(artist, title, imagepath, place, description, oldArtworkTitle, room, width, height, signed);
 
-            await UpdateArtworkListAsyn();
+            await UpdateArtworkListAsync();
         }
 
         public async Task DeleteArtworkAsync(string artworkName)
         {
             await _artworkService.DeleteArtwork(artworkName);
 
-            await UpdateArtworkListAsyn();
+            await UpdateArtworkListAsync();
         }
     }
 }
