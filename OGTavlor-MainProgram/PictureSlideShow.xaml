@@ -61,16 +61,36 @@
             </Image.ContextMenu>
             
         </Image>
-        
-        <Button x:Name="BtnPrevious" Content="Föregående" HorizontalAlignment="Left" Margin="60,417,0,0" VerticalAlignment="Top" Width="75" Click="PreviousPicture"/>
-        
-        <Button x:Name="BtnMainWindow" Content="Startsida" HorizontalAlignment="Left" Margin="315,417,0,0" VerticalAlignment="Top" Width="75" Click="btnMainWindow_Click"/>
-        
-        <Button x:Name="BtnNext" Content="Nästa" HorizontalAlignment="Left" Margin="576,417,0,0" VerticalAlignment="Top" Width="75" Click="NextPicture"/>
-        
-        <Button x:Name="StopSlide" Content="Stoppa bildspelet" HorizontalAlignment="Left" Margin="352,442,0,0" VerticalAlignment="Top" Width="110" Click="StopSlideShow"/>
-        
-        <Button x:Name="StartSlide" Content="Starta bildspelet" HorizontalAlignment="Left" Margin="245,442,0,0" VerticalAlignment="Top" Width="102" Click="StartSlideShow"/>
+
+        <Button x:Name="BtnPrevious" Content="Föregående" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="60,417,0,0" VerticalAlignment="Top" Width="75" Click="PreviousPicture">
+            <Button.Background>
+                <SolidColorBrush Color="#FFFBFBFB"/>
+            </Button.Background>
+        </Button>
+
+        <Button x:Name="BtnMainWindow" Content="Startsida" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="315,417,0,0" VerticalAlignment="Top" Width="75" Click="btnMainWindow_Click">
+            <Button.Background>
+                <SolidColorBrush Color="#FFFBFBFB"/>
+            </Button.Background>
+        </Button>
+
+        <Button x:Name="BtnNext" Content="Nästa" HorizontalAlignment="Left" FontWeight="SemiBold" Margin="576,417,0,0" VerticalAlignment="Top" Width="75" Click="NextPicture">
+            <Button.Background>
+                <SolidColorBrush Color="#FFFBFBFB"/>
+            </Button.Background>
+        </Button>
+
+        <Button x:Name="StopSlide" Content="Stoppa bildspelet" HorizontalAlignment="Left" FontWeight="SemiBold" Margin="352,442,0,0" VerticalAlignment="Top" Width="110" Click="StopSlideShow">
+            <Button.Background>
+                <SolidColorBrush Color="#FFFBFBFB"/>
+            </Button.Background>
+        </Button>
+
+        <Button x:Name="StartSlide" Content="Starta bildspelet" HorizontalAlignment="Left" FontWeight="SemiBold" Margin="245,442,0,0" VerticalAlignment="Top" Width="102" Click="StartSlideShow">
+            <Button.Background>
+                <SolidColorBrush Color="#FFFBFBFB"/>
+            </Button.Background>
+        </Button>
         
     </Grid>
     
