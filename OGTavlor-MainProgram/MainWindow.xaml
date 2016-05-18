@@ -73,13 +73,13 @@
             </ListView.ItemTemplate>
         </ListView>
         <WrapPanel Grid.Row="1" Width="300" Height="100" HorizontalAlignment="Left" Margin="65,0,0,0">
-            <Button x:Name="BtnAddArtwork" Content="Lägg Till Konstverk" HorizontalAlignment="Left" FontWeight="SemiBold" VerticalAlignment="Top" Width="109" Height="32" Click="LäggTillKonstverk_Click" Margin="0,0,40,0">
+            <Button x:Name="BtnAddArtwork" Content="Nytt konstverk" HorizontalAlignment="Left" FontWeight="SemiBold" VerticalAlignment="Top" Width="109" Height="32" Click="LäggTillKonstverk_Click" Margin="0,0,40,0">
                 <Button.Background>
                     <SolidColorBrush Color="#FFFBFBFB"/>
                 </Button.Background>
             </Button>
 
-            <Button x:Name="BtnSlideShow" Content="Visa Bildspel" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Top" Width="112" Height="32" Click="BtnSlideShow_Click">
+            <Button x:Name="BtnSlideShow" Content="Bildspel" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Top" Width="112" Height="32" Click="BtnSlideShow_Click">
                 <Button.Background>
                     <SolidColorBrush Color="#FFFBFBFB"/>
                 </Button.Background>
