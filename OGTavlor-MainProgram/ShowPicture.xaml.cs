@@ -43,10 +43,10 @@ namespace OGTavlor_MainProgram
 
             if (art.ImagePath != null)
             {
-                var uripath = new Uri(art.ImagePath, UriKind.RelativeOrAbsolute);
                 try
                 {
-                    Image.Source = new BitmapImage(uripath);
+                    Uri uri = new Uri(_artworkLogic.GetArtworkAsync(_artworkName).Result.Blob);
+                    Image.Source = new BitmapImage(uri);
                 }
                 catch (Exception)
                 {
