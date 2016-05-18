@@ -36,54 +36,60 @@ namespace OGTavlor_MainProgram
             Interval2.IsChecked = true;
         }
 
+        //Redirects user to Main Window.
         private void btnMainWindow_Click(object sender, RoutedEventArgs e)
         {
             var mainWindow = new MainWindow();
             this.Close();
             mainWindow.Show();
         }
-
+        
+        //Loads the image when the window is loaded.
         private void PictureSlideShow_Loaded(object sender, RoutedEventArgs e)
         {
             LoadImage();
         }
 
+        //Gets the image.
         public void LoadImage()
         {
             _id = 0;
             _listCount = _artworkLogic.GetArtworksAsync().Result.Count;
-            GetPicutre();
+            GetPicture();
         }
 
+        //Function to load the next image.
         private void NextPicture(object sender, RoutedEventArgs e)
         {
             if (_id != _listCount - 1)
             {
                 _id += 1;
-                GetPicutre();
+                GetPicture();
             }
             else
             {
                 _id = 0;
-                GetPicutre();
+                GetPicture();
             }
         }
 
+        //Function to load the previous image.
         private void PreviousPicture(object sender, RoutedEventArgs e)
         {
             if (_id != 0)
             {
                 _id -= 1;
-                GetPicutre();
+                GetPicture();
             }
             else
             {
                 _id = _listCount - 1;
-                GetPicutre();
+                GetPicture();
             }
         }
 
-        private void GetPicutre()
+        //Function to get the image.
+        private void GetPicture()
         {
             if (_artworkLogic.GetArtworksAsync().Result[_id].ImagePath != null)
             {
@@ -103,6 +109,7 @@ namespace OGTavlor_MainProgram
             }
         }
 
+        //function to start the automatic slideshow.
         private void TimerStart()
         {
             if (Interval1.IsChecked) _interval = 1;
@@ -113,20 +120,22 @@ namespace OGTavlor_MainProgram
             Timer.Start();
         }
 
+        //Function for the next picture in the automatic slideshow by a timer.
         private void NextPictureByTimer(object sender, EventArgs e)
         {
             if (_id != _listCount - 1)
             {
                 _id += 1;
-                GetPicutre();
+                GetPicture();
             }
             else
             {
                 _id = 0;
-                GetPicutre();
+                GetPicture();
             }
         }
 
+        //Stops the automatic slideshow.
         private void StopSlideShow(object sender, RoutedEventArgs e)
         {
             Timer.Stop();
@@ -134,6 +143,7 @@ namespace OGTavlor_MainProgram
             StopSlide.IsEnabled = false;
         }
 
+        //Starts the automatic slideshow.
         private void StartSlideShow(object sender, RoutedEventArgs e)
         {
             TimerStart();
@@ -141,6 +151,7 @@ namespace OGTavlor_MainProgram
             StopSlide.IsEnabled = true;
         }
 
+        //Button to redirect the user to edit the current artwork.
         private void EditArtwork(object sender, RoutedEventArgs e)
         {
             var editArtwork = new EditArtwork(_artworkLogic.GetArtworksAsync().Result[_id].Title);
@@ -148,6 +159,7 @@ namespace OGTavlor_MainProgram
             this.Close();
         }
 
+        //Button to redirect the user to Add Artwork.
         private void LäggTillKonstverk_Click(object sender, RoutedEventArgs e)
         {
             var addArt = new AddArtwork();
@@ -155,6 +167,7 @@ namespace OGTavlor_MainProgram
             addArt.Show();
         }
 
+        //Function for the intervals that can be selected.
         private void IntervalsCombined()
         {
             if (Interval3.IsPressed)
@@ -184,16 +197,19 @@ namespace OGTavlor_MainProgram
 
         }
 
+        //Interval setting 3.
         private void Interval3_OnClick(object sender, RoutedEventArgs e)
         {
             IntervalsCombined();
         }
 
+        //Interval setting 2.
         private void Interval2_OnClick(object sender, RoutedEventArgs e)
         {
             IntervalsCombined();
         }
 
+        //Interval setting 1.
         private void Interval1_OnClick(object sender, RoutedEventArgs e)
         {
             IntervalsCombined();

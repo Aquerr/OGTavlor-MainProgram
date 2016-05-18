@@ -30,6 +30,7 @@ namespace OGTavlor_MainProgram
     {
         private readonly IArtworkLogic _artworkLogic;
         private Artwork _artwork;
+        private string _imagePath;
 
         public AddArtwork()
         {
@@ -37,11 +38,9 @@ namespace OGTavlor_MainProgram
             IArtworkService service = new ArtworkService();
             IArtworkLogic logic = new ArtworkLogic(service);
             _artworkLogic = logic;
-
         }
-        string _imagePath;
 
-
+        //To save the artwork if there is an artist, title and an imagepath included
         private void SaveArtwork_Click(object sender, RoutedEventArgs e)
         {
             if ((ArtArtist.Text != "") && (ArtName.Text != "") && (_imagePath != null))
@@ -61,7 +60,6 @@ namespace OGTavlor_MainProgram
                 _artworkLogic.SaveArtworkAsync(_artwork);
 
                 //To save the image to "Images" folder inside the solution.
-
                 //string name = System.IO.Path.GetFileName(_imagePath);
                 //string destinationPath = GetDestinationPath(name, "");
                 //File.Copy(_imagePath, destinationPath, true);
@@ -102,13 +100,12 @@ namespace OGTavlor_MainProgram
             return appStartPath;
         }
 
+        //Back to Main Window.
         private void BackMainWindow_Click(object sender, RoutedEventArgs e)
         {
             var main = new MainWindow();
             this.Close();
             main.Show();
-        }
-
-        
+        }      
     }
 }

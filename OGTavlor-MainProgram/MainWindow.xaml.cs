@@ -39,6 +39,7 @@ namespace OGTavlor_MainProgram
             FillList();
         }
 
+        //Button to redirect user to Add Artwork Window.
         private void LäggTillKonstverk_Click(object sender, RoutedEventArgs e)
         {
             var addArt = new AddArtwork();
@@ -46,6 +47,7 @@ namespace OGTavlor_MainProgram
             addArt.Show();
         }
 
+        //Fills the Listview in Main Window with all the artworks.
         private async void FillList()
         {
             try
@@ -53,7 +55,7 @@ namespace OGTavlor_MainProgram
                 var list = await GetItemsAsync();
                 AllItems = new ObservableCollection<Artwork>(list);
             }
-            catch (Exception exception)
+            catch (Exception)
             {
 
             }
@@ -64,13 +66,14 @@ namespace OGTavlor_MainProgram
         }
 
 
-
+        //List of all the artworks.
         private async Task<List<Artwork>> GetItemsAsync()
         {
             var list = await _artworkLogic.GetArtworksAsync();
             return list;
         }
 
+        //Button to redirect user to Slideshow Window.
         private void BtnSlideShow_Click(object sender, RoutedEventArgs e)
         {
             var pictureSlideShow = new PictureSlideShow();
@@ -78,6 +81,7 @@ namespace OGTavlor_MainProgram
             pictureSlideShow.Show();
         }
 
+        //Function to choose an item in the listview thru an double-click.
         private void ButtonArtwork_Click(object sender, RoutedEventArgs e)
         {
 
@@ -94,6 +98,7 @@ namespace OGTavlor_MainProgram
 
         }
 
+        //Function for searching artworks inside the listview in Main Window.
         private void SearchArts(object sender, RoutedEventArgs e)
         {
             var lookFor = TxtbxSearchBox.Text.ToLower();
@@ -123,6 +128,7 @@ namespace OGTavlor_MainProgram
             }
         }
 
+        //Sets focus on the Searchbox/Textbox inside Main Window.
         private void ArtworkList_OnLoaded(object sender, RoutedEventArgs e)
         {
             TxtbxSearchBox.Focus();
@@ -140,6 +146,7 @@ namespace OGTavlor_MainProgram
             }
         }
 
+        //Sets the focus on the item that the mouse is hoovering over.
         private void ArtworkListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var items = ArtworkListView.Items;
