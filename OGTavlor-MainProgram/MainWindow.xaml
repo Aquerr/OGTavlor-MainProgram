@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:OGTavlor_MainProgram"
         mc:Ignorable="d"
         Loaded="ArtworkList_OnLoaded"
-        Title="MainWindow" Height="700" Width="900">
+        Title="MainWindow" Height="700" Width="900" ResizeMode="NoResize">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
             <GradientStop Color="White" Offset="1"/>
