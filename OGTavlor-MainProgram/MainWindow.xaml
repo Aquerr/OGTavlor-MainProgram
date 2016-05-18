@@ -17,13 +17,13 @@
 
         <Grid.RowDefinitions>
 
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" MinHeight="574"/>
+            <RowDefinition/>
             <RowDefinition Height="Auto"/>
 
         </Grid.RowDefinitions>
 
-        <DockPanel VerticalAlignment="Top">
+        <DockPanel VerticalAlignment="Top" Height="18">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
                     <MenuItem Header="_Ny tavla" Click="LäggTillKonstverk_Click"></MenuItem>
@@ -34,7 +34,7 @@
             </Menu>
         </DockPanel>
 
-        <StackPanel Grid.Row="0" Margin="125,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <StackPanel Grid.Row="0" Margin="125,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="71" Width="120">
 
             <Label Content="Sökruta" FontWeight="Bold"/>
 
@@ -44,7 +44,7 @@
 
         </StackPanel>
 
-        <ListView Grid.Row="0" x:Name="ArtworkListView" HorizontalAlignment="Right" VerticalAlignment="Top" AlternationCount="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Width="500" Height="550" Margin="0,20,10,0" SelectionChanged="ArtworkListView_SelectionChanged">
+        <ListView Grid.Row="0" x:Name="ArtworkListView" HorizontalAlignment="Right" VerticalAlignment="Top" AlternationCount="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Width="500" Height="540" Margin="0,20,10,0" SelectionChanged="ArtworkListView_SelectionChanged">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel/>
