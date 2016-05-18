@@ -56,10 +56,10 @@
                         <Button.Template>
                             <ControlTemplate>
                                 <Border BorderBrush="Black" BorderThickness="1" >
-                                    <StackPanel Orientation="Vertical" Width="85" Height="85" Background="White">
+                                    <StackPanel Orientation="Vertical" Width="112" Height="100" Background="White">
                                         <!--<Label Content="{Binding Title}"></Label>-->
                                         <!--<Label Content="{Binding Artist}"></Label>-->
-                                        <Image Height="80" Width="80" Cursor="Hand">
+                                        <Image Height="100" Width="112" Cursor="Hand" Stretch="Fill">
                                             <Image.Source>
                                                 <BitmapImage UriSource="{Binding Blob}"></BitmapImage>
                                             </Image.Source>
