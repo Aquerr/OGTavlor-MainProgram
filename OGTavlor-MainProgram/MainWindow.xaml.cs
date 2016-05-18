@@ -114,8 +114,7 @@ namespace OGTavlor_MainProgram
             }
             else
             {
-                filteredArtworks = arts.Where(x => x.Signed.Equals(false));
-                filteredArtworks = filteredArtworks.Where(str => str.RowKey.ToLower().Contains(lookFor) || str.PartitionKey.ToLower().Contains(lookFor) || str.Room.ToLower().Contains(lookFor));
+                filteredArtworks = arts.Where(str => str.RowKey.ToLower().Contains(lookFor) || str.PartitionKey.ToLower().Contains(lookFor) || str.Room.ToLower().Contains(lookFor));
             }
 
             AllItems = new ObservableCollection<Artwork>(filteredArtworks);
@@ -154,6 +153,8 @@ namespace OGTavlor_MainProgram
 
         private void SignedCheck_OnChecked(object sender, RoutedEventArgs e)
         {
+            var lookFor = TxtbxSearchBox.Text.ToLower();
+
             var arts = _artworkLogic.GetArtworksAsync().Result;
 
             IEnumerable<Artwork> filteredArtworks;
@@ -161,10 +162,11 @@ namespace OGTavlor_MainProgram
             if (SignedCheck.IsChecked.Value)
             {
                 filteredArtworks = arts.Where(x => x.Signed.Equals(true));
+                filteredArtworks = filteredArtworks.Where(str => str.RowKey.ToLower().Contains(lookFor) || str.PartitionKey.ToLower().Contains(lookFor) || str.Room.ToLower().Contains(lookFor));
             }
             else
             {
-                filteredArtworks = arts;
+                filteredArtworks = arts.Where(str => str.RowKey.ToLower().Contains(lookFor) || str.PartitionKey.ToLower().Contains(lookFor) || str.Room.ToLower().Contains(lookFor));
             }
 
             AllItems = new ObservableCollection<Artwork>(filteredArtworks);

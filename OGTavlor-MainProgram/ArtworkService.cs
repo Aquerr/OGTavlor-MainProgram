@@ -138,6 +138,8 @@ namespace OGTavlor_MainProgram
             }
         }
 
+        //TODO: Create a function for UpdateBlob.
+
         private async Task SaveBlob(Artwork artwork)
         {
             var cloudStorageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
