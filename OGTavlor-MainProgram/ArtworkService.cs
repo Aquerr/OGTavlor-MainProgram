@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace OGTavlor_MainProgram
 {
@@ -15,12 +16,10 @@ namespace OGTavlor_MainProgram
         public async Task SaveArtwork(Artwork artwork)
         {
             try
-            {
-                var cloudStorageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
+             {
+                await SaveBlob(artwork.ImagePath);
 
-                var cloudTableClient = cloudStorageAccount.CreateCloudTableClient();
-
-                var cloudTable = cloudTableClient.GetTableReference("ogtavlor");
+                var cloudTable = GetCloudTable();
 
                 var insertTableOperation = TableOperation.Insert(artwork);
 
@@ -29,20 +28,14 @@ namespace OGTavlor_MainProgram
             catch (Exception ex)
             {
                 MessageBox.Show("Någotning gick fel när tavlan ville sparas");
-            }
-            finally
-            {
-                MessageBox.Show("Ny tavlan har skapats");
+                MessageBox.Show(ex.ToString());
             }
         }
 
         public async Task ReplaceArtwork(string artist, string title, string imagepath, string place, string description, string oldArtworkTitle, string room, int width, int height, bool? signed)
         {
-            var cloudStorageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
 
-            var cloudTableClient = cloudStorageAccount.CreateCloudTableClient();
-
-            var cloudTable = cloudTableClient.GetTableReference("ogtavlor");
+            var cloudTable = GetCloudTable();
 
             var art = (await GetArtworks()).SingleOrDefault(x => x.Title == oldArtworkTitle);
 
@@ -85,24 +78,36 @@ namespace OGTavlor_MainProgram
 
         public async Task<List<Artwork>> GetArtworks()
         {
-            var cloudStorageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
 
-            var cloudTableClient = cloudStorageAccount.CreateCloudTableClient();
-
-            var table = cloudTableClient.GetTableReference("ogtavlor");
+            var table = GetCloudTable();
 
             var entities = table.ExecuteQuery(new TableQuery<Artwork>()).ToList();
 
             return entities;
         }
 
-        public async Task DeleteArtwork(string artworkName)
+        public async Task<List<string>> GetBlobs()
         {
             var cloudStorageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
 
-            var cloudTableClient = cloudStorageAccount.CreateCloudTableClient();
+            var blobClient = cloudStorageAccount.CreateCloudBlobClient();
 
-            var cloudTable = cloudTableClient.GetTableReference("ogtavlor");
+            var container = blobClient.GetContainerReference("ogblob");
+
+            List<string> blobls = new List<string>();
+
+            foreach (var blobItem in container.ListBlobs())
+            {
+                blobls.Add(blobItem.Uri.ToString());
+            }
+
+            return blobls;
+        }
+
+        public async Task DeleteArtwork(string artworkName)
+        {
+
+            var cloudTable = GetCloudTable();
 
             var art = (await GetArtworks()).SingleOrDefault(x => x.RowKey == artworkName);
 
@@ -127,6 +132,37 @@ namespace OGTavlor_MainProgram
             {
                 MessageBox.Show("Det gick inte att återfå tavlan.");
             }
+        }
+
+        private async Task SaveBlob(string imagepath)
+        {
+            var cloudStorageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
+
+            var blobClient = cloudStorageAccount.CreateCloudBlobClient();
+
+            var container = blobClient.GetContainerReference("ogblob");
+
+            container.CreateIfNotExists();
+
+            container.SetPermissions(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
+
+            CloudBlockBlob blockBlob = container.GetBlockBlobReference("myblob");
+
+            using (var fileStream = System.IO.File.OpenRead(imagepath))
+            {
+                await blockBlob.UploadFromStreamAsync(fileStream);
+            }
+        }
+
+        private CloudTable GetCloudTable()
+        {
+            var cloudStorageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings ["StorageConnectionString"]);
+
+            var cloudTableClient = cloudStorageAccount.CreateCloudTableClient();
+
+            var cloudTable = cloudTableClient.GetTableReference("ogtavlor");
+
+            return cloudTable;
         }
     }
 }

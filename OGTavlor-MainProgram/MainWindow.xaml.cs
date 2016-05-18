@@ -109,7 +109,8 @@ namespace OGTavlor_MainProgram
             }
             else
             {
-                filteredArtworks = arts.Where(str => str.RowKey.ToLower().Contains(lookFor) || str.PartitionKey.ToLower().Contains(lookFor));
+                filteredArtworks = arts.Where(x => x.Signed.Equals(false));
+                filteredArtworks = filteredArtworks.Where(str => str.RowKey.ToLower().Contains(lookFor) || str.PartitionKey.ToLower().Contains(lookFor));
             }
 
             AllItems = new ObservableCollection<Artwork>(filteredArtworks);
@@ -142,6 +143,23 @@ namespace OGTavlor_MainProgram
         private void ArtworkListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var items = ArtworkListView.Items;
+        }
+
+        private void TestBlob()
+        {
+            List<string> testblob = new List<string>();
+
+            testblob = _artworkLogic.GetBlobsAsync().Result;
+
+            foreach (var item in testblob)
+            {
+                MessageBox.Show(item);
+            }
+        }
+
+        private void Button_OnClick(object sender, RoutedEventArgs e)
+        {
+            TestBlob();
         }
     }
 }
