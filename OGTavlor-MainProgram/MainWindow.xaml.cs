@@ -27,7 +27,6 @@ namespace OGTavlor_MainProgram
     {
         private ObservableCollection<Artwork> _allItems;
         private readonly IArtworkLogic _artworkLogic;
-        private string _searchText = string.Empty;
         public int Ful = 0;
 
         public MainWindow()
@@ -60,7 +59,7 @@ namespace OGTavlor_MainProgram
                 
                 IEnumerable<Artwork> filteredArtworks;
 
-                var places = listBoxPlace.SelectedValue;
+                string places = listBoxPlace.SelectedValue.ToString();
                 if (lookFor == "")
                 {
                     if (places != "Alla Områden")
