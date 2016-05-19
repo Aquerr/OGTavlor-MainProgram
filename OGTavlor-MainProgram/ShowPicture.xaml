@@ -36,20 +36,14 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        
-        <Button x:Name="BtnRemove" Content="Ta Bort" Margin="1131,591,10,5" Click="BtnRemove_Click" FontWeight="SemiBold">
-            <Button.Background>
-                <SolidColorBrush Color="#FFFBFBFB"/>
-            </Button.Background>
-        </Button>
-        
-        <Button x:Name="BtnBack" Content="Tillbaka till startsidan" Margin="529,591,547,5" Click="BtnBack_Click" FontWeight="SemiBold">
+
+        <Button x:Name="BtnBack" Content="Tillbaka till startsidan" Margin="10,586,1066,10" Click="BtnBack_Click" FontWeight="SemiBold">
             <Button.Background>
                 <SolidColorBrush Color="#FFFBFBFB"/>
             </Button.Background>
         </Button>
 
-        <Button x:Name="BtnEdit" Content="Redigera" Margin="19,591,1122,5" Click="BtnEdit_Click" FontWeight="SemiBold">
+        <Button x:Name="BtnEdit" Content="Redigera" Margin="1131,586,10,10" Click="BtnEdit_Click" FontWeight="SemiBold">
             <Button.Background>
                 <SolidColorBrush Color="#FFFBFBFB"/>
             </Button.Background>
