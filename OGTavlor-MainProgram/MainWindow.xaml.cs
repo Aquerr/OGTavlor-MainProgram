@@ -2,21 +2,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Auth;
-using Microsoft.WindowsAzure.Storage.Table;
-using System.Configuration;
 
 namespace OGTavlor_MainProgram
 {
@@ -63,7 +51,7 @@ namespace OGTavlor_MainProgram
                 {
                     if (places != "Alla Områden")
                     {
-                        if (SignedCheck.IsChecked.Value)
+                        if (SignedCheck.IsChecked.Equals(true))
                         {
                             filteredArtworks = arts.Where(x => x.Signed.Equals(true));
                             filteredArtworks = filteredArtworks.Where(x => x.Place == places);
@@ -76,27 +64,22 @@ namespace OGTavlor_MainProgram
                     }
                     else
                     {
-                        if (SignedCheck.IsChecked.Value)
+                        if (SignedCheck.IsChecked.Equals(true))
                         {
-                            filteredArtworks = arts.Where(x => x.Signed.Equals(true));
-                            
+                            filteredArtworks = arts.Where(x => x.Signed.Equals(true));             
                         }
                         else
                         {
                             filteredArtworks = arts;
-                            //filteredArtworks = filteredArtworks.Where(x => x.Place == places);
-                        }
-                        
+                        }      
                     }
-                    //var list = await GetItemsAsync();
-                    //AllItems = new ObservableCollection<Artwork>(list);
                     AllItems = new ObservableCollection<Artwork>(filteredArtworks);
                 }
                 else
                 {
                     if (places != "Alla Områden")
                     {
-                        if (SignedCheck.IsChecked.Value)
+                        if (SignedCheck.IsChecked.Equals(true))
                         {
                             filteredArtworks = arts.Where(x => x.Signed.Equals(true));
                             filteredArtworks = filteredArtworks.Where(x => x.Place == places);
@@ -110,7 +93,7 @@ namespace OGTavlor_MainProgram
                     }
                     else
                     {
-                        if (SignedCheck.IsChecked.Value)
+                        if (SignedCheck.IsChecked.Equals(true))
                         {
                             filteredArtworks = arts.Where(x => x.Signed.Equals(true));
                             filteredArtworks = filteredArtworks.Where(str => str.RowKey.ToLower().Contains(lookFor) || str.PartitionKey.ToLower().Contains(lookFor) || str.Room.ToLower().Contains(lookFor));
@@ -187,31 +170,16 @@ namespace OGTavlor_MainProgram
             }
         }
 
-        //Sets the focus on the item that the mouse is hoovering over.
-        private void ArtworkListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var items = ArtworkListView.Items;
-        }
-
         private void SignedCheck_OnChecked(object sender, RoutedEventArgs e)
         {
             FillList();
         }
 
-        private void LoadPlaceList()
+        private async void LoadPlaceList()
         {
-            var arts = _artworkLogic.GetArtworksAsync().Result;
-
-            //List<string> test = new List<string>();
-
-            //IEnumerable<Artwork> filteredArtworks;
+            var arts = await _artworkLogic.GetArtworksAsync();
 
             listBoxPlace.Items.Add("Alla Områden");
-
-            //foreach (var item in arts)
-            //{
-            //    test.Add(item.Place);
-            //}
 
             foreach (var item in arts)
             {
@@ -220,14 +188,7 @@ namespace OGTavlor_MainProgram
                 {
                     listBoxPlace.Items.Add(entity);
                 }
-
             }
-
-            //    test.Select(x => x).GroupBy(x => x,)
-            //foreach (var item in test)
-            //{
-            //    listBoxPlace.Items.Add(item);
-            //}
         }
 
         private void listBoxPlace_SelectionChanged(object sender, SelectionChangedEventArgs e)

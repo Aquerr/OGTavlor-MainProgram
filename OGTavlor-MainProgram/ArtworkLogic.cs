@@ -57,33 +57,6 @@ namespace OGTavlor_MainProgram
             return (await _artworkService.GetArtworks()).SingleOrDefault(x => x.RowKey == artworkName);
         }
 
-        public async Task<List<string>> GetBlobsAsync()
-        {
-            lock (_blobList)
-            {
-                if (_blobList.Any())
-                {
-                    return _blobList;
-                }
-            }
-
-            var response = await UpdateBlobListAsync();
-            return response;
-        }
-
-        private async Task<List<string>> UpdateBlobListAsync()
-        {
-            var bloblist = await _artworkService.GetBlobs();
-
-            lock (_blobList)
-            {
-                _blobList.Clear();
-                _blobList.AddRange(bloblist);
-            }
-
-            return _blobList;
-        }
-
         //Saves artwork.
         public async Task SaveArtworkAsync(Artwork artwork)
         {

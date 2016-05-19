@@ -16,7 +16,7 @@ namespace OGTavlor_MainProgram
         public async Task SaveArtwork(Artwork artwork)
         {
             try
-             {
+            {
                 await SaveBlob(artwork);
 
                 var cloudTable = GetCloudTable();
@@ -35,7 +35,6 @@ namespace OGTavlor_MainProgram
         //Replaces the existing information with new information about the artwork.
         public async Task ReplaceArtwork(string artist, string title, string imagepath, string place, string description, string oldArtworkTitle, string room, int width, int height, bool? signed)
         {
-
             var cloudTable = GetCloudTable();
 
             var art = (await GetArtworks()).SingleOrDefault(x => x.Title == oldArtworkTitle);
@@ -52,28 +51,56 @@ namespace OGTavlor_MainProgram
                 {
                     //TODO: If RowKey or PartitionKey is changed, delete an entity and insert a new one with new properties.
 
-                    // Update Entity
-                    artwork.RowKey = title;
-                    artwork.PartitionKey = artist;
-                    artwork.Description = description;
-                    artwork.Place = place;
-                    artwork.Room = room;
-                    artwork.Height = height;
-                    artwork.Width = width;
-                    artwork.Signed = signed;
-
-                    if (artwork.ImagePath != imagepath)
+                    if (artwork.RowKey == title && artwork.PartitionKey == artist)
                     {
-                        var blob = await ReplaceBlob(title, imagepath);
-                        artwork.ImagePath = imagepath;
-                        artwork.Blob = blob;
+                        // Update Entity
+                        artwork.Description = description;
+                        artwork.Place = place;
+                        artwork.Room = room;
+                        artwork.Height = height;
+                        artwork.Width = width;
+                        artwork.Signed = signed;
+
+                        if (artwork.ImagePath != imagepath)
+                        {
+                            var blob = await ReplaceBlob(title, imagepath);
+                            artwork.ImagePath = imagepath;
+                            artwork.Blob = blob;
+                        }
+
+                        // Create the Replace TableOperation.
+                        var updateOperation = TableOperation.Replace(artwork);
+
+                        // Execute the operation.
+                        cloudTable.Execute(updateOperation);
                     }
+                    else if (artwork.RowKey != title || artwork.PartitionKey != artist)
+                    {
+                        await DeleteBlob(artwork.Title);
 
-                    // Create the Replace TableOperation.
-                    var updateOperation = TableOperation.InsertOrReplace(artwork);
+                        var deleteOperation = TableOperation.Delete(artwork);
 
-                    // Execute the operation.
-                    cloudTable.Execute(updateOperation);
+                        cloudTable.Execute(deleteOperation);
+
+                        Artwork replacedArtwork = new Artwork()
+                        {
+                            RowKey = title,
+                            PartitionKey = artist,
+                            Description = description,
+                            Place = place,
+                            Room = room,
+                            Height = height,
+                            Width = width,
+                            Signed = signed,
+                            ImagePath = imagepath
+                        };
+
+                        await SaveBlob(replacedArtwork);
+
+                        var insertTableOperation = TableOperation.Insert(replacedArtwork);
+
+                        cloudTable.Execute(insertTableOperation);
+                    }
 
                     MessageBox.Show("Tavlan har uppdaterats.");
                 }
@@ -94,25 +121,6 @@ namespace OGTavlor_MainProgram
             return entities;
         }
 
-        public async Task<List<string>> GetBlobs()
-        {
-            var cloudStorageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
-
-            var blobClient = cloudStorageAccount.CreateCloudBlobClient();
-
-            var container = blobClient.GetContainerReference("ogblob");
-
-            List<string> blobls = new List<string>();
-
-            foreach (var blobItem in container.ListBlobs())
-            {
-                blobls.Add(blobItem.Uri.ToString());
-
-            }
-
-            return blobls;
-        }
-
         //Deletes artwork from Database.
         public async Task DeleteArtwork(string artworkName)
         {
@@ -130,6 +138,8 @@ namespace OGTavlor_MainProgram
             // Create the Delete TableOperation.
             if (deleteArtwork != null)
             {
+                await DeleteBlob(deleteArtwork.Title);
+
                 var deleteOperation = TableOperation.Delete(deleteArtwork);
 
                 // Execute the operation.
@@ -165,17 +175,13 @@ namespace OGTavlor_MainProgram
             }
         }
 
-       private async Task<string> ReplaceBlob(string title, string imagepath)
-       {
+        private async Task<string> ReplaceBlob(string title, string imagepath)
+        {
             var cloudStorageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
 
             var blobClient = cloudStorageAccount.CreateCloudBlobClient();
 
             var container = blobClient.GetContainerReference("ogblob");
-
-            container.CreateIfNotExists();
-
-            container.SetPermissions(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
 
             CloudBlockBlob blockBlob = container.GetBlockBlobReference(title);
 
@@ -185,13 +191,24 @@ namespace OGTavlor_MainProgram
                 string blob = container.GetBlockBlobReference(title).Uri.AbsoluteUri;
                 return blob;
             }
+        }
 
+        private async Task DeleteBlob(string title)
+        {
+            var cloudStorageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
 
-       }
+            var blobClient = cloudStorageAccount.CreateCloudBlobClient();
+
+            var container = blobClient.GetContainerReference("ogblob");
+
+            var blockBlob = container.GetBlockBlobReference(title);
+
+            blockBlob.Delete();
+        }
 
         private CloudTable GetCloudTable()
         {
-            var cloudStorageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings ["StorageConnectionString"]);
+            var cloudStorageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
 
             var cloudTableClient = cloudStorageAccount.CreateCloudTableClient();
 

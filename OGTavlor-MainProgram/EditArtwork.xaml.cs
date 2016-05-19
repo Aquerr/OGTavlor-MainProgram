@@ -53,7 +53,7 @@ namespace OGTavlor_MainProgram
             }
         }
         //Save the artwork & opens Main Window.
-        private void SaveArtwork_Click(object sender, RoutedEventArgs e)
+        private async void SaveArtwork_Click(object sender, RoutedEventArgs e)
         {
             if ((ArtArtist.Text != "") && (ArtName.Text != ""))
             {
@@ -61,8 +61,8 @@ namespace OGTavlor_MainProgram
                 int width;
                 int.TryParse(ArtHeight.Text, out height);
                 int.TryParse(ArtWidth.Text, out width);
-                
-                _artworkLogic.ReplaceArtwork(ArtArtist.Text, ArtName.Text, _imagePath, ArtPlace.Text, ArtDescription.Text, _artworkName, ArtRoom.Text, width, height, CheckBoxSigned.IsChecked);
+
+                await _artworkLogic.ReplaceArtwork(ArtArtist.Text, ArtName.Text, _imagePath, ArtPlace.Text, ArtDescription.Text, _artworkName, ArtRoom.Text, width, height, CheckBoxSigned.IsChecked);
 
                 var main = new MainWindow();
                 this.Close();
@@ -94,7 +94,7 @@ namespace OGTavlor_MainProgram
                 var uripath = new Uri(art.Blob, UriKind.RelativeOrAbsolute);
 
                 ArtImage.Source = new BitmapImage(uripath);
-                _imagePath = uripath.ToString();
+                _imagePath = art.ImagePath;
             }
         }
         //Back to Main Window
