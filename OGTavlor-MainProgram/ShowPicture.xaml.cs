@@ -71,24 +71,6 @@ namespace OGTavlor_MainProgram
             editArtwork.Show();
             this.Close();
         }
-        
-        //Button to remove an artwork.
-        private void BtnRemove_Click(object sender, RoutedEventArgs e)
-        {
-            if (MessageBox.Show("Vill du ta bort detta konstverk?", "Ta bort konstverk", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
-            {
-
-            }
-            else
-            {
-                _artworkLogic.DeleteArtworkAsync(_artworkName);
-                //   MessageBox.Show("Du har nu tagit bort detta konstverk", "Statusmeddelande");
-
-                var mainWindow = new MainWindow();
-                this.Close();
-                mainWindow.Show();
-            }
-        }
 
         //Button to redirect user to Main Window.
         private void BtnBack_Click(object sender, RoutedEventArgs e)

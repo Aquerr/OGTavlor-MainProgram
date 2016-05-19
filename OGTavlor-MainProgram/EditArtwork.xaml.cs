@@ -99,5 +99,20 @@ namespace OGTavlor_MainProgram
             this.Close();
             main.Show();
         }
+
+        private void btnRemove_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Vill du ta bort detta konstverk?", "Ta bort konstverk", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+            {
+
+            }
+            else
+            {
+                _artworkLogic.DeleteArtworkAsync(_artworkName);
+                var mainWindow = new MainWindow();
+                this.Close();
+                mainWindow.Show();
+            }
+        }
     }
 }
