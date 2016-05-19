@@ -174,7 +174,7 @@
 
                             <Label Content="Sökruta" FontWeight="Bold"/>
 
-                            <TextBox x:Name="TxtbxSearchBox" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="120" TextChanged="SearchArts" VerticalContentAlignment="top" Style="{DynamicResource TextBoxStyle1}"/>
+                            <TextBox x:Name="TxtbxSearchBox" HorizontalAlignment="Left" Padding="3" FontSize="15" VerticalAlignment="Top" Width="120" TextChanged="SearchArts" VerticalContentAlignment="top" Style="{DynamicResource TextBoxStyle1}"/>
 
                             <Label></Label>
 

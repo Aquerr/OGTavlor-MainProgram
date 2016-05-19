@@ -5,8 +5,54 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OGTavlor_MainProgram"
         mc:Ignorable="d"
-        Title="Redigera konstverk" Height="595.5" Width="657.5"
+        Title="Redigera konstverk" Height="625" Width="850"
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.Resources>
+        <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
+        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
+        <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
+        <Style x:Key="TextBoxStyle3" TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="AllowDrop" Value="true"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True" CornerRadius="10">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                        <Condition Property="IsSelectionActive" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
             <GradientStop Color="White" Offset="1"/>
@@ -14,7 +60,7 @@
         </LinearGradientBrush>
     </Window.Background>
 
-    <Grid Margin="0,0,4,-24">
+    <Grid Margin="0,0,4,0">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -24,31 +70,31 @@
 
         <StackPanel Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Left" >
 
-            <Border Background="White" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="450" Margin="20,20,0,0" VerticalAlignment="Top" Width="450">
+            <Border Background="White" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="500" Margin="20,20,0,0" VerticalAlignment="Top" Width="600">
 
-                <Image x:Name="ArtImage" HorizontalAlignment="Left" Height="450" Margin="-1" VerticalAlignment="Top" Stretch="Fill" Width="450" />
+                <Image x:Name="ArtImage" HorizontalAlignment="Left" Height="500" Margin="-1" VerticalAlignment="Top" Stretch="Fill" Width="600" />
 
             </Border>
 
         </StackPanel>
 
-        <StackPanel VerticalAlignment="Top" Margin="475,22,0,0" Height="454" Width="156" HorizontalAlignment="Left" Grid.RowSpan="2">
+        <StackPanel VerticalAlignment="Top" Margin="655,10,0,0" Height="499" Width="156" HorizontalAlignment="Left">
 
-            <Label x:Name="LblTitle" Content="Titel" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Label x:Name="LblTitle" Content="Titel" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="15"/>
 
-            <TextBox x:Name="ArtName" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
+            <TextBox x:Name="ArtName" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" FontSize="15" Padding="3" Style="{DynamicResource TextBoxStyle3}"/>
 
-            <Label x:Name="LblArtist" Content="Konstnär" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Label x:Name="LblArtist" Content="Konstnär" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="15"/>
 
-            <TextBox x:Name="ArtArtist" HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
+            <TextBox x:Name="ArtArtist" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" FontSize="15" Padding="3" Style="{DynamicResource TextBoxStyle3}"/>
 
-            <Label x:Name="LblRoom" Content="Rum" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Label x:Name="LblRoom" Content="Rum" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="15"/>
 
-            <TextBox x:Name="ArtRoom" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="150"/>
+            <TextBox x:Name="ArtRoom" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" FontSize="15" Padding="3" Style="{DynamicResource TextBoxStyle3}"/>
 
-            <Label x:Name="LblPlace" Content="Plats" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Label x:Name="LblPlace" Content="Plats" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="15"/>
 
-            <ComboBox x:Name="ArtPlace">
+            <ComboBox x:Name="ArtPlace" FontSize="15">
                 <ComboBoxItem Content="Teknik" HorizontalAlignment="Left" Width="148"/>
                 <ComboBoxItem Content="Estet" HorizontalAlignment="Left" Width="148"/>
                 <ComboBoxItem Content="Tekniska fyran" HorizontalAlignment="Left" Width="148"/>
@@ -62,19 +108,19 @@
                 <ComboBoxItem Content="Förråd utanför skolan" HorizontalAlignment="Left" Width="148"/>
             </ComboBox>
 
-            <Label x:Name="LblDescription" Content="Kommentar" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Label x:Name="LblDescription" Content="Kommentar" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="15"/>
 
-            <TextBox x:Name="ArtDescription" HorizontalAlignment="Left" Height="60" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
+            <TextBox x:Name="ArtDescription" HorizontalAlignment="Left" Height="60" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" FontSize="15" Padding="3" Style="{DynamicResource TextBoxStyle3}"/>
 
-            <Label x:Name="LblWidth" Content="Bredd (cm)" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Label x:Name="LblWidth" Content="Bredd (cm)" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="15"/>
 
-            <TextBox x:Name="ArtWidth" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="26"/>
+            <TextBox x:Name="ArtWidth" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" FontSize="15" Padding="3" Style="{DynamicResource TextBoxStyle3}"/>
 
-            <Label x:Name="LblHeight" Content="Höjd (cm)" FontWeight="Bold"   HorizontalAlignment="Left"  VerticalAlignment="Top"/>
+            <Label x:Name="LblHeight" Content="Höjd (cm)" FontWeight="Bold"   HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="15"/>
 
-            <TextBox x:Name="ArtHeight" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="26"/>
+            <TextBox x:Name="ArtHeight" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" FontSize="15" Padding="3" Style="{DynamicResource TextBoxStyle3}"/>
 
-            <CheckBox x:Name="CheckBoxSigned" Content="Signerad" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,89,0"/>
+            <CheckBox x:Name="CheckBoxSigned" Content="Signerad" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,76,0" FontSize="15" Width="80"/>
 
             <Button x:Name="AddImage" FontWeight="SemiBold"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="146" Height="32" Click="AddImage_Click" Margin="0,10,0,0" Background="#FFFBFBFB">
                 <Button.Template>
@@ -98,43 +144,43 @@
 
         <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,10,10" HorizontalAlignment="Right"/>
 
-        <Button x:Name="BackMainWindow" Content="Avbryt"       FontWeight="SemiBold" HorizontalAlignment="Right" Width="74" Click="BackMainWindow_Click" Background="#FFFBFBFB" Margin="0,29,198,54" Grid.Row="1">
+        <Button x:Name="BackMainWindow" Content="Avbryt" FontWeight="SemiBold" HorizontalAlignment="Right" Width="87" Click="BackMainWindow_Click" Background="#FFFBFBFB" Margin="0,10,196,15" Grid.Row="1">
             <Button.Template>
                 <ControlTemplate>
                     <Border CornerRadius="20" Background="White" BorderThickness="1">
                         <TextBlock Text="Avbryt" Foreground="Black" 
-                                       HorizontalAlignment="Left"
-                                       VerticalAlignment="Top"
-                                       Margin="13,4,0,-2"
-                                       Height="29"
-                                       FontSize="15" Width="124">
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Margin="-1,5,-1,-1"
+                                       Height="30"
+                                       FontSize="15" Width="46">
                         </TextBlock>
                     </Border>
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button x:Name="SaveArtwork" Content="Spara Konstverk" FontWeight="SemiBold" HorizontalAlignment="Right" Width="163" Click="SaveArtwork_Click" Background="#FFFBFBFB" Margin="0,29,10,54" Grid.Row="1">
+        <Button x:Name="SaveArtwork" Content="Spara Konstverk" FontWeight="SemiBold" HorizontalAlignment="Right" Width="163" Click="SaveArtwork_Click" Background="#FFFBFBFB" Margin="0,10,10,15" Grid.Row="1">
             <Button.Template>
                 <ControlTemplate>
                     <Border CornerRadius="20" Background="White" BorderThickness="1">
                         <TextBlock Text="Spara konstverk" Foreground="Black" 
                                        HorizontalAlignment="Center"
-                                       VerticalAlignment="Top"
-                                       Margin="25,4,9,0"
-                                       Height="23"
+                                       VerticalAlignment="Center"
+                                       Margin="25,12,9,11"
+                                       Height="26"
                                        FontSize="15" Width="127">
                         </TextBlock>
                     </Border>
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button x:Name="btnRemove" FontWeight="SemiBold" HorizontalAlignment="Left" Width="154" Click="btnRemove_Click" Margin="10,29,0,54" Grid.Row="1">
+        <Button x:Name="btnRemove" FontWeight="SemiBold" HorizontalAlignment="Left" Width="154" Click="btnRemove_Click" Margin="10,10,0,15" Grid.Row="1">
             <Button.Template>
                 <ControlTemplate>
                     <Border CornerRadius="20" Background="White" BorderThickness="1">
                         <TextBlock Text="Ta bort konstverk" Foreground="Black" 
                                        HorizontalAlignment="Center"
-                                       VerticalAlignment="Top"
+                                       VerticalAlignment="Center"
                                        Margin="16,5,9,-1"
                                        Height="28"
                                        FontSize="15" Width="127">
