@@ -77,7 +77,17 @@ namespace OGTavlor_MainProgram
                     }
                     else
                     {
-                        filteredArtworks = arts;
+                        if (SignedCheck.IsChecked.Value)
+                        {
+                            filteredArtworks = arts.Where(x => x.Signed.Equals(true));
+                            
+                        }
+                        else
+                        {
+                            filteredArtworks = arts;
+                            //filteredArtworks = filteredArtworks.Where(x => x.Place == places);
+                        }
+                        
                     }
                     //var list = await GetItemsAsync();
                     //AllItems = new ObservableCollection<Artwork>(list);
@@ -101,7 +111,17 @@ namespace OGTavlor_MainProgram
                     }
                     else
                     {
-                        filteredArtworks = arts.Where(str => str.RowKey.ToLower().Contains(lookFor) || str.PartitionKey.ToLower().Contains(lookFor) || str.Room.ToLower().Contains(lookFor));
+                        if (SignedCheck.IsChecked.Value)
+                        {
+                            filteredArtworks = arts.Where(x => x.Signed.Equals(true));
+                            filteredArtworks = filteredArtworks.Where(str => str.RowKey.ToLower().Contains(lookFor) || str.PartitionKey.ToLower().Contains(lookFor) || str.Room.ToLower().Contains(lookFor));
+                        }
+                        else
+                        {
+                            filteredArtworks = arts.Where(x => x.Place == places);
+                            filteredArtworks = arts.Where(str => str.RowKey.ToLower().Contains(lookFor) || str.PartitionKey.ToLower().Contains(lookFor) || str.Room.ToLower().Contains(lookFor));
+                        }
+                        
                     }
                     
                     AllItems = new ObservableCollection<Artwork>(filteredArtworks);

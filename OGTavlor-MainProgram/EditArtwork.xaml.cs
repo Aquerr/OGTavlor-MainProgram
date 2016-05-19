@@ -61,7 +61,8 @@ namespace OGTavlor_MainProgram
                 int width;
                 int.TryParse(ArtHeight.Text, out height);
                 int.TryParse(ArtWidth.Text, out width);
-                _artworkLogic.ReplaceArtwork(ArtArtist.Text, ArtName.Text, _imagePath, ArtPlace.Text, ArtDescription.Text, _artworkName, ArtRoom.Text, height, width, CheckBoxSigned.IsChecked);
+                
+                _artworkLogic.ReplaceArtwork(ArtArtist.Text, ArtName.Text, _imagePath, ArtPlace.Text, ArtDescription.Text, _artworkName, ArtRoom.Text, width, height, CheckBoxSigned.IsChecked);
 
                 var main = new MainWindow();
                 this.Close();
@@ -98,6 +99,21 @@ namespace OGTavlor_MainProgram
             var main = new MainWindow();
             this.Close();
             main.Show();
+        }
+
+        private void btnRemove_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Vill du ta bort detta konstverk?", "Ta bort konstverk", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+            {
+
+            }
+            else
+            {
+                _artworkLogic.DeleteArtworkAsync(_artworkName);
+                var mainWindow = new MainWindow();
+                this.Close();
+                mainWindow.Show();
+            }
         }
     }
 }
