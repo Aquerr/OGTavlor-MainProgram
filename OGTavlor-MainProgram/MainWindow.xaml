@@ -59,7 +59,7 @@
             <GradientStop Color="#FFEE9C0C"/>
         </LinearGradientBrush>
     </Window.Background>
-    <Grid Height="608" VerticalAlignment="Top">
+    <Grid>
 
         <Grid.RowDefinitions>
 
@@ -80,48 +80,135 @@
             </Menu>
         </DockPanel>
 
-        <StackPanel Grid.Row="0" Margin="24,78,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="80" Width="120">
-
-            <Label Content="Sökruta" FontWeight="Bold"/>
-
-            <TextBox x:Name="TxtbxSearchBox" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="120" TextChanged="SearchArts" VerticalContentAlignment="top" Style="{DynamicResource TextBoxStyle1}"/>
-            <Label></Label>
-            <CheckBox x:Name="SignedCheck" Content="Signerad" Checked="SignedCheck_OnChecked" Unchecked="SignedCheck_OnChecked"></CheckBox>
-
-        </StackPanel>
-
         <ListView Grid.Row="0" x:Name="ArtworkListView" HorizontalAlignment="Right" VerticalAlignment="Top" AlternationCount="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Width="500" Height="540" Margin="0,20,10,0" SelectionChanged="ArtworkListView_SelectionChanged">
+
             <ListView.ItemsPanel>
+
                 <ItemsPanelTemplate>
+
                     <WrapPanel/>
+
                 </ItemsPanelTemplate>
+
             </ListView.ItemsPanel>
+
             <ListView.ItemTemplate>
+
                 <DataTemplate>
+
                     <Button MouseDoubleClick="ButtonArtwork_Click" Cursor="Hand">
+
                         <Button.Template>
+
                             <ControlTemplate>
+
                                 <Border BorderBrush="Black" BorderThickness="1" >
+
                                     <StackPanel Orientation="Vertical" Width="112" Height="100" Background="White">
                                         <!--<Label Content="{Binding Title}"></Label>-->
                                         <!--<Label Content="{Binding Artist}"></Label>-->
+
                                         <Image Height="100" Width="112" Cursor="Hand" Stretch="Fill">
                                             <Image.Source>
                                                 <BitmapImage UriSource="{Binding Blob}"></BitmapImage>
                                             </Image.Source>
+
                                         </Image>
+
                                     </StackPanel>
+
                                 </Border>
+
                             </ControlTemplate>
+
                         </Button.Template>
+
                     </Button>
+
                 </DataTemplate>
+
             </ListView.ItemTemplate>
+
         </ListView>
-        <Button x:Name="BtnSlideShow" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Top" Width="112" Height="42" Click="BtnSlideShow_Click" Background="#FFFBFBFB" Margin="254,518,0,0">
+
+        <StackPanel Grid.Row="0"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Width="375"
+                    Height="402"
+                    Margin="0,20,0,0">
+
+            <Border BorderBrush="DarkSlateGray" BorderThickness="1">
+
+                <StackPanel>
+
+                    <Image Source="Images/ostrablack.png" Width="360" Height="120"></Image>
+
+            </StackPanel>
+
+            </Border>
+
+            <WrapPanel HorizontalAlignment="Stretch" VerticalAlignment="Top">
+
+                <StackPanel VerticalAlignment="Top"
+                            HorizontalAlignment="Left"
+                            Width="187"
+                            Height="252">
+
+                    <Border BorderBrush="DarkSlateGray"
+                            BorderThickness="1">
+
+                        <ListBox x:Name="listBoxPlace" 
+                             HorizontalAlignment="Left"
+                             Height="250"
+                             VerticalAlignment="Top"
+                             Width="134"
+                             SelectionChanged="listBoxPlace_SelectionChanged"/>
+
+                    </Border>
+
+                </StackPanel>
+
+                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Width="187" Height="252">
+
+                    <Border BorderBrush="DarkSlateGray" BorderThickness="1" Height="252">
+
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,100">
+
+                            <Label Content="Sökruta" FontWeight="Bold"/>
+
+                            <TextBox x:Name="TxtbxSearchBox" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="120" TextChanged="SearchArts" VerticalContentAlignment="top" Style="{DynamicResource TextBoxStyle1}"/>
+
+                            <Label></Label>
+
+                            <CheckBox x:Name="SignedCheck" Content="Signerad" Checked="SignedCheck_OnChecked" Unchecked="SignedCheck_OnChecked"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+                </StackPanel>
+
+            </WrapPanel>
+
+        </StackPanel>
+
+        <Button x:Name="BtnSlideShow"
+                FontWeight="SemiBold"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Width="112"
+                Height="42"
+                Click="BtnSlideShow_Click"
+                Background="#FFFBFBFB"
+                Margin="254,518,0,0">
+
             <Button.Template>
+
                 <ControlTemplate>
+
                     <Border CornerRadius="20" Background="White" BorderThickness="1">
+
                         <TextBlock Text="Bildspel" Foreground="Black" 
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
@@ -130,15 +217,31 @@
                                        FontSize="15">
 
                         </TextBlock>
+
                     </Border>
+
                 </ControlTemplate>
+
             </Button.Template>
+
         </Button>
-        <ListBox x:Name="listBoxPlace" HorizontalAlignment="Left" Height="300" Margin="219,78,0,0" VerticalAlignment="Top" Width="140" SelectionChanged="listBoxPlace_SelectionChanged"/>
-        <Button x:Name="BtnAddArtwork" HorizontalAlignment="Left" FontWeight="SemiBold" VerticalAlignment="Top" Width="134" Height="42" Click="LäggTillKonstverk_Click" Background="#FFFBFBFB" Margin="10,518,0,0">
+
+        <Button x:Name="BtnAddArtwork"
+                HorizontalAlignment="Left"
+                FontWeight="SemiBold"
+                VerticalAlignment="Top"
+                Width="134"
+                Height="42"
+                Click="LäggTillKonstverk_Click"
+                Background="#FFFBFBFB"
+                Margin="10,518,0,0">
+
             <Button.Template>
+
                 <ControlTemplate>
+
                     <Border CornerRadius="20" Background="White" BorderThickness="1">
+
                         <TextBlock Text="Nytt konstverk" Foreground="Black" 
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
@@ -147,9 +250,15 @@
                                        FontSize="15" Width="105">
 
                         </TextBlock>
+
                     </Border>
+
                 </ControlTemplate>
+
             </Button.Template>
+
         </Button>
+
     </Grid>
+
 </Window>
