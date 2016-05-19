@@ -67,6 +67,10 @@ namespace OGTavlor_MainProgram
                 this.Close();
                 main.Show();
             }
+            else
+            {
+                MessageBox.Show("Du måste ange namn på konstnär och titel.");
+            }
         }
         // Fills in the existing information inside of the textboxes.
         private async void FillInfo()
