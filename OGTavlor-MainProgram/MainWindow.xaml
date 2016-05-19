@@ -7,6 +7,52 @@
         mc:Ignorable="d"
         Loaded="ArtworkList_OnLoaded"
         Title="Startsida" Height="602.5" Width="900" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
+        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
+        <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
+        <Style x:Key="TextBoxStyle1" TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="AllowDrop" Value="true"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border" CornerRadius="10"  BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                        <Condition Property="IsSelectionActive" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
             <GradientStop Color="White" Offset="1"/>
@@ -34,11 +80,11 @@
             </Menu>
         </DockPanel>
 
-        <StackPanel Grid.Row="0" Margin="63,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="71" Width="120">
+        <StackPanel Grid.Row="0" Margin="24,78,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="80" Width="120">
 
             <Label Content="Sökruta" FontWeight="Bold"/>
 
-            <TextBox x:Name="TxtbxSearchBox" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="120" TextChanged="SearchArts" VerticalContentAlignment="top"/>
+            <TextBox x:Name="TxtbxSearchBox" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="120" TextChanged="SearchArts" VerticalContentAlignment="top" Style="{DynamicResource TextBoxStyle1}"/>
             <Label></Label>
             <CheckBox x:Name="SignedCheck" Content="Signerad" Checked="SignedCheck_OnChecked" Unchecked="SignedCheck_OnChecked"></CheckBox>
 
@@ -52,7 +98,7 @@
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Button Click="ButtonArtwork_Click" Cursor="Hand">
+                    <Button MouseDoubleClick="ButtonArtwork_Click" Cursor="Hand">
                         <Button.Template>
                             <ControlTemplate>
                                 <Border BorderBrush="Black" BorderThickness="1" >
@@ -72,8 +118,38 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button x:Name="BtnSlideShow" Content="Bildspel" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Top" Width="112" Height="32" Click="BtnSlideShow_Click" Background="#FFFBFBFB" Margin="254,528,0,0"/>
-        <Button x:Name="BtnAddArtwork" Content="Nytt konstverk" HorizontalAlignment="Left" FontWeight="SemiBold" VerticalAlignment="Top" Width="109" Height="32" Click="LäggTillKonstverk_Click" Background="#FFFBFBFB" Margin="10,528,0,0"/>
+        <Button x:Name="BtnSlideShow" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Top" Width="112" Height="42" Click="BtnSlideShow_Click" Background="#FFFBFBFB" Margin="254,518,0,0">
+            <Button.Template>
+                <ControlTemplate>
+                    <Border CornerRadius="20" Background="White" BorderThickness="1">
+                        <TextBlock Text="Bildspel" Foreground="Black" 
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Margin="29,-1"
+                                       Height="20"
+                                       FontSize="15">
+
+                        </TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
         <ListBox x:Name="listBoxPlace" HorizontalAlignment="Left" Height="300" Margin="219,78,0,0" VerticalAlignment="Top" Width="140" SelectionChanged="listBoxPlace_SelectionChanged"/>
+        <Button x:Name="BtnAddArtwork" HorizontalAlignment="Left" FontWeight="SemiBold" VerticalAlignment="Top" Width="134" Height="42" Click="LäggTillKonstverk_Click" Background="#FFFBFBFB" Margin="10,518,0,0">
+            <Button.Template>
+                <ControlTemplate>
+                    <Border CornerRadius="20" Background="White" BorderThickness="1">
+                        <TextBlock Text="Nytt konstverk" Foreground="Black" 
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Margin="3,5,-1,5"
+                                       Height="20"
+                                       FontSize="15" Width="105">
+
+                        </TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
     </Grid>
 </Window>

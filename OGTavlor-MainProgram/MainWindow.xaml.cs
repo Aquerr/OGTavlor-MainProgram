@@ -130,18 +130,11 @@ namespace OGTavlor_MainProgram
         //Function to choose an item in the listview thru an double-click.
         private void ButtonArtwork_Click(object sender, RoutedEventArgs e)
         {
-
-            Ful++;
-            if (Ful == 2)
-            {
-                var item = (sender as FrameworkElement).DataContext;
-                var id = ((Artwork)item).RowKey;
-                var showPicture = new ShowPicture(id);
-                this.Close();
-                showPicture.Show();
-                Ful = 0;
-            }
-
+            var item = (sender as FrameworkElement).DataContext;
+            var id = ((Artwork)item).RowKey;
+            var showPicture = new ShowPicture(id);
+            this.Close();
+            showPicture.Show();
         }
 
         //Function for searching artworks inside the listview in Main Window.

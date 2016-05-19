@@ -13,7 +13,6 @@
             <GradientStop Color="#FFEE9C0C"/>
         </LinearGradientBrush>
     </Window.Background>
-
     <Grid Height="569" VerticalAlignment="Top">
 
         <Grid.RowDefinitions>
@@ -71,9 +70,51 @@
         <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Margin="10,0,0,10" HorizontalAlignment="Left"/>
 
         <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,10,10" HorizontalAlignment="Right"/>
-        <Button x:Name="SaveArtwork" Content="Spara Konstverk" FontWeight="SemiBold" Width="100" Height="28" Click="SaveArtwork_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="#FFFBFBFB" Margin="0,0,10,25" Grid.Row="1"/>
-        <Button x:Name="BackMainWindow" FontWeight="SemiBold" Content="Avbryt" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100" Height="28" Click="BackMainWindow_Click" Background="#FFFBFBFB" Margin="10,0,0,25" Grid.Row="1"/>
-        <Button x:Name="AddImage"  Content="Lägg Till Bild" FontWeight="SemiBold"  HorizontalAlignment="Right" VerticalAlignment="Top" Width="106" Height="26" Click="AddImage_Click" Margin="0,411,60,0" Background="#FFFBFBFB"/>
+        <Button x:Name="SaveArtwork" FontWeight="SemiBold" Width="174" Height="38" Click="SaveArtwork_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="#FFFBFBFB" Margin="0,0,10,21" Grid.Row="1">
+            <Button.Template>
+                <ControlTemplate>
+                    <Border CornerRadius="20" Background="White" BorderThickness="1">
+                        <TextBlock Text="Spara konstverk" Foreground="Black" 
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Top"
+                                       Margin="30,9,30,0"
+                                       Height="23"
+                                       FontSize="15">
+                        </TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button x:Name="BackMainWindow" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="104" Height="38" Click="BackMainWindow_Click" Background="#FFFBFBFB" Margin="10,0,0,21" Grid.Row="1">
+            <Button.Template>
+                <ControlTemplate>
+                    <Border CornerRadius="20" Background="White" BorderThickness="1">
+                        <TextBlock Text="Avbryt" Foreground="Black" 
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Top"
+                                       Margin="28,9,9,0"
+                                       Height="24"
+                                       FontSize="15" Width="65">
+                        </TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button x:Name="AddImage" FontWeight="SemiBold"  HorizontalAlignment="Right" VerticalAlignment="Top" Width="149" Height="43" Click="AddImage_Click" Margin="0,414,17,0" Background="#FFFBFBFB">
+            <Button.Template>
+                <ControlTemplate>
+                    <Border CornerRadius="20" Background="White" BorderThickness="1">
+                        <TextBlock Text="Lägg Till Bild" Foreground="Black" 
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Top"
+                                       Margin="30,9,30,0"
+                                       Height="23"
+                                       FontSize="15">
+                        </TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
 
 
     </Grid>
