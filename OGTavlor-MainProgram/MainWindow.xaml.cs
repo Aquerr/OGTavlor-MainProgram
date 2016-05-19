@@ -65,8 +65,6 @@ namespace OGTavlor_MainProgram
                 {
                     if (places != "Alla Områden")
                     {
-                        
-                    
                         if (SignedCheck.IsChecked.Value)
                         {
                             filteredArtworks = arts.Where(x => x.Signed.Equals(true));
@@ -88,15 +86,25 @@ namespace OGTavlor_MainProgram
                 }
                 else
                 {
-                    if (SignedCheck.IsChecked.Value)
+                    if (places != "Alla Områden")
                     {
-                        filteredArtworks = arts.Where(x => x.Signed.Equals(true));
-                        filteredArtworks = filteredArtworks.Where(str => str.RowKey.ToLower().Contains(lookFor) || str.PartitionKey.ToLower().Contains(lookFor) || str.Room.ToLower().Contains(lookFor));
+                        if (SignedCheck.IsChecked.Value)
+                        {
+                            filteredArtworks = arts.Where(x => x.Signed.Equals(true));
+                            filteredArtworks = filteredArtworks.Where(x => x.Place == places);
+                            filteredArtworks = filteredArtworks.Where(str => str.RowKey.ToLower().Contains(lookFor) || str.PartitionKey.ToLower().Contains(lookFor) || str.Room.ToLower().Contains(lookFor));
+                        }
+                        else
+                        {
+                            filteredArtworks = arts.Where(x => x.Place == places);
+                            filteredArtworks = filteredArtworks.Where(str => str.RowKey.ToLower().Contains(lookFor) || str.PartitionKey.ToLower().Contains(lookFor) || str.Room.ToLower().Contains(lookFor));
+                        }
                     }
                     else
                     {
                         filteredArtworks = arts.Where(str => str.RowKey.ToLower().Contains(lookFor) || str.PartitionKey.ToLower().Contains(lookFor) || str.Room.ToLower().Contains(lookFor));
                     }
+                    
                     AllItems = new ObservableCollection<Artwork>(filteredArtworks);
 
                 }
@@ -176,14 +184,32 @@ namespace OGTavlor_MainProgram
         {
             var arts = _artworkLogic.GetArtworksAsync().Result;
 
+            //List<string> test = new List<string>();
+
             //IEnumerable<Artwork> filteredArtworks;
 
             listBoxPlace.Items.Add("Alla Områden");
 
+            //foreach (var item in arts)
+            //{
+            //    test.Add(item.Place);
+            //}
+
             foreach (var item in arts)
             {
-                listBoxPlace.Items.Add(item.Place);
+                var entity = item.Place;
+                if (!listBoxPlace.Items.Contains(entity))
+                {
+                    listBoxPlace.Items.Add(entity);
+                }
+
             }
+
+            //    test.Select(x => x).GroupBy(x => x,)
+            //foreach (var item in test)
+            //{
+            //    listBoxPlace.Items.Add(item);
+            //}
         }
 
         private void listBoxPlace_SelectionChanged(object sender, SelectionChangedEventArgs e)
