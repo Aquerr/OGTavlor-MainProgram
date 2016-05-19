@@ -101,12 +101,12 @@ namespace OGTavlor_MainProgram
                         {
                             filteredArtworks = arts.Where(x => x.Signed.Equals(true));
                             filteredArtworks = filteredArtworks.Where(x => x.Place == places);
-                            filteredArtworks = filteredArtworks.Where(str => str.RowKey.ToLower().Contains(lookFor) || str.PartitionKey.ToLower().Contains(lookFor) || str.Room.ToLower().Contains(lookFor));
+                            filteredArtworks = filteredArtworks.Where(str => str.RowKey.ToLower().Contains(lookFor) || str.PartitionKey.ToLower().Contains(lookFor) || str.Room.ToLower().Contains(lookFor) || str.Height.ToString().Contains(lookFor) || str.Width.ToString().Contains(lookFor));
                         }
                         else
                         {
                             filteredArtworks = arts.Where(x => x.Place == places);
-                            filteredArtworks = filteredArtworks.Where(str => str.RowKey.ToLower().Contains(lookFor) || str.PartitionKey.ToLower().Contains(lookFor) || str.Room.ToLower().Contains(lookFor));
+                            filteredArtworks = filteredArtworks.Where(str => str.RowKey.ToLower().Contains(lookFor) || str.PartitionKey.ToLower().Contains(lookFor) || str.Room.ToLower().Contains(lookFor) || str.Height.ToString().Contains(lookFor) || str.Width.ToString().Contains(lookFor));
                         }
                     }
                     else
