@@ -15,11 +15,11 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="509" Margin="492,55,0,0" VerticalAlignment="Top" Width="710">
-            <Image x:Name="Image" HorizontalAlignment="Left" Height="509" Margin="-1" VerticalAlignment="Top" Width="710" Stretch="Fill"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="546" Margin="472,40,0,0" VerticalAlignment="Top" Width="730">
+            <Image x:Name="Image" HorizontalAlignment="Left" Margin="-1" Width="730" Stretch="Fill"/>
         </Border>
-        <Border BorderBrush="Black" BorderThickness="0" HorizontalAlignment="Left" Height="494" Margin="19,55,0,0" VerticalAlignment="Top" Width="448" RenderTransformOrigin="0.5,0.5">
-            <WrapPanel x:Name="WrapInfo" HorizontalAlignment="Left" Height="475" VerticalAlignment="Top" Width="448" Margin="-1,-1,0,0">
+        <Border BorderBrush="Black" BorderThickness="0" HorizontalAlignment="Left" Height="489" Margin="19,55,0,0" VerticalAlignment="Top" Width="448" RenderTransformOrigin="0.5,0.5">
+            <WrapPanel x:Name="WrapInfo" HorizontalAlignment="Left" Height="495" VerticalAlignment="Top" Width="448" Margin="-1,-1,0,0">
                 <TextBlock x:Name="TextTitle" TextWrapping="Wrap" Text="TextBlock" Height="70" Width="448" FontFamily="Georgia" FontSize="32"/>
                 <TextBlock x:Name="TextArtist" TextWrapping="Wrap" Text="TextBlock" Height="30" Width="448" FontFamily="Helvetica" FontSize="18"/>
                 <TextBlock x:Name="TextRoom" TextWrapping="Wrap" Text="TextBlock" Height="30" Width="448" FontFamily="Helvetica" FontSize="18"/>
@@ -37,10 +37,10 @@
             </Rectangle.Fill>
         </Rectangle>
 
-        <Button x:Name="BtnBack" Content="Tillbaka till startsidan" Margin="19,554,1012,29" Click="BtnBack_Click" FontWeight="SemiBold">
+        <Button x:Name="BtnBack" Margin="19,549,1012,29" Click="BtnBack_Click" FontWeight="SemiBold">
             <Button.Template>
                 <ControlTemplate>
-                    <Border CornerRadius="20" Background="Orange" BorderThickness="1" Margin="0,-13,0,0">
+                    <Border CornerRadius="20" Background="Orange" BorderThickness="1" Margin="0,0,0,0">
                         <TextBlock Text="Tillbaka till startsidan" Foreground="Black" 
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
@@ -53,16 +53,16 @@
             </Button.Template>
         </Button>
 
-        <Button x:Name="BtnEdit" Content="Redigera" Margin="1122,586,10,10" Click="BtnEdit_Click" FontWeight="SemiBold">
+        <Button x:Name="BtnEdit" Margin="234,549,834,29" Click="BtnEdit_Click" FontWeight="SemiBold">
             <Button.Template>
                 <ControlTemplate>
-                    <Border CornerRadius="20" Background="Orange" BorderThickness="1" Margin="0,-13,0,0">
+                    <Border CornerRadius="20" Background="Orange" BorderThickness="1" Margin="0,0,0,0">
                         <TextBlock Text="Redigera" Foreground="Black" 
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
-                                       Margin="9"
+                                       Margin="20,9,9,9"
                                        Height="25"
-                                       FontSize="15" Width="65">
+                                       FontSize="15" Width="63">
                         </TextBlock>
                     </Border>
                 </ControlTemplate>

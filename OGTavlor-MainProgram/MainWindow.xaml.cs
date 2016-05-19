@@ -27,7 +27,6 @@ namespace OGTavlor_MainProgram
     {
         private ObservableCollection<Artwork> _allItems;
         private readonly IArtworkLogic _artworkLogic;
-        public int Ful = 0;
 
         public MainWindow()
         {
