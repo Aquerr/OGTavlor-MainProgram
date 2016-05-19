@@ -36,8 +36,6 @@ namespace OGTavlor_MainProgram
         public async Task ReplaceArtwork(string artist, string title, string imagepath, string place, string description, string oldArtworkTitle, string room, int width, int height, bool? signed)
         {
 
-            var blob = await ReplaceBlob(title,imagepath);
-
             var cloudTable = GetCloudTable();
 
             var art = (await GetArtworks()).SingleOrDefault(x => x.Title == oldArtworkTitle);
@@ -56,7 +54,6 @@ namespace OGTavlor_MainProgram
 
                     // Update Entity
                     artwork.RowKey = title;
-                    artwork.ImagePath = imagepath;
                     artwork.PartitionKey = artist;
                     artwork.Description = description;
                     artwork.Place = place;
@@ -64,7 +61,13 @@ namespace OGTavlor_MainProgram
                     artwork.Height = height;
                     artwork.Width = width;
                     artwork.Signed = signed;
-                    artwork.Blob = blob;
+
+                    if (artwork.ImagePath != imagepath)
+                    {
+                        var blob = await ReplaceBlob(title, imagepath);
+                        artwork.ImagePath = imagepath;
+                        artwork.Blob = blob;
+                    }
 
                     // Create the Replace TableOperation.
                     var updateOperation = TableOperation.InsertOrReplace(artwork);
