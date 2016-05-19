@@ -60,13 +60,10 @@
         </LinearGradientBrush>
     </Window.Background>
     <Grid Height="608" VerticalAlignment="Top">
-
         <Grid.RowDefinitions>
-
             <RowDefinition Height="Auto" MinHeight="574"/>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
-
         </Grid.RowDefinitions>
 
         <DockPanel VerticalAlignment="Top" Height="18">
@@ -81,13 +78,10 @@
         </DockPanel>
 
         <StackPanel Grid.Row="0" Margin="24,78,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="80" Width="120">
-
             <Label Content="Sökruta" FontWeight="Bold"/>
-
             <TextBox x:Name="TxtbxSearchBox" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="120" TextChanged="SearchArts" VerticalContentAlignment="top" Style="{DynamicResource TextBoxStyle1}"/>
             <Label></Label>
             <CheckBox x:Name="SignedCheck" Content="Signerad" Checked="SignedCheck_OnChecked" Unchecked="SignedCheck_OnChecked"></CheckBox>
-
         </StackPanel>
 
         <ListView Grid.Row="0" x:Name="ArtworkListView" HorizontalAlignment="Right" VerticalAlignment="Top" AlternationCount="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Width="500" Height="540" Margin="0,20,10,0" SelectionChanged="ArtworkListView_SelectionChanged">
@@ -125,10 +119,9 @@
                         <TextBlock Text="Bildspel" Foreground="Black" 
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
-                                       Margin="29,-1"
+                                       Margin="29,10,23,10"
                                        Height="20"
-                                       FontSize="15">
-
+                                       FontSize="15" Width="58">
                         </TextBlock>
                     </Border>
                 </ControlTemplate>
@@ -145,7 +138,6 @@
                                        Margin="3,5,-1,5"
                                        Height="20"
                                        FontSize="15" Width="105">
-
                         </TextBlock>
                     </Border>
                 </ControlTemplate>

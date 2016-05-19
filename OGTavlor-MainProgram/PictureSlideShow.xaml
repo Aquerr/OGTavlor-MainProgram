@@ -48,8 +48,6 @@
 
         </DockPanel>
 
-
-
         <Image x:Name="ImgSlideShow" Margin="10,23,10,35" RenderTransformOrigin="0.491,0.491">
 
             <Image.ContextMenu>
@@ -64,36 +62,84 @@
 
         </Image>
 
-        <Button x:Name="BtnPrevious" Content="Föregående bild" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="10,456,0,0" VerticalAlignment="Top" Width="106" Click="PreviousPicture" Height="25">
-            <Button.Background>
-                <SolidColorBrush Color="#FFFBFBFB"/>
-            </Button.Background>
+        <Button x:Name="BtnPrevious" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="10,456,0,0" VerticalAlignment="Top" Width="142" Click="PreviousPicture" Height="25">
+            <Button.Template>
+                <ControlTemplate>
+                    <Border CornerRadius="20" Background="White" BorderThickness="1">
+                        <TextBlock Text="Föregående bild" Foreground="Black" 
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Margin="14,1,9,2"
+                                       Height="20"
+                                       FontSize="15" Width="117">
+                        </TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
         </Button>
 
-        <Button x:Name="BtnMainWindow" Content="Startsida" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="312,456,0,0" VerticalAlignment="Top" Width="75" Click="btnMainWindow_Click" Height="25">
-            <Button.Background>
-                <SolidColorBrush Color="#FFFBFBFB"/>
-            </Button.Background>
+        <Button x:Name="BtnMainWindow"  FontWeight="SemiBold" HorizontalAlignment="Left" Margin="305,456,0,0" VerticalAlignment="Top" Width="92" Click="btnMainWindow_Click" Height="25">
+            <Button.Template>
+                <ControlTemplate>
+                    <Border CornerRadius="20" Background="White" BorderThickness="1">
+                        <TextBlock Text="Startsida" Foreground="Black" 
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Margin="15,1,9,2"
+                                       Height="20"
+                                       FontSize="14" Width="56">
+                        </TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
         </Button>
 
-        <Button x:Name="BtnNext" Content="Nästa bild" HorizontalAlignment="Left" FontWeight="SemiBold" Margin="567,456,0,0" VerticalAlignment="Top" Width="106" Click="NextPicture" Height="25">
-            <Button.Background>
-                <SolidColorBrush Color="#FFFBFBFB"/>
-            </Button.Background>
+        <Button x:Name="BtnNext" HorizontalAlignment="Left" FontWeight="SemiBold" Margin="550,456,0,0" VerticalAlignment="Top" Width="123" Click="NextPicture" Height="25">
+            <Button.Template>
+                <ControlTemplate>
+                    <Border CornerRadius="20" Background="White" BorderThickness="1">
+                        <TextBlock Text="Nästa bild" Foreground="Black" 
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Margin="25,1,8,2"
+                                       Height="20"
+                                       FontSize="15" Width="88">
+                        </TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
         </Button>
 
-        <Button x:Name="StopSlide" Content="Stoppa bildspelet" HorizontalAlignment="Left" FontWeight="SemiBold" Margin="392,456,0,0" VerticalAlignment="Top" Width="110" Click="StopSlideShow" Height="25">
-            <Button.Background>
-                <SolidColorBrush Color="#FFFBFBFB"/>
-            </Button.Background>
+        <Button x:Name="StopSlide" HorizontalAlignment="Left" FontWeight="SemiBold" Margin="402,456,0,0" VerticalAlignment="Top" Width="143" Click="StopSlideShow" Height="25">
+            <Button.Template>
+                <ControlTemplate>
+                    <Border CornerRadius="20" Background="White" BorderThickness="1">
+                        <TextBlock Text="Stoppa bildspelet" Foreground="Black" 
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Margin="9,1,-8,2"
+                                       Height="20"
+                                       FontSize="15" Width="140">
+                        </TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
         </Button>
 
-        <Button x:Name="StartSlide" Content="Starta bildspelet" HorizontalAlignment="Left" FontWeight="SemiBold" Margin="205,456,0,0" VerticalAlignment="Top" Width="102" Click="StartSlideShow" Height="25">
-            <Button.Background>
-                <SolidColorBrush Color="#FFFBFBFB"/>
-            </Button.Background>
+        <Button x:Name="StartSlide" Content="Starta bildspelet" HorizontalAlignment="Left" FontWeight="SemiBold" Margin="157,456,0,0" VerticalAlignment="Top" Width="143" Click="StartSlideShow" Height="25">
+            <Button.Template>
+                <ControlTemplate>
+                    <Border CornerRadius="20" Background="White" BorderThickness="1">
+                        <TextBlock Text="Starta bildspelet" Foreground="Black" 
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Margin="17,1,-8,2"
+                                       Height="20"
+                                       FontSize="15" Width="132">
+                        </TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
         </Button>
-
     </Grid>
-
 </Window>
