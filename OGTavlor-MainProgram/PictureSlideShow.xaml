@@ -34,11 +34,11 @@
 
                     <MenuItem Header="Intervall">
 
-                        <MenuItem x:Name="Interval1" Header="1" IsCheckable="True" Click="Interval1_OnClick"></MenuItem>
+                        <MenuItem x:Name="Interval1" Header="1" IsCheckable="True" Click="Interval1_OnClick" Checked="Interval1_OnChecked"></MenuItem>
 
-                        <MenuItem x:Name="Interval2" Header="2" IsCheckable="True" Click="Interval2_OnClick"></MenuItem>
+                        <MenuItem x:Name="Interval2" Header="2" IsCheckable="True" Click="Interval2_OnClick" Checked="Interval2_OnChecked"></MenuItem>
 
-                        <MenuItem x:Name="Interval3" Header="3" IsCheckable="True" Click="Interval3_OnClick"></MenuItem>
+                        <MenuItem x:Name="Interval3" Header="3" IsCheckable="True" Click="Interval3_OnClick" Checked="Interval3_OnChecked"></MenuItem>
 
                     </MenuItem>
 

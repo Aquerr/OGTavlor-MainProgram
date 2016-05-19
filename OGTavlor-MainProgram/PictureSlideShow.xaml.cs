@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -176,6 +177,11 @@ namespace OGTavlor_MainProgram
                 {
                     Interval1.IsChecked = false;
                     Interval2.IsChecked = false;
+                    //if (Interval3.Checked == true)
+                    //{
+                    //    Interval2.Checked = false;
+                    //}
+                    
                 }
             }
             if (Interval2.IsPressed)
@@ -213,6 +219,24 @@ namespace OGTavlor_MainProgram
         private void Interval1_OnClick(object sender, RoutedEventArgs e)
         {
             IntervalsCombined();
+        }
+
+        private void Interval1_OnChecked(object sender, RoutedEventArgs e)
+        {
+            Interval2.IsChecked = false;
+            Interval3.IsChecked = false;
+        }
+
+        private void Interval2_OnChecked(object sender, RoutedEventArgs e)
+        {
+            Interval1.IsChecked = false;
+            Interval3.IsChecked = false;
+        }
+
+        private void Interval3_OnChecked(object sender, RoutedEventArgs e)
+        {
+            Interval1.IsChecked = false;
+            Interval2.IsChecked = false;
         }
     }
 }
