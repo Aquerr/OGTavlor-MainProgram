@@ -84,7 +84,7 @@
 
             <Label Content="Sökruta" FontWeight="Bold"/>
 
-            <TextBox x:Name="TxtbxSearchBox" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="120" TextChanged="SearchArts" VerticalContentAlignment="top" Style="{DynamicResource TextBoxStyle1}"/>
+            <TextBox x:Name="TxtbxSearchBox" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="120" TextChanged="SearchArts" VerticalContentAlignment="top" Style="{DynamicResource TextBoxStyle1}"/>
             <Label></Label>
             <CheckBox x:Name="SignedCheck" Content="Signerad" Checked="SignedCheck_OnChecked" Unchecked="SignedCheck_OnChecked"></CheckBox>
 
@@ -98,7 +98,7 @@
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Button Click="ButtonArtwork_Click" Cursor="Hand">
+                    <Button MouseDoubleClick="ButtonArtwork_Click" Cursor="Hand">
                         <Button.Template>
                             <ControlTemplate>
                                 <Border BorderBrush="Black" BorderThickness="1" >
