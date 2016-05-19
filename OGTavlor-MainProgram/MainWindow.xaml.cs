@@ -36,7 +36,9 @@ namespace OGTavlor_MainProgram
             IArtworkService service = new ArtworkService();
             IArtworkLogic logic = new ArtworkLogic(service);
             _artworkLogic = logic;
+            listBoxPlace.SelectedValue = "Alla Områden";
             FillList();
+            LoadPlaceList();
         }
 
         //Button to redirect user to Add Artwork Window.
@@ -54,18 +56,38 @@ namespace OGTavlor_MainProgram
             {
                 var lookFor = TxtbxSearchBox.Text.ToLower();
 
+                var arts = await GetItemsAsync();
+                
+                IEnumerable<Artwork> filteredArtworks;
+
+                var places = listBoxPlace.SelectedValue;
                 if (lookFor == "")
                 {
-                    var list = await GetItemsAsync();
-                    AllItems = new ObservableCollection<Artwork>(list);
+                    if (places != "Alla Områden")
+                    {
+                        
+                    
+                        if (SignedCheck.IsChecked.Value)
+                        {
+                            filteredArtworks = arts.Where(x => x.Signed.Equals(true));
+                            filteredArtworks = filteredArtworks.Where(x => x.Place == places);
+                        }
+                        else
+                        {
+                            filteredArtworks = arts;
+                            filteredArtworks = filteredArtworks.Where(x => x.Place == places);
+                        }
+                    }
+                    else
+                    {
+                        filteredArtworks = arts;
+                    }
+                    //var list = await GetItemsAsync();
+                    //AllItems = new ObservableCollection<Artwork>(list);
+                    AllItems = new ObservableCollection<Artwork>(filteredArtworks);
                 }
                 else
                 {
-
-                    var arts = _artworkLogic.GetArtworksAsync().Result;
-
-                    IEnumerable<Artwork> filteredArtworks;
-
                     if (SignedCheck.IsChecked.Value)
                     {
                         filteredArtworks = arts.Where(x => x.Signed.Equals(true));
@@ -75,7 +97,6 @@ namespace OGTavlor_MainProgram
                     {
                         filteredArtworks = arts.Where(str => str.RowKey.ToLower().Contains(lookFor) || str.PartitionKey.ToLower().Contains(lookFor) || str.Room.ToLower().Contains(lookFor));
                     }
-
                     AllItems = new ObservableCollection<Artwork>(filteredArtworks);
 
                 }
@@ -156,6 +177,25 @@ namespace OGTavlor_MainProgram
         private void SignedCheck_OnChecked(object sender, RoutedEventArgs e)
         {
             FillList();
+        }
+
+        private void LoadPlaceList()
+        {
+            var arts = _artworkLogic.GetArtworksAsync().Result;
+
+            //IEnumerable<Artwork> filteredArtworks;
+
+            listBoxPlace.Items.Add("Alla Områden");
+
+            foreach (var item in arts)
+            {
+                listBoxPlace.Items.Add(item.Place);
+            }
+        }
+
+        private void listBoxPlace_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+           FillList();
         }
     }
 }
