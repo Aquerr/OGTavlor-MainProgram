@@ -159,26 +159,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\bild1.JPG" />
-    <Resource Include="Images\bild1mini.JPG" />
-    <Resource Include="Images\bild2.JPG" />
-    <Resource Include="Images\bild2mini.JPG" />
-    <Resource Include="Images\bild3.JPG" />
-    <Resource Include="Images\bild3mini.JPG" />
-    <Resource Include="Images\bild4.JPG" />
-    <Resource Include="Images\bild4mini.JPG" />
-    <Resource Include="Images\bild5.JPG" />
-    <Resource Include="Images\bild5mini.JPG" />
-    <Resource Include="Images\bild6.JPG" />
-    <Resource Include="Images\bild6mini.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\g3YbbQr.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\404.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\ostra.png" />
   </ItemGroup>
   <ItemGroup>
