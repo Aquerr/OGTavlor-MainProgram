@@ -88,6 +88,7 @@
             <TextBox x:Name="ArtArtist" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" FontSize="15" Padding="3" Style="{DynamicResource TextBoxStyle2}"/>
             <Label x:Name="LabelComboBoxAreas" Content="Plats" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" FontSize="15"/>
             <ComboBox x:Name="ArtPlace" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Background="White" FontSize="15">
+                <ComboBoxItem Content="Obestämd" HorizontalAlignment="Left" Width="148"/>
                 <ComboBoxItem Content="Teknik" HorizontalAlignment="Left" Width="148"/>
                 <ComboBoxItem Content="Estet" HorizontalAlignment="Left" Width="148"/>
                 <ComboBoxItem Content="Tekniska fyran" HorizontalAlignment="Left" Width="148"/>
@@ -116,16 +117,16 @@
         <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Margin="10,0,0,10" HorizontalAlignment="Left"/>
 
         <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,10,10" HorizontalAlignment="Right"/>
-        <Button x:Name="SaveArtwork" FontWeight="SemiBold" Width="174" Height="38" Click="SaveArtwork_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="#FFFBFBFB" Margin="0,0,10,-2" Grid.Row="1" Grid.RowSpan="2">
+        <Button x:Name="SaveArtwork" FontWeight="SemiBold" Width="149" Height="38" Click="SaveArtwork_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="#FFFBFBFB" Margin="0,0,30,-2" Grid.Row="1" Grid.RowSpan="2">
             <Button.Template>
                 <ControlTemplate>
                     <Border CornerRadius="20" Background="White" BorderThickness="1">
-                        <TextBlock Text="Spara konstverk" Foreground="Black" 
+                        <TextBlock Text="Lägg till konstverk" Foreground="Black" 
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Top"
-                                       Margin="30,9,30,0"
+                                       Margin="9,9,-3,0"
                                        Height="23"
-                                       FontSize="15">
+                                       FontSize="15" Width="141">
                         </TextBlock>
                     </Border>
                 </ControlTemplate>

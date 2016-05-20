@@ -70,7 +70,7 @@ namespace OGTavlor_MainProgram
             }
             else
             {
-                MessageBox.Show("Du måste ange namn på konstnär och titel.");
+                MessageBox.Show("Du måste ange namn på konstnär och titel.", "Statusmeddelande", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         // Fills in the existing information inside of the textboxes.
@@ -92,7 +92,6 @@ namespace OGTavlor_MainProgram
             if (art.ImagePath != null)
             {
                 var uripath = new Uri(art.Blob, UriKind.RelativeOrAbsolute);
-
                 ArtImage.Source = new BitmapImage(uripath);
                 _imagePath = art.ImagePath;
             }
@@ -107,7 +106,7 @@ namespace OGTavlor_MainProgram
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Vill du ta bort detta konstverk?", "Ta bort konstverk", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+            if (MessageBox.Show("Vill du ta bort detta konstverk?", "Varning", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
             {
 
             }

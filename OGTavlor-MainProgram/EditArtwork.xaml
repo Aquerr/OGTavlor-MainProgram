@@ -95,6 +95,7 @@
             <Label x:Name="LblPlace" Content="Plats" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="15"/>
 
             <ComboBox x:Name="ArtPlace" FontSize="15">
+                <ComboBoxItem Content="Obestämd" HorizontalAlignment="Left" Width="148"></ComboBoxItem>
                 <ComboBoxItem Content="Teknik" HorizontalAlignment="Left" Width="148"/>
                 <ComboBoxItem Content="Estet" HorizontalAlignment="Left" Width="148"/>
                 <ComboBoxItem Content="Tekniska fyran" HorizontalAlignment="Left" Width="148"/>

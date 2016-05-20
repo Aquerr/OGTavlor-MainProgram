@@ -44,7 +44,7 @@ namespace OGTavlor_MainProgram
             this.Close();
             mainWindow.Show();
         }
-        
+
         //Loads the image when the window is loaded.
         private void PictureSlideShow_Loaded(object sender, RoutedEventArgs e)
         {
@@ -102,7 +102,7 @@ namespace OGTavlor_MainProgram
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Bilderna kan inte laddas.", "Felmeddelande");
+                    MessageBox.Show("Bilderna kan inte laddas.", "Felmeddelande", MessageBoxButton.OK, MessageBoxImage.Error);
                     var main = new MainWindow();
                     this.Close();
                     main.Show();
@@ -171,34 +171,26 @@ namespace OGTavlor_MainProgram
         //Function for the intervals that can be selected.
         private void IntervalsCombined()
         {
-            if (Interval3.IsPressed)
+            if (Interval3.IsChecked)
             {
-                if (Interval3.IsChecked)
-                {
-                    Interval1.IsChecked = false;
-                    Interval2.IsChecked = false;
-                    //if (Interval3.Checked == true)
-                    //{
-                    //    Interval2.Checked = false;
-                    //}
-                    
-                }
+                Interval1.IsChecked = false;
+                Interval2.IsChecked = false;
+                Timer.Stop();
+                TimerStart();
             }
-            if (Interval2.IsPressed)
+            else if (Interval2.IsChecked)
             {
-                if (Interval2.IsChecked)
-                {
-                    Interval1.IsChecked = false;
-                    Interval3.IsChecked = false;
-                }
+                Interval1.IsChecked = false;
+                Interval3.IsChecked = false;
+                Timer.Stop();
+                TimerStart();
             }
-            if (Interval1.IsPressed)
+            else if (Interval1.IsChecked)
             {
-                if (Interval1.IsChecked)
-                {
-                    Interval2.IsChecked = false;
-                    Interval3.IsChecked = false;
-                }
+                Interval2.IsChecked = false;
+                Interval3.IsChecked = false;
+                Timer.Stop();
+                TimerStart();
             }
 
         }
@@ -219,24 +211,6 @@ namespace OGTavlor_MainProgram
         private void Interval1_OnClick(object sender, RoutedEventArgs e)
         {
             IntervalsCombined();
-        }
-
-        private void Interval1_OnChecked(object sender, RoutedEventArgs e)
-        {
-            Interval2.IsChecked = false;
-            Interval3.IsChecked = false;
-        }
-
-        private void Interval2_OnChecked(object sender, RoutedEventArgs e)
-        {
-            Interval1.IsChecked = false;
-            Interval3.IsChecked = false;
-        }
-
-        private void Interval3_OnChecked(object sender, RoutedEventArgs e)
-        {
-            Interval1.IsChecked = false;
-            Interval2.IsChecked = false;
         }
     }
 }

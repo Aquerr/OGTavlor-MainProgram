@@ -52,7 +52,7 @@ namespace OGTavlor_MainProgram
                 catch (Exception)
                 {
 
-                    MessageBox.Show("Bilden kunde inte hittas.");
+                    MessageBox.Show("Bilden kunde inte hittas.", "Felmeddelande", MessageBoxButton.OK, MessageBoxImage.Error);
                 }                
             }
 

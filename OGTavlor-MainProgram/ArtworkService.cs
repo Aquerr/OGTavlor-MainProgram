@@ -24,11 +24,12 @@ namespace OGTavlor_MainProgram
                 var insertTableOperation = TableOperation.Insert(artwork);
 
                 cloudTable.Execute(insertTableOperation);
+
+                MessageBox.Show("Konstverket har nu sparats", "Statusmeddelande", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Någonting gick fel när tavlan skulle sparas");
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Någonting gick fel när tavlan skulle sparas /r /r" + ex, "Felmeddelande", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -102,11 +103,11 @@ namespace OGTavlor_MainProgram
                         cloudTable.Execute(insertTableOperation);
                     }
 
-                    MessageBox.Show("Tavlan har uppdaterats.");
+                    MessageBox.Show("Tavlan har uppdaterats.", "Statusmeddelande", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
 
-                    MessageBox.Show("Kunde inte hitta tavlan.");
+                    MessageBox.Show("Kunde inte hitta tavlan.", "Felmeddelande", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -145,12 +146,12 @@ namespace OGTavlor_MainProgram
                 // Execute the operation.
                 cloudTable.Execute(deleteOperation);
 
-                MessageBox.Show("Tavlan har tagits bort.");
+                MessageBox.Show("Tavlan har nu tagits bort.", "Statusmeddelande", MessageBoxButton.OK, MessageBoxImage.Information);
             }
 
             else
             {
-                MessageBox.Show("Det gick inte att återfå tavlan.");
+                MessageBox.Show("Det gick inte att hitta tavlan.", "Felmeddelande", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

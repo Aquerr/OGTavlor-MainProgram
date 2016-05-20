@@ -68,7 +68,7 @@
 
         <DockPanel VerticalAlignment="Top" Height="18">
             <Menu DockPanel.Dock="Top">
-                <MenuItem Header="_File">
+                <MenuItem Header="_Meny">
                     <MenuItem Header="_Ny tavla" Click="LäggTillKonstverk_Click"></MenuItem>
                     <MenuItem Header="Bildspel" Click="BtnSlideShow_Click"></MenuItem>
                     <Separator/>

@@ -49,6 +49,10 @@ namespace OGTavlor_MainProgram
                 _artwork.Room = ArtRoom.Text;
                 _artwork.Signed = CheckBoxSigned.IsChecked;
                 _artwork.Place = ArtPlace.Text;
+                if (ArtPlace.Text == "")
+                {
+                    _artwork.Place = "Obestämd";
+                }
                 int height;
                 int width;
                 int.TryParse(ArtHeight.Text, out height);
@@ -64,7 +68,7 @@ namespace OGTavlor_MainProgram
             }
             else
             {
-                MessageBox.Show("Du måste ange tavlans titel, konstnär och bifoga bild.");
+                MessageBox.Show("Du måste ange tavlans titel, konstnär och bifoga bild.", "Varning", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         //Open the file browser

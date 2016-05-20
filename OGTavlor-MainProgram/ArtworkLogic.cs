@@ -13,13 +13,11 @@ namespace OGTavlor_MainProgram
     {
         private readonly IArtworkService _artworkService;
         private static List<Artwork> _artworkList;
-        private static List<string> _blobList;
 
         public ArtworkLogic(IArtworkService artworkService)
         {
             _artworkService = artworkService;
             _artworkList = new List<Artwork>();
-            _blobList = new List<string>();
         }
 
         //Loads artworks.
